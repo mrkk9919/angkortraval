@@ -446,6 +446,7 @@
         <div class="font-semibold text-[14.5px]" id="chatHeadTitle" data-i18n="aiTitle">AI Travel Assistant</div>
         <div class="text-[11px] text-teal-700" id="chatHeadSub" data-i18n="aiOnline">Online · EN / ZH / KM</div>
       </div>
+      <button type="button" class="px-2.5 py-2 rounded-lg text-[11px] font-bold text-white whitespace-nowrap" style="background:#0d9488" onclick="openLiveSupport()" data-i18n="contactSupport">联系客服</button>
     </div>
     <div class="px-3 py-2 flex gap-1.5 bg-white border-b" style="border-color:rgba(15,23,42,.06)">
       <button type="button" class="chat-mode on flex-1 py-1.5 rounded-lg text-[12px] font-bold border" data-chatmode="ai" onclick="setChatMode('ai')" data-i18n="modeAi">AI</button>
@@ -1348,7 +1349,7 @@ const I18N = {
     viewTrips:'View my trips', backHome:'Back home', myTrips:'My trips', tripsSub:'Confirmed bookings and vouchers.',
     noTrips:'No trips yet.', browseTours:'Browse tours', guests:'guests', rated:'rated',
     aiOnline:'Online · EN / ZH / KM', chatPh:'Type a message to AI or live agent...',
-    modeAi:'AI', modeLive:'Live agent', liveTitle:'Live support', liveOnline:'Agent online · type to a human',
+    modeAi:'AI', modeLive:'Live agent', contactSupport:'Contact support', liveTitle:'Live support', liveOnline:'Agent online · type to a human',
     liveHi:'A support agent can now see your chat and type back. Ask anything about your trip.',
     waitingAgent:'Waiting for an agent. Keep typing — they will reply here.',
     agentLabel:'Agent',
@@ -1437,7 +1438,7 @@ const I18N = {
     viewTrips:'查看我的行程', backHome:'返回首页', myTrips:'我的行程', tripsSub:'已确认的预订与凭证。',
     noTrips:'暂无行程。', browseTours:'浏览行程', guests:'位旅客', rated:'评分',
     aiOnline:'在线 · 中 / 英 / 高棉语', chatPh:'给 AI 或人工客服打字...',
-    modeAi:'AI', modeLive:'人工客服', liveTitle:'人工客服', liveOnline:'客服在线 · 可手动回复',
+    modeAi:'AI', modeLive:'人工客服', contactSupport:'联系客服', liveTitle:'人工客服', liveOnline:'客服在线 · 可手动回复',
     liveHi:'客服已可看到您的对话并手动回复。请直接打字咨询行程。',
     waitingAgent:'正在等待客服接入，请继续打字，客服会在此回复。',
     agentLabel:'客服',
@@ -1526,7 +1527,7 @@ const I18N = {
     viewTrips:'មើលដំណើររបស់ខ្ញុំ', backHome:'ត្រឡប់ទំព័រដើម', myTrips:'ដំណើររបស់ខ្ញុំ', tripsSub:'ការកក់ និងសំបុត្របានបញ្ជាក់។',
     noTrips:'មិនទាន់មានដំណើរ។', browseTours:'រកមើលដំណើរ', guests:'ភ្ញៀវ', rated:'ពិន្ទុ',
     aiOnline:'អនឡាញ · ខ្មែរ / ចិន / អង់គ្លេស', chatPh:'វាយសារទៅ AI ឬភ្នាក់ងារ...',
-    modeAi:'AI', modeLive:'ភ្នាក់ងារ', liveTitle:'ជំនួយផ្ទាល់', liveOnline:'ភ្នាក់ងារអនឡាញ · វាយសារមក',
+    modeAi:'AI', modeLive:'ភ្នាក់ងារ', contactSupport:'ទាក់ទង客服', liveTitle:'ជំនួយផ្ទាល់', liveOnline:'ភ្នាក់ងារអនឡាញ · វាយសារមក',
     liveHi:'ភ្នាក់ងារអាចមើលការជជែក និងឆ្លើយតបដោយដៃ។ សូមវាយសារឥឡូវ។',
     waitingAgent:'កំពុងរង់ចាំភ្នាក់ងារ។ បន្តវាយសារ ពួកគេនឹងឆ្លើយនៅទីនេះ។',
     agentLabel:'ភ្នាក់ងារ',
@@ -2114,6 +2115,13 @@ function setChatMode(mode) {
     if (!hasLive) pushMsg('ai', t('liveHi'), 'live');
   }
   renderChatLog();
+}
+
+function openLiveSupport() {
+  go('chat');
+  setChatMode('live');
+  const input = $('chatIn');
+  if (input) input.focus();
 }
 
 function initChat() {
