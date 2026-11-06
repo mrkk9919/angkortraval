@@ -36,3 +36,31 @@ GitHub Pages 只能托管静态文件，不能运行 `server.js`（无常驻进�
 - `GET /api/support/messages?conversationId=` 取会话全部历史
 - `GET /api/support/conversations` 客服收件箱列表（需要 `messages.read` 权限）
 - `POST /api/admin/login` 客服登录
+
+## AI 客服机器人（大模型）
+
+聊天页的机器人默认是站内关键词应答（不需要任何服务）。接真大模型时走一个代理，密钥只放代理端。
+
+**方式 A：Cloudflare Worker（推荐，5 分钟，免费）**
+1. 打开 dash.cloudflare.com → Workers & Pages → Create Worker，粘贴 `ai-proxy-worker.js` 全文，Deploy
+2. 在 Settings → Variables and Secrets 添加 `AI_API_KEY`（必填）、`AI_BASE_URL`、`AI_MODEL`、`ALLOWED_ORIGIN`
+3. 得到地址如 `https://angkor-ai.xxx.workers.dev`，把前端 `AI_PROXY` 改成 `'https://angkor-ai.xxx.workers.dev/ai'`，重新混淆推送
+
+**方式 B：已有服务器（`server.js` 已内置接口）**
+1. `systemctl edit angkor-travel` 或编辑 `/etc/angkor-travel.env`，加：
+   ```
+   AI_API_KEY=你的密钥
+   AI_BASE_URL=https://ark.cn-beijing.volces.com/api/v3
+   AI_MODEL=doubao-seed-1-6-flash-250828
+   ```
+2. 重启服务，接口为 `POST /api/ai/chat`，`{"messages":[...]}` → `{"reply":"..."}`
+3. 前端 `AI_PROXY` 填 `https://你的域名/api/ai/chat`（必须 https，Pages 是 https，调 http 会被浏览器拦）
+
+**调试**：浏览器控制台执行
+```js
+localStorage.setItem('atc_ai_proxy', 'https://…/ai');      // 临时用某个代理
+localStorage.removeItem('atc_ai_proxy');                    // 回到关键词应答
+```
+AI 不通或报错时，聊天会自动回落到关键词应答并提示「AI 暂时不通」，不会让顾客对着空气。
+
+**系统提示词**里已经注入了当前 7 条行程、7 家酒店的价格与规则（KYC、支付方式、接送、48 小时退改），改价格后无需另改提示词。

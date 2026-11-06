@@ -205,6 +205,27 @@ async function api(req, res, url) {
       return json(res, 200, { conversations: rows });
     }
 
+    /* AI 客服：转发到 OpenAI 兼容接口（豆包/火山方舟、OpenAI、Groq 等）
+       环境变量：AI_API_KEY（必填）、AI_BASE_URL、AI_MODEL */
+    if (req.method === 'POST' && url.pathname === '/api/ai/chat') {
+      const key = process.env.AI_API_KEY;
+      if (!key) return json(res, 503, { error: 'ai_not_configured' });
+      const payload = await body(req);
+      const messages = Array.isArray(payload.messages) ? payload.messages.slice(-12) : [];
+      if (!messages.length) return json(res, 400, { error: 'messages_required' });
+      const base = (process.env.AI_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3').replace(/\/+$/, '');
+      const model = payload.model || process.env.AI_MODEL || 'doubao-seed-1-6-flash-250828';
+      const upstream = await fetch(base + '/chat/completions', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },
+        body: JSON.stringify({ model: model, messages: messages, temperature: 0.4, max_tokens: 400 })
+      });
+      const data = await upstream.json().catch(() => ({}));
+      if (!upstream.ok) return json(res, 502, { error: (data.error && data.error.message) || 'upstream_error' });
+      const reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : '';
+      return json(res, 200, { reply: reply || '' });
+    }
+
     return json(res, 404, { error: 'not found' });
   } catch (e) {
     return json(res, 400, { error: e.message || 'request failed' });
