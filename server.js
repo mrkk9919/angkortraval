@@ -6,8 +6,14 @@ const { DatabaseSync } = require('node:sqlite');
 
 const PORT = Number(process.env.PORT || 8000);
 const ROOT = __dirname;
-const DATA_DIR = process.env.DATA_DIR || ROOT;
-try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch (e) {}
+let DATA_DIR = process.env.DATA_DIR || ROOT;
+try {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  fs.accessSync(DATA_DIR, fs.constants.W_OK);
+} catch (e) {
+  console.warn('[data] ' + DATA_DIR + ' 不可写（' + (e.code || e.message) + '），回退到项目目录');
+  DATA_DIR = ROOT;
+}
 const db = new DatabaseSync(path.join(DATA_DIR, 'angkor-travel.sqlite'));
 db.exec(`
   PRAGMA journal_mode = WAL;
