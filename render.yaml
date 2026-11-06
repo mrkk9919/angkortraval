@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: angkor-travel
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install --omit=dev --no-audit --no-fund
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.23.2
+      - key: DATA_DIR
+        value: /var/data
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: gpt-4o-mini
+      - key: ADMIN_DEMO_PASSWORD
+        generateValue: true
+      - key: ADMIN_OPS_PASSWORD
+        generateValue: true
+      - key: ADMIN_SUPPORT_PASSWORD
+        generateValue: true
+      - key: ADMIN_FINANCE_PASSWORD
+        generateValue: true
+    # 免费实例不支持持久磁盘，SQLite 会随重启清空；要长期保存历史改成 plan: starter 并取消下面注释
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1

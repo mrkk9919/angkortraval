@@ -1,0 +1,12 @@
+{
+  "name": "angkor-travel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Angkor Travel — mobile single-page booking site + support backend + AI assistant",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}

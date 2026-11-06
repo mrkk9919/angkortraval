@@ -6,7 +6,9 @@ const { DatabaseSync } = require('node:sqlite');
 
 const PORT = Number(process.env.PORT || 8000);
 const ROOT = __dirname;
-const db = new DatabaseSync(path.join(ROOT, 'angkor-travel.sqlite'));
+const DATA_DIR = process.env.DATA_DIR || ROOT;
+try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch (e) {}
+const db = new DatabaseSync(path.join(DATA_DIR, 'angkor-travel.sqlite'));
 db.exec(`
   PRAGMA journal_mode = WAL;
   CREATE TABLE IF NOT EXISTS admin_users (username TEXT PRIMARY KEY, display_name TEXT NOT NULL, role TEXT NOT NULL, password TEXT NOT NULL);
@@ -238,7 +240,18 @@ const server = http.createServer((req, res) => {
   if (url.pathname.startsWith('/api/')) return api(req, res, url);
   const file = path.join(ROOT, url.pathname === '/' ? 'index.html' : url.pathname.replace(/^\/+/, ''));
   if (!file.startsWith(ROOT) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) return json(res, 404, { error: 'not found' });
-  res.writeHead(200, { 'content-type': file.endsWith('.html') ? 'text/html; charset=utf-8' : 'application/octet-stream' });
+  const TYPES = {
+    '.html': 'text/html; charset=utf-8',
+    '.js': 'application/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png',
+    '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
+    '.txt': 'text/plain; charset=utf-8', '.md': 'text/plain; charset=utf-8'
+  };
+  const ext = path.extname(file).toLowerCase();
+  const cache = /\.(jpg|jpeg|png|webp|svg|ico)$/.test(ext) ? 'public, max-age=604800' : 'no-cache';
+  res.writeHead(200, { 'content-type': TYPES[ext] || 'application/octet-stream', 'cache-control': cache });
   fs.createReadStream(file).pipe(res);
 });
 
