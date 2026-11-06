@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Desk — Angkor Travel</title>
+<link rel="icon" type="image/webp" href="logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@1/dist/umd/lucide.min.js"></script>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #0b1f1c; color: #0f172a; }
+  .bubble-ai { background: #e7f6f3; border-radius: 4px 16px 16px 16px; }
+  .bubble-agent { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 4px 16px 16px 16px; }
+  .bubble-me { background: #0f172a; color: #fff; border-radius: 16px 4px 16px 16px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .fade { animation: fadeUp .35s ease; }
+  @keyframes typingBlink { 0%,80%,100% { opacity: .25; } 40% { opacity: 1; } }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+  .pulse-dot { animation: pulse 2s infinite; }
+  .guest-card.active { background: #f0fdfa; border-color: #0d9488; }
+  .conn-on { background: #dcfce7; color: #15803d; }
+  .conn-off { background: #fee2e2; color: #b91c1c; }
+  html[lang="km"] body { font-family: 'Noto Sans Khmer', 'DM Sans', sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="max-w-6xl mx-auto p-4 md:p-6 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-4 text-white">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl bg-white p-1.5 shadow flex items-center justify-center">
+        <img src="logo.webp" alt="Angkor Travel" class="w-full h-full object-contain bg-white rounded-xl">
+      </div>
+      <div>
+        <div class="text-[11px] uppercase tracking-widest opacity-70">Angkor Travel</div>
+        <h2 class="text-[22px] font-semibold" style="font-family:'Fraunces',serif">Agent Desk</h2>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-bold" id="connStatus">
+        <span class="w-2 h-2 rounded-full pulse-dot" style="background:#15803d"></span>
+        <span id="connLabel">Connected</span>
+      </div>
+      <select id="langSel" class="px-3 py-1.5 rounded-lg bg-white text-slate-900 text-[13px] font-semibold outline-none border-0">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="km">ខ្មែរ</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Connection note -->
+  <div class="rounded-xl px-3 py-2 mb-3 text-[11.5px] flex items-center gap-2" id="connNote" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.7)">
+    <span style="font-size:14px">📡</span>
+    <span id="connNoteText">Same-browser mode: messages sync across tabs. Open this page in another tab/window to chat with the customer app.</span>
+  </div>
+
+  <!-- Main grid -->
+  <div class="grid md:grid-cols-[240px_1fr_280px] gap-3 flex-1" style="min-height:0">
+
+    <!-- Inbox -->
+    <div class="bg-white rounded-2xl overflow-hidden flex flex-col">
+      <div class="px-3 py-3 border-b flex items-center justify-between" style="border-color:rgba(15,23,42,.06)">
+        <span class="text-[12px] font-bold text-slate-500 uppercase">Inbox</span>
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full" id="inboxCount" style="background:#fef3c7;color:#b45309">0</span>
+      </div>
+      <div id="deskList" class="flex-1 overflow-y-auto p-2 space-y-1"></div>
+    </div>
+
+    <!-- Chat -->
+    <div class="bg-white rounded-2xl overflow-hidden flex flex-col">
+      <div class="px-4 py-3 border-b flex items-center justify-between" style="border-color:rgba(15,23,42,.06)">
+        <div class="min-w-0">
+          <div class="font-semibold text-[14px] truncate" id="deskGuest">—</div>
+          <div class="text-[11px] text-slate-400 truncate" id="deskMeta">Select a customer from inbox</div>
+        </div>
+        <div class="text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1" id="custOnline" style="background:#fef3c7;color:#b45309">
+          <span class="w-1.5 h-1.5 rounded-full pulse-dot" style="background:#b45309"></span> <span id="custOnlineLabel">Offline</span>
+        </div>
+      </div>
+      <div id="deskLog" class="flex-1 overflow-y-auto p-4 space-y-2"></div>
+      <div class="p-3 border-t flex gap-2" style="border-color:rgba(15,23,42,.06)">
+        <input id="deskIn" class="flex-1 px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" placeholder="Type a reply to this customer..." disabled>
+        <button id="deskSendBtn" class="px-4 rounded-xl text-white font-bold text-[13px] flex items-center gap-1.5" style="background:#0f172a;opacity:.5" disabled>
+          <i data-lucide="send" style="width:16px;height:16px"></i> Send
+        </button>
+      </div>
+    </div>
+
+    <!-- Customer profile -->
+    <div class="bg-white rounded-2xl overflow-hidden flex flex-col">
+      <div class="px-3 py-3 border-b text-[12px] font-bold text-slate-500 uppercase" style="border-color:rgba(15,23,42,.06)">Customer profile</div>
+      <div id="deskProfile" class="flex-1 overflow-y-auto p-3 text-[13px]"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Agent Desk — Standalone Page
+   Communicates with customer app via:
+   1. localStorage (atc_thread) — persistent storage
+   2. BroadcastChannel (atc_channel) — real-time same-browser sync
+   3. window storage event — cross-tab fallback
+   ============================================================ */
+
+const I18N = {
+  en: {
+    connected:'Connected', offline:'Offline', online:'Online',
+    noInbox:'No live chats yet. Customer messages will appear here.',
+    selectCustomer:'Select a customer from inbox',
+    deskPh:'Type a reply to this customer...',
+    send:'Send', you:'You', agent:'Agent', guest:'Guest',
+    noProfile:'No customer selected.',
+    kycStatus:'KYC status', verified:'Verified', notVerified:'Not verified',
+    noTrips:'No bookings yet.', trips:'Bookings', guests:'guests',
+    documents:'Documents', phoneEmail:'Phone / Email',
+    connNote:'Same-browser mode: messages sync across tabs in real-time. Customer must have the app open in another tab.'
+  },
+  zh: {
+    connected:'已连接', offline:'离线', online:'在线',
+    noInbox:'暂无人工会话。客户消息将显示在这里。',
+    selectCustomer:'从左侧选择客户',
+    deskPh:'手动回复这位客户...',
+    send:'发送', you:'客户', agent:'客服', guest:'访客',
+    noProfile:'未选择客户。',
+    kycStatus:'认证状态', verified:'已认证', notVerified:'未认证',
+    noTrips:'暂无预订。', trips:'订单', guests:'位旅客',
+    documents:'证件资料', phoneEmail:'手机 / 邮箱',
+    connNote:'同浏览器模式：消息在标签页间实时同步。客户需在另一个标签页打开 App。'
+  },
+  km: {
+    connected:'បានភ្ជាប់', offline:'ក្រៅបណ្តាញ', online:'លើបណ្តាញ',
+    noInbox:'មិនទាន់មានការជជែក។ សារអតិថិជននឹងបង្ហាញនៅទីនេះ។',
+    selectCustomer:'ជ្រើសអតិថិជនពីប្រអប់សារ',
+    deskPh:'វាយឆ្លើយទៅអតិថិជន...',
+    send:'ផ្ញើ', you:'អតិថិជន', agent:'ភ្នាក់ងារ', guest:'ភ្ញៀវ',
+    noProfile:'មិនទាន់ជ្រើសអតិថិជន។',
+    kycStatus:'ស្ថានភាព KYC', verified:'បានផ្ទៀងផ្ទាត់', notVerified:'មិនទាន់ផ្ទៀងផ្ទាត់',
+    noTrips:'មិនទាន់មានការកក់។', trips:'ការកក់', guests:'ភ្ញៀវ',
+    documents:'ឯកសារ', phoneEmail:'ទូរស័ព្ទ / អ៊ីមែល',
+    connNote:'របៀបតែមួយកម្មវិធីរុករក៖ សារធ្វើសមកាលកម្មពេលវេលាពិតក្នុងថេប។ អតិថិជនត្រូវបើកកម្មវិធីក្នុងថេបផ្សេងទៀត។'
+  }
+};
+
+let lang = localStorage.getItem('atc_lang') || 'en';
+let thread = [];
+let selectedGuest = null;
+let bc = null;
+let pollTimer = null;
+
+function t(key) {
+  const pack = I18N[lang] || I18N.en;
+  return pack[key] || I18N.en[key] || key;
+}
+
+function $(id) { return document.getElementById(id); }
+
+function applyI18n() {
+  document.documentElement.lang = lang === 'zh' ? 'zh' : (lang === 'km' ? 'km' : 'en');
+  $('deskIn').placeholder = t('deskPh');
+  $('deskSendBtn').querySelector('span') || ($('deskSendBtn').innerHTML = '<i data-lucide="send" style="width:16px;height:16px"></i> ' + t('send'));
+  $('connNoteText').textContent = t('connNote');
+  if (window.lucide) lucide.createIcons();
+  renderDesk();
+}
+
+/* ---- Thread storage ---- */
+function loadThread() {
+  try {
+    thread = JSON.parse(localStorage.getItem('atc_thread') || '[]');
+  } catch(e) {
+    thread = [];
+  }
+}
+
+function saveThread() {
+  localStorage.setItem('atc_thread', JSON.stringify(thread));
+  localStorage.setItem('atc_thread_tick', String(Date.now()));
+  /* Broadcast to other tabs */
+  if (bc) {
+    try { bc.postMessage({ type: 'thread_update', thread: thread }); } catch(e) {}
+  }
+}
+
+function pushMsg(who, text, mode, name, contact) {
+  thread.push({
+    who, text,
+    mode: mode || 'live',
+    name: name || '',
+    contact: contact || '',
+    at: Date.now()
+  });
+  saveThread();
+}
+
+/* ---- Guest list ---- */
+function liveGuests() {
+  const map = {};
+  thread.forEach(m => {
+    if (m.mode !== 'live' && m.who !== 'agent') return;
+    const id = m.contact || 'guest';
+    if (!map[id]) map[id] = { id, name: m.name || 'Guest', contact: m.contact || '', last: m.text, at: m.at, unread: 0 };
+    map[id].last = m.text;
+    map[id].at = m.at;
+    if (m.who === 'me' && m.mode === 'live') map[id].unread += 1;
+  });
+  return Object.values(map).sort((a, b) => b.at - a.at);
+}
+
+/* ---- Render ---- */
+function renderDesk() {
+  const list = $('deskList');
+  const guests = liveGuests();
+
+  $('inboxCount').textContent = guests.length;
+  $('inboxCount').style.display = guests.length ? '' : 'none';
+
+  if (!guests.length) {
+    list.innerHTML = '<div class="text-[13px] text-slate-400 p-3">' + t('noInbox') + '</div>';
+    renderDeskThread();
+    return;
+  }
+
+  list.innerHTML = guests.map(g => `
+    <button type="button" class="guest-card w-full text-left rounded-xl px-3 py-2.5 border transition-all ${g.id===selectedGuest?'active':''}" style="border-color:rgba(15,23,42,.06)" onclick="selectGuest('${g.id.replace(/'/g,"\\'")}')">
+      <div class="flex items-center justify-between">
+        <div class="text-[13.5px] font-semibold truncate flex-1">${g.name}</div>
+        ${g.unread > 0 ? `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1" style="background:#ef4444;color:#fff">${g.unread}</span>` : ''}
+      </div>
+      <div class="text-[11px] text-slate-400 truncate mt-0.5">${g.last || ''}</div>
+      <div class="text-[10px] text-slate-300 mt-0.5">${formatTime(g.at)}</div>
+    </button>
+  `).join('');
+
+  renderDeskThread();
+}
+
+function selectGuest(id) {
+  selectedGuest = id;
+  renderDesk();
+}
+
+function formatTime(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  const h = d.getHours().toString().padStart(2,'0');
+  const m = d.getMinutes().toString().padStart(2,'0');
+  return h + ':' + m;
+}
+
+function bubbleClass(who) {
+  if (who === 'me') return 'bubble-me ml-auto max-w-[80%]';
+  if (who === 'agent') return 'bubble-agent mr-auto max-w-[80%]';
+  return 'bubble-ai mr-auto max-w-[80%]';
+}
+
+function renderDeskThread() {
+  const guests = liveGuests();
+  const g = guests.find(x => x.id === selectedGuest) || guests[0];
+
+  if (!g) {
+    $('deskGuest').textContent = '—';
+    $('deskMeta').textContent = t('selectCustomer');
+    $('deskLog').innerHTML = '<div class="text-[13px] text-slate-400 text-center py-8">' + t('noInbox') + '</div>';
+    $('deskProfile').innerHTML = '<div class="text-[12px] text-slate-400">' + t('noProfile') + '</div>';
+    $('deskIn').disabled = true;
+    $('deskSendBtn').disabled = true;
+    $('deskSendBtn').style.opacity = '.5';
+    return;
+  }
+
+  selectedGuest = g.id;
+  $('deskGuest').textContent = g.name;
+  $('deskMeta').textContent = g.contact;
+  $('deskIn').disabled = false;
+    $('deskSendBtn').disabled = false;
+  $('deskSendBtn').style.opacity = '1';
+
+  /* Mark messages as read */
+  thread.forEach(m => {
+    if (m.who === 'me' && m.mode === 'live' && m.contact === g.id) {
+      m._read = true;
+    }
+  });
+
+  /* Render chat log */
+  const log = $('deskLog');
+  const relevant = thread.filter(m =>
+    (m.mode === 'live' || m.who === 'agent') &&
+    (m.contact || 'guest') === g.id
+  );
+
+  log.innerHTML = '';
+  relevant.forEach(m => {
+    const wrap = document.createElement('div');
+    wrap.className = 'fade';
+    const lab = document.createElement('div');
+    lab.className = 'text-[10px] font-bold mb-0.5 ' + (m.who === 'me' ? 'text-right text-slate-400' : 'text-amber-700');
+    lab.textContent = m.who === 'me' ? t('you') : t('agent');
+    wrap.appendChild(lab);
+    const div = document.createElement('div');
+    div.className = bubbleClass(m.who) + ' px-3.5 py-2.5 text-[13.5px] leading-relaxed';
+    div.textContent = m.text;
+    wrap.appendChild(div);
+    log.appendChild(wrap);
+  });
+  log.scrollTop = log.scrollHeight;
+
+  /* Render profile */
+  renderProfile(g);
+}
+
+function renderProfile(g) {
+  /* Read customer data from localStorage */
+  const user = JSON.parse(localStorage.getItem('atc_user') || '{}');
+  const kyc = JSON.parse(localStorage.getItem('atc_kyc') || '{}');
+  const bookings = JSON.parse(localStorage.getItem('atc_bookings') || '[]');
+
+  const name = g.name || (user.name || 'Guest');
+  const contact = g.contact || (user.contact || '');
+  const verified = kyc.status === 'verified';
+  const idType = kyc.idType === 'nid' ? 'National ID' : 'Passport';
+  const files = kyc.files || {};
+
+  $('deskProfile').innerHTML = `
+    <div class="flex items-center gap-2 mb-3">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#0d9488,#c4693d)">${name.charAt(0).toUpperCase()}</div>
+      <div class="min-w-0">
+        <div class="font-semibold truncate">${name}</div>
+        <div class="text-[11px] text-slate-400 truncate">${contact}</div>
+      </div>
+    </div>
+    <div class="rounded-xl p-3 mb-3" style="background:#f6fbf9">
+      <div class="text-[10px] font-bold text-slate-400 uppercase mb-1">${t('kycStatus')}</div>
+      <div class="font-semibold mb-1" style="color:${verified?'#0d9488':'#c4693d'}">${verified?t('verified'):t('notVerified')}</div>
+      <div class="text-[12px] text-slate-600">${kyc.legalName || name}</div>
+      <div class="text-[12px] text-slate-500">${idType} · ${kyc.idNo || '—'}</div>
+      <div class="text-[12px] text-slate-500">${kyc.nation || ''} ${kyc.dob ? ' · ' + kyc.dob : ''}</div>
+      <div class="text-[11px] text-slate-400 mt-1">${t('documents')}: ${[files.front, files.back, files.selfie].filter(Boolean).join(', ') || '—'}</div>
+    </div>
+    <div class="text-[10px] font-bold text-slate-400 uppercase mb-2">${t('trips')}</div>
+    ${bookings.length ? bookings.map(b => `
+      <div class="rounded-xl border p-2.5 mb-2" style="border-color:rgba(15,23,42,.08)">
+        <div class="font-semibold text-[12.5px]">${b.title}</div>
+        <div class="text-[11px] text-slate-500">${b.date} · ${b.people} ${t('guests')}</div>
+        <div class="text-[11px] text-teal-700 font-bold">${b.total} · ${b.code}</div>
+        <div class="text-[11px] text-slate-400">${b.hotel || ''} ${b.guest ? ' · ' + b.guest : ''}</div>
+      </div>
+    `).join('') : '<div class="text-[12px] text-slate-400">' + t('noTrips') + '</div>'}
+  `;
+}
+
+/* ---- Send message ---- */
+function sendAgent() {
+  const input = $('deskIn');
+  const v = (input.value || '').trim();
+  if (!v || !selectedGuest) return;
+  input.value = '';
+
+  /* Find guest info */
+  const guests = liveGuests();
+  const g = guests.find(x => x.id === selectedGuest);
+  const name = g ? g.name : '';
+  const contact = g ? g.contact : '';
+
+  pushMsg('agent', v, 'live', name, contact);
+  renderDesk();
+}
+
+/* ---- Event listeners ---- */
+$('deskSendBtn').addEventListener('click', sendAgent);
+$('deskIn').addEventListener('keydown', e => { if (e.key === 'Enter') sendAgent(); });
+$('langSel').addEventListener('change', e => {
+  lang = e.target.value;
+  localStorage.setItem('atc_lang', lang);
+  applyI18n();
+});
+
+/* ---- Cross-tab communication ---- */
+/* Method 1: BroadcastChannel (best for same-origin tabs) */
+try {
+  bc = new BroadcastChannel('atc_channel');
+  bc.onmessage = (e) => {
+    if (e.data && e.data.type === 'thread_update') {
+      thread = e.data.thread || [];
+      renderDesk();
+    }
+  };
+} catch(err) {
+  /* Fallback: storage event + polling */
+}
+
+/* Method 2: storage event (fires in other tabs when localStorage changes) */
+window.addEventListener('storage', (e) => {
+  if (e.key !== 'atc_thread' && e.key !== 'atc_thread_tick') return;
+  loadThread();
+  renderDesk();
+});
+
+/* Method 3: Polling fallback (every 1s) */
+pollTimer = setInterval(() => {
+  loadThread();
+  renderDesk();
+}, 1000);
+
+/* ---- Init ---- */
+$('langSel').value = lang;
+loadThread();
+applyI18n();
+
+/* Auto-select first guest */
+const guests = liveGuests();
+if (guests.length) selectedGuest = guests[0].id;
+renderDesk();
+
+if (window.lucide) lucide.createIcons();
+</script>
+
+</body>
+</html>

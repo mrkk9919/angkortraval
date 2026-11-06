@@ -1,0 +1,8 @@
+angkor-travel.sqlite
+angkor-travel.sqlite-shm
+angkor-travel.sqlite-wal
+node_modules/
+.env
+.env.*
+!.env.example
+*.log

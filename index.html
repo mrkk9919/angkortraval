@@ -1,0 +1,2558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angkor Travel Cambodia — Tours, Guides & Booking</title>
+<link rel="icon" type="image/webp" href="logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@1/dist/umd/lucide.min.js"></script>
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-deep: #0c6e66;
+    --ink: #0f172a;
+    --forest: #0b1f1c;
+    --clay: #c4693d;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body { font-family: 'DM Sans', sans-serif; margin: 0; }
+  .view { display: none; }
+  .view.active { display: flex; }
+  .tab.on { background: #fff; color: #0f172a; box-shadow: 0 1px 2px rgba(15,23,42,.08); }
+  .hide { display: none !important; }
+  .nav-item.active { color: #0d9488; }
+  .nav-item.active span { font-weight: 700; }
+  input, select, textarea { font-family: inherit; }
+  .chip.on { background: #0d9488; color: #fff; border-color: #0d9488; }
+  .cat-btn { background: #fff; color: #64748b; border-color: rgba(15,23,42,.08); }
+  .cat-btn.chip-on { background: #0d9488; color: #fff; border-color: #0d9488; }
+  .step-dot { width: 8px; height: 8px; border-radius: 99px; background: rgba(15,23,42,.15); }
+  .step-dot.on { background: #0d9488; width: 22px; }
+  .bubble-ai { background: #e7f6f3; border-radius: 4px 16px 16px 16px; }
+  .bubble-agent { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 4px 16px 16px 16px; }
+  .bubble-me { background: #0f172a; color: #fff; border-radius: 16px 4px 16px 16px; }
+  .chat-mode.on { background: #0f172a; color: #fff; }
+  @keyframes typingBlink { 0%,80%,100% { opacity: .25; } 40% { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .fade { animation: fadeUp .35s ease; }
+  .toast {
+    position: absolute; left: 16px; right: 16px; bottom: 88px; z-index: 40;
+    background: #0f172a; color: #fff; border-radius: 14px; padding: 12px 14px;
+    font-size: 13px; display: none; box-shadow: 0 10px 30px rgba(15,23,42,.25);
+  }
+  .toast.show { display: block; animation: fadeUp .25s ease; }
+  .kyc-type.on { background: #0d9488; color: #fff; border-color: #0d9488; }
+  .lang-btn.on { background: #0d9488; color: #fff; border-color: #0d9488; }
+  html[lang="km"] body, html[lang="km"] #phone { font-family: 'Noto Sans Khmer', 'DM Sans', sans-serif; }
+  #stage { min-height: 100vh; display: flex; align-items: stretch; justify-content: center;
+    background: linear-gradient(135deg,#0b1f1c 0%, #0c3d38 42%, #1a1510 100%); color:#0f172a; }
+  #brandPanel { display: none; }
+  #phone { width: 100%; max-width: 480px; height: 100vh; height: 100dvh; background: #f6fbf9;
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    border: 0; box-shadow: 0 0 0 1px rgba(255,255,255,.06); }
+  @media (min-width: 960px) {
+    #stage { padding: 28px 40px; gap: 36px; }
+    #brandPanel { display: flex; flex: 1; max-width: 560px; color: #fff; flex-direction: column; justify-content: flex-end; padding: 8px 8px 28px; }
+    #phone { height: calc(100vh - 56px); height: calc(100dvh - 56px); border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+    .toast { bottom: 96px; }
+  }
+  @media print {
+    #stage { background: #fff; padding: 0; }
+    #brandPanel, #tabbar, .no-print { display: none !important; }
+    #phone { height: auto; max-width: 100%; box-shadow: none; overflow: visible; }
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+<aside id="brandPanel">
+  <div class="mb-auto flex items-center gap-3">
+    <div class="w-14 h-14 rounded-2xl bg-white p-1.5 flex items-center justify-center">
+      <img src="logo.webp" alt="Angkor Travel" class="w-full h-full object-contain rounded-xl">
+    </div>
+    <div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600">Angkor Travel</div>
+      <div class="text-[11px] tracking-[0.18em] uppercase opacity-70">Cambodia · Licensed journeys</div>
+    </div>
+  </div>
+  <h2 class="text-[42px] leading-[1.15] mb-4" style="font-family:'Fraunces',serif;font-weight:600">Temples, islands, and pepper farms — booked in minutes.</h2>
+  <p class="text-[15px] opacity-80 max-w-[440px] mb-6">Private licensed guides in English, Chinese and Khmer. Transparent USD pricing. Pay with Wing, ABA, or card.</p>
+  <div class="flex gap-6 text-[13px] opacity-90">
+    <div><div class="text-[22px] font-semibold" style="font-family:'Fraunces',serif">5.0</div><div>Guest rating</div></div>
+    <div><div class="text-[22px] font-semibold" style="font-family:'Fraunces',serif">48h</div><div>Free cancel</div></div>
+    <div><div class="text-[22px] font-semibold" style="font-family:'Fraunces',serif">USD</div><div>Tax included</div></div>
+  </div>
+</aside>
+<div id="phone">
+
+  <!-- AUTH -->
+  <section class="view active flex-1 flex-col overflow-hidden relative" id="view-auth" style="background:#0b1f1c;color:#fff;display:flex">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(11,31,28,.25),rgba(11,31,28,.55) 45%,rgba(11,31,28,.94)),url('https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=900&q=80') center/cover"></div>
+    <div class="relative z-10 p-6 flex flex-col flex-1 justify-end overflow-y-auto">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-[72px] h-[72px] rounded-2xl bg-white p-1.5 shadow flex items-center justify-center flex-none">
+          <img src="logo.webp" alt="Angkor Travel" class="w-full h-full object-contain bg-white rounded-xl">
+        </div>
+        <div>
+          <div style="font-family:'Fraunces',serif;font-size:19px;font-weight:600">Angkor Travel</div>
+          <div class="text-[10px] tracking-widest uppercase opacity-75" data-i18n="brandSub">Cambodia · Angkor journeys</div>
+        </div>
+      </div>
+      <h1 class="text-[28px] leading-tight mb-2" style="font-family:'Fraunces',serif;font-weight:600" data-i18n="heroTitle">Your journey through the Kingdom begins here.</h1>
+      <p class="text-[12.5px] opacity-80 mb-5 max-w-[300px]" data-i18n="heroSub">Custom trips, licensed guides, transparent pricing — from Sihanoukville shores to Angkor temples.</p>
+      <div class="bg-white rounded-2xl p-5 text-slate-900">
+        <div class="flex gap-1.5 mb-3">
+          <button type="button" class="lang-btn on flex-1 py-1.5 rounded-lg border text-[12px] font-bold bg-white" data-lang="en">EN</button>
+          <button type="button" class="lang-btn flex-1 py-1.5 rounded-lg border text-[12px] font-bold bg-white" data-lang="zh">中文</button>
+          <button type="button" class="lang-btn flex-1 py-1.5 rounded-lg border text-[12px] font-bold bg-white" data-lang="km">ខ្មែរ</button>
+        </div>
+        <div class="flex bg-slate-100 rounded-xl p-1 mb-4 text-[13px] font-semibold">
+          <div class="tab on flex-1 text-center py-2 rounded-lg cursor-pointer" data-tab="register" data-i18n="register">Register</div>
+          <div class="tab flex-1 text-center py-2 rounded-lg cursor-pointer text-slate-500" data-tab="login" data-i18n="login">Login</div>
+        </div>
+        <div class="mb-3" id="fName">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="fullName">Full name</label>
+          <input id="inName" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none focus:border-teal-500" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" value="Sokha Chen">
+        </div>
+        <div class="mb-3">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="phoneEmail">Phone / Email</label>
+          <input id="inContact" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none focus:border-teal-500" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" value="+855 12 345 678">
+        </div>
+        <div class="mb-4">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="password">Password</label>
+          <input id="inPass" type="password" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none focus:border-teal-500" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" value="demo1234">
+        </div>
+        <button id="authBtn" class="w-full py-3.5 rounded-xl text-white font-bold text-[14.5px] flex items-center justify-center gap-2 active:scale-95 transition" style="background:#0f172a">
+          <i data-lucide="log-in" style="width:17px;height:17px"></i>
+          <span id="authBtnText">Create account</span>
+        </button>
+        <div class="text-center text-[12px] text-slate-500 mt-3"><span id="authAltPrefix">Already have an account?</span> <span id="authAltLink" class="text-teal-700 font-bold cursor-pointer">Login</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-home">
+    <div class="flex-1 overflow-y-auto p-4 pb-24">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-11 h-11 rounded-xl bg-white p-0.5 shadow-sm flex items-center justify-center flex-none">
+            <img src="logo.webp" alt="Angkor Travel" class="w-full h-full object-contain bg-white rounded-lg">
+          </div>
+          <div>
+            <div class="text-[12px] text-slate-500" data-i18n="welcome">Welcome back</div>
+            <div class="text-[20px] font-semibold" style="font-family:'Fraunces',serif" id="homeName">Traveler</div>
+          </div>
+        </div>
+        <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold cursor-pointer" style="background:linear-gradient(135deg,#0d9488,#c4693d)" id="homeAvatar" onclick="go('profile')">S</div>
+      </div>
+      <div class="cs-banner relative overflow-hidden rounded-2xl p-4 mb-4 text-white flex items-center gap-3 cursor-pointer" style="background:linear-gradient(120deg,#0c6e66,#0d9488)" onclick="go('chat')">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-none" style="background:rgba(255,255,255,.18)"><i data-lucide="bot" style="width:22px;height:22px"></i></div>
+        <div>
+          <h3 class="text-[16px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="aiTitle">AI Travel Assistant</h3>
+          <p class="text-[11.5px] opacity-85" data-i18n="aiSub">Ask anything — dates, budget, destinations.</p>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-3.5 mb-4 flex items-center gap-2.5 bg-white border" style="border-color:rgba(15,23,42,.06)">
+        <i data-lucide="search" class="text-slate-400" style="width:18px;height:18px"></i>
+        <input id="homeSearch" class="flex-1 outline-none text-[13.5px] bg-transparent" data-i18n-placeholder="searchPh" placeholder="Search temples, islands, food...">
+      </div>
+
+      <div class="flex gap-2 mb-4 overflow-x-auto">
+        <button class="chip on px-3 py-1.5 rounded-full text-[12px] border whitespace-nowrap" data-filter="all" data-i18n="all">All</button>
+        <button class="chip px-3 py-1.5 rounded-full text-[12px] border bg-white whitespace-nowrap" data-filter="temple" data-i18n="temples">Temples</button>
+        <button class="chip px-3 py-1.5 rounded-full text-[12px] border bg-white whitespace-nowrap" data-filter="beach" data-i18n="beaches">Beaches</button>
+        <button class="chip px-3 py-1.5 rounded-full text-[12px] border bg-white whitespace-nowrap" data-filter="food" data-i18n="food">Food</button>
+        <button class="chip px-3 py-1.5 rounded-full text-[12px] border bg-white whitespace-nowrap" data-filter="city" data-i18n="cities">Cities</button>
+      </div>
+
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-[16px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="featured">Featured journeys</h2>
+        <button class="text-[12px] font-bold text-teal-700" onclick="go('tours')" data-i18n="seeAll">See all</button>
+      </div>
+      <div id="homeTours" class="flex gap-3 overflow-x-auto pb-2 mb-4"></div>
+
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-[16px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="destinations">Destinations</h2>
+      </div>
+      <div id="homeDest" class="grid grid-cols-2 gap-3 mb-4"></div>
+
+      <!-- PARTNERS -->
+      <div class="rounded-2xl bg-white border p-4 mb-4" style="border-color:rgba(15,23,42,.06)">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#f0fdfa"><i data-lucide="handshake" style="width:18px;height:18px;color:#0d9488"></i></div>
+          <h2 class="text-[15px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="partnerTitle">Trusted partners</h2>
+        </div>
+        <div class="flex gap-1.5 mb-3 overflow-x-auto pb-1" id="partnerCats"></div>
+        <div class="space-y-2.5" id="partnerList"></div>
+        <div class="mt-3 rounded-xl p-2.5 flex items-start gap-2" style="background:#fff7ed">
+          <i data-lucide="info" style="width:15px;height:15px;color:#c4693d;margin-top:1px;flex:none"></i>
+          <p class="text-[11px] leading-relaxed text-amber-800" data-i18n="partnerNote">These partners operate and collect payments independently. Angkor Travel does not collect or hold funds on their behalf.</p>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-4 text-white" style="background:linear-gradient(135deg,#c4693d,#9a4a28)">
+        <div class="text-[11px] uppercase tracking-widest opacity-80 mb-1" data-i18n="licensed">Licensed local team</div>
+        <div class="text-[17px] font-semibold mb-1" style="font-family:'Fraunces',serif" data-i18n="guideFrom">Private guide from $45 / day</div>
+        <p class="text-[12px] opacity-90 mb-3" data-i18n="guideLangs">English / Chinese / Khmer. Temple tickets, transfers, and meals arranged.</p>
+        <button class="bg-white text-slate-900 text-[12.5px] font-bold px-3.5 py-2 rounded-lg" onclick="openTour('angkor-sunrise')" data-i18n="bookNow">Book now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOURS -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-tours">
+    <div class="px-4 pt-4 pb-2 bg-[#f6fbf9] sticky top-0 z-10">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="w-9 h-9 rounded-lg bg-white p-0.5 shadow-sm flex items-center justify-center flex-none">
+          <img src="logo.webp" alt="Angkor Travel" class="w-full h-full object-contain bg-white rounded-md">
+        </div>
+        <h2 class="text-[20px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="tours">Tours</h2>
+      </div>
+      <p class="text-[12px] text-slate-500" data-i18n="toursSub">Transparent pricing. Instant booking.</p>
+    </div>
+    <div id="tourList" class="flex-1 overflow-y-auto px-4 pb-24 space-y-3"></div>
+  </section>
+
+  <!-- DETAIL -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-detail">
+    <div class="flex-1 overflow-y-auto pb-28">
+      <div class="relative h-56">
+        <img id="dImg" class="w-full h-full object-cover" alt="">
+        <button class="absolute top-4 left-4 w-9 h-9 rounded-full bg-white/90 flex items-center justify-center" onclick="go('tours')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+        <div class="absolute bottom-3 left-3 right-3 text-white">
+          <div class="text-[11px] uppercase tracking-widest opacity-90" id="dTag"></div>
+          <h2 class="text-[22px] leading-tight font-semibold" style="font-family:'Fraunces',serif" id="dTitle"></h2>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-[13px] text-slate-500" id="dMeta"></div>
+          <div class="text-right">
+            <div class="text-[11px] text-slate-400" data-i18n="from">from</div>
+            <div class="text-[20px] font-bold text-teal-700" id="dPrice"></div>
+          </div>
+        </div>
+        <p class="text-[13.5px] leading-relaxed text-slate-600 mb-4" id="dDesc"></p>
+        <h3 class="text-[14px] font-bold mb-2" data-i18n="included">What's included</h3>
+        <ul id="dIncl" class="text-[13px] text-slate-600 space-y-1.5 mb-4"></ul>
+        <h3 class="text-[14px] font-bold mb-2" data-i18n="itinerary">Itinerary</h3>
+        <div id="dItin" class="space-y-2"></div>
+      </div>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t flex gap-2" style="border-color:rgba(15,23,42,.06)">
+      <button class="flex-1 py-3 rounded-xl font-bold text-[14px] border" onclick="go('chat')" data-i18n="askAi">Ask AI</button>
+      <button class="flex-[1.4] py-3 rounded-xl font-bold text-[14px] text-white" style="background:#0f172a" onclick="startBook()" data-i18n="bookNow">Book now</button>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-book">
+    <div class="px-4 pt-4 pb-2 flex items-center gap-2">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('detail')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div>
+        <div class="text-[11px] text-slate-500 uppercase tracking-wide" data-i18n="checkout">Checkout</div>
+        <h2 class="text-[18px] font-semibold leading-tight" style="font-family:'Fraunces',serif" id="bTitle">Booking</h2>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 pb-28">
+      <div class="flex items-center gap-2 mb-4 px-1">
+        <div class="step-dot on"></div><div class="step-dot on"></div><div class="step-dot"></div>
+        <span class="text-[11px] text-slate-400 ml-1" data-i18n="datesGuests">Dates & guests</span>
+      </div>
+      <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="travelDate">Travel date</label>
+        <input id="bDate" type="date" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="adults">Adults</label>
+            <div class="flex items-center justify-between rounded-xl border px-2 py-2" style="border-color:rgba(15,23,42,.1)">
+              <button class="w-8 h-8 rounded-lg bg-slate-100 font-bold" onclick="chgGuest('adults',-1)">-</button>
+              <span id="gAdults" class="font-semibold">2</span>
+              <button class="w-8 h-8 rounded-lg bg-slate-100 font-bold" onclick="chgGuest('adults',1)">+</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="children">Children</label>
+            <div class="flex items-center justify-between rounded-xl border px-2 py-2" style="border-color:rgba(15,23,42,.1)">
+              <button class="w-8 h-8 rounded-lg bg-slate-100 font-bold" onclick="chgGuest('kids',-1)">-</button>
+              <span id="gKids" class="font-semibold">0</span>
+              <button class="w-8 h-8 rounded-lg bg-slate-100 font-bold" onclick="chgGuest('kids',1)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="hotelName">Hotel / pickup point</label>
+        <input id="bHotel" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" data-i18n-placeholder="hotelPh" placeholder="Hotel name in the tour city">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="notes">Notes for guide</label>
+        <textarea id="bNotes" rows="2" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none resize-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" data-i18n-placeholder="notesPh" placeholder="Allergies, language, child seats..."></textarea>
+      </div>
+      <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-2" data-i18n="addons">Add-ons</div>
+        <label class="flex items-center justify-between py-2 cursor-pointer"><span class="text-[13.5px]" data-i18n="addSunrise">Sunrise Angkor ticket</span><input type="checkbox" id="addSunrise" class="w-4 h-4" onchange="recalc()"></label>
+        <label class="flex items-center justify-between py-2 cursor-pointer"><span class="text-[13.5px]" data-i18n="addSuv">Private SUV transfer</span><input type="checkbox" id="addSuv" class="w-4 h-4" onchange="recalc()"></label>
+        <label class="flex items-center justify-between py-2 cursor-pointer"><span class="text-[13.5px]" data-i18n="addLunch">Khmer lunch</span><input type="checkbox" id="addLunch" class="w-4 h-4" onchange="recalc()"></label>
+      </div>
+      <div class="bg-white rounded-2xl p-4 border" style="border-color:rgba(15,23,42,.06)">
+        <div class="flex justify-between text-[13px] mb-1"><span class="text-slate-500" data-i18n="tour">Tour</span><span id="sumTour">$0</span></div>
+        <div class="flex justify-between text-[13px] mb-1"><span class="text-slate-500" data-i18n="addons">Add-ons</span><span id="sumAdd">$0</span></div>
+        <div class="flex justify-between text-[15px] font-bold pt-2 border-t mt-2"><span data-i18n="total">Total</span><span class="text-teal-700" id="sumTotal">$0</span></div>
+      </div>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t" style="border-color:rgba(15,23,42,.06)">
+      <button class="w-full py-3.5 rounded-xl font-bold text-white text-[14.5px]" style="background:#0f172a" onclick="goPay()" data-i18n="continuePay">Continue to payment</button>
+    </div>
+  </section>
+
+  <!-- PAY -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-pay">
+    <div class="px-4 pt-4 pb-2 flex items-center gap-2">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('book')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div>
+        <div class="text-[11px] text-slate-500 uppercase tracking-wide" data-i18n="securePay">Secure payment</div>
+        <h2 class="text-[18px] font-semibold leading-tight" style="font-family:'Fraunces',serif" data-i18n="payConfirm">Pay & confirm</h2>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 pb-28">
+      <div class="flex items-center gap-2 mb-4 px-1">
+        <div class="step-dot on"></div><div class="step-dot on"></div><div class="step-dot on"></div>
+        <span class="text-[11px] text-slate-400 ml-1" data-i18n="payment">Payment</span>
+      </div>
+      <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+        <div class="text-[13px] text-slate-500 mb-1" id="pTour"></div>
+        <div class="text-[22px] font-bold" id="pTotal">$0</div>
+        <div class="text-[12px] text-slate-400" id="pMeta"></div>
+      </div>
+      <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-2" data-i18n="payWith">Pay with</div>
+      <div id="payMethods" class="space-y-2 mb-3"></div>
+      <div id="cardFields" class="bg-white rounded-2xl p-4 border" style="border-color:rgba(15,23,42,.06)">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="cardAba">Card / ABA / Wing</label>
+        <input id="pCard" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-2" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" value="**** **** **** 4242">
+        <input id="pName" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" value="Sokha Chen">
+      </div>
+      <p class="text-[11.5px] text-slate-400 mt-3" data-i18n="demoPay">Demo checkout — no real charge. Confirmation is stored on this device.</p>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t" style="border-color:rgba(15,23,42,.06)">
+      <button class="w-full py-3.5 rounded-xl font-bold text-white text-[14.5px] flex items-center justify-center gap-2" style="background:#0d9488" onclick="confirmPay()">
+        <i data-lucide="shield-check" style="width:17px;height:17px"></i> <span data-i18n="confirmBook">Confirm booking</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- WING QR PAY -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-wing">
+    <div class="px-4 pt-4 pb-2 flex items-center gap-2">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('pay')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div>
+        <div class="text-[11px] text-slate-500 uppercase tracking-wide" id="qrPayBrand" data-i18n="wingPay">Wing Bank Pay</div>
+        <h2 class="text-[18px] font-semibold leading-tight" style="font-family:'Fraunces',serif" data-i18n="scanToPay">Scan to pay</h2>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 pb-28">
+      <div class="bg-white rounded-2xl p-4 mb-3 border text-center" style="border-color:rgba(15,23,42,.06)">
+        <div class="text-[13px] text-slate-500 mb-1" id="wTour"></div>
+        <div class="text-[22px] font-bold text-teal-700" id="wTotal">$0</div>
+        <div class="text-[12px] text-slate-400" id="wMeta"></div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 mb-3 border flex flex-col items-center" style="border-color:rgba(15,23,42,.06)">
+        <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wide mb-2" id="qrOpenHint" data-i18n="openWing">Open Wing Bank and scan</div>
+        <div id="wingTimerWrap" class="mb-3 px-3 py-1.5 rounded-full text-[13px] font-bold flex items-center gap-1.5" style="background:#ecfdf5;color:#0d9488">
+          <i data-lucide="timer" style="width:15px;height:15px"></i>
+          <span data-i18n="payIn">Pay within</span>
+          <span id="wingTimer">09:00</span>
+        </div>
+        <div class="relative w-[240px] h-[240px] overflow-hidden rounded-xl bg-white">
+          <img id="wingQrImg" src="wing-qr.webp" alt="Pay QR" class="absolute inset-0 w-full h-full" style="object-fit:cover;object-position:center;transform:scale(1.18)">
+          <div id="wingExpiredMask" class="hide absolute inset-0 flex flex-col items-center justify-center text-center px-4" style="background:rgba(15,23,42,.78)">
+            <div class="text-white text-[14px] font-bold mb-1" data-i18n="qrExpired">QR expired</div>
+            <div class="text-white/80 text-[11.5px]" data-i18n="qrExpiredSub">Generate a new code to pay.</div>
+          </div>
+        </div>
+        <div class="mt-3 text-[12.5px] text-slate-500" id="qrHint" data-i18n="wingHint">Pay the exact amount shown. USD / KHR.</div>
+        <button id="wingRefreshBtn" type="button" class="hide mt-3 text-[13px] font-bold text-teal-700" onclick="refreshWingQr()" data-i18n="refreshQr">Refresh QR</button>
+      </div>
+      <p class="text-[11.5px] text-slate-400 text-center" id="qrDemo" data-i18n="wingDemo">After paying in Wing, tap I have paid to confirm this booking.</p>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t" style="border-color:rgba(15,23,42,.06)">
+      <button id="wingPaidBtn" class="w-full py-3.5 rounded-xl font-bold text-white text-[14.5px] flex items-center justify-center gap-2" style="background:#0d9488" onclick="confirmPay()">
+        <i data-lucide="check-circle" style="width:17px;height:17px"></i> <span data-i18n="iPaid">I have paid</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- VOUCHER -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-voucher">
+    <div class="px-4 pt-4 pb-2 flex items-center gap-2 no-print">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('bookings')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div>
+        <div class="text-[11px] text-slate-500 uppercase tracking-wide" data-i18n="voucher">Voucher</div>
+        <h2 class="text-[18px] font-semibold leading-tight" style="font-family:'Fraunces',serif" id="vCode">ATC-000000</h2>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 pb-28">
+      <div class="bg-white rounded-2xl overflow-hidden border" style="border-color:rgba(15,23,42,.06)">
+        <img id="vImg" class="w-full h-36 object-cover" alt="">
+        <div class="p-4">
+          <div class="text-[11px] uppercase tracking-widest text-teal-700 font-bold mb-1" data-i18n="confirmed">Confirmed</div>
+          <h3 class="text-[20px] font-semibold mb-3" style="font-family:'Fraunces',serif" id="vTitle"></h3>
+          <div class="grid grid-cols-2 gap-2 text-[13px] mb-3">
+            <div class="rounded-xl bg-[#f6fbf9] p-3"><div class="text-[10px] text-slate-400 uppercase" data-i18n="travelDate">Date</div><div class="font-semibold" id="vDate"></div></div>
+            <div class="rounded-xl bg-[#f6fbf9] p-3"><div class="text-[10px] text-slate-400 uppercase" data-i18n="guests">Guests</div><div class="font-semibold" id="vPeople"></div></div>
+            <div class="rounded-xl bg-[#f6fbf9] p-3"><div class="text-[10px] text-slate-400 uppercase" data-i18n="total">Total</div><div class="font-semibold text-teal-700" id="vTotal"></div></div>
+            <div class="rounded-xl bg-[#f6fbf9] p-3"><div class="text-[10px] text-slate-400 uppercase" data-i18n="payWith">Pay</div><div class="font-semibold" id="vMethod"></div></div>
+          </div>
+          <p class="text-[12.5px] text-slate-500 mb-3" data-i18n="voucherHint">Show this voucher to your guide. Pickup details will be sent 24 hours before departure.</p>
+          <div class="text-[11px] text-slate-400" id="vGuest"></div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t no-print" style="border-color:rgba(15,23,42,.06)">
+      <button class="w-full py-3.5 rounded-xl font-bold text-white text-[14.5px]" style="background:#0f172a" onclick="window.print()" data-i18n="printVoucher">Print / save voucher</button>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-success">
+    <div class="flex-1 flex flex-col items-center justify-center p-8 text-center">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center text-white mb-4" style="background:linear-gradient(135deg,#0d9488,#c4693d)"><i data-lucide="check" style="width:28px;height:28px"></i></div>
+      <h2 class="text-[24px] font-semibold mb-2" style="font-family:'Fraunces',serif" data-i18n="booked">You're booked.</h2>
+      <p class="text-[13.5px] text-slate-500 mb-1" id="sCode">ATC-000000</p>
+      <p class="text-[13px] text-slate-500 max-w-[280px] mb-6" data-i18n="bookedSub">A licensed guide will message you 24 hours before departure. Voucher is in My trips.</p>
+      <button class="w-full py-3.5 rounded-xl font-bold text-white mb-2" style="background:#0f172a" onclick="go('bookings')" data-i18n="viewTrips">View my trips</button>
+      <button class="w-full py-3 rounded-xl font-bold text-teal-800" onclick="go('home')" data-i18n="backHome">Back home</button>
+    </div>
+  </section>
+
+  <!-- BOOKINGS -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-bookings">
+    <div class="px-4 pt-4 pb-2">
+      <h2 class="text-[20px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="myTrips">My trips</h2>
+      <p class="text-[12px] text-slate-500" data-i18n="tripsSub">Confirmed bookings and vouchers.</p>
+    </div>
+    <div id="bookList" class="flex-1 overflow-y-auto px-4 pb-24 space-y-3"></div>
+  </section>
+
+  <!-- CHAT -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-chat">
+    <div class="px-4 pt-4 pb-3 flex items-center gap-3 bg-[#f6fbf9] border-b" style="border-color:rgba(15,23,42,.06)">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white" style="background:linear-gradient(135deg,#0d9488,#c4693d)"><i data-lucide="bot" style="width:20px;height:20px"></i></div>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-[14.5px]" id="chatHeadTitle" data-i18n="aiTitle">AI Travel Assistant</div>
+        <div class="text-[11px] text-teal-700" id="chatHeadSub" data-i18n="aiOnline">Online · EN / ZH / KM</div>
+      </div>
+    </div>
+    <div class="px-3 py-2 flex gap-1.5 bg-white border-b" style="border-color:rgba(15,23,42,.06)">
+      <button type="button" class="chat-mode on flex-1 py-1.5 rounded-lg text-[12px] font-bold border" data-chatmode="ai" onclick="setChatMode('ai')" data-i18n="modeAi">AI</button>
+      <button type="button" class="chat-mode flex-1 py-1.5 rounded-lg text-[12px] font-bold border bg-white" data-chatmode="live" onclick="setChatMode('live')" data-i18n="modeLive">Live agent</button>
+    </div>
+    <div id="chatLog" class="flex-1 overflow-y-auto p-4 space-y-3 pb-2"></div>
+    <div id="chatChips" class="px-3 pb-2 flex gap-2 overflow-x-auto"></div>
+    <div class="p-3 bg-white border-t flex gap-2" style="border-color:rgba(15,23,42,.06)">
+      <input id="chatIn" class="flex-1 px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" data-i18n-placeholder="chatPh" placeholder="Ask about dates, budget, temples...">
+      <button class="w-11 h-11 rounded-xl text-white flex items-center justify-center" style="background:#0f172a" onclick="sendChat()"><i data-lucide="send" style="width:18px;height:18px"></i></button>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-profile">
+    <div class="flex-1 overflow-y-auto p-4 pb-24">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-14 h-14 rounded-xl bg-white p-1 shadow-sm flex items-center justify-center flex-none">
+          <img src="logo.webp" alt="Angkor Travel" class="w-full h-full object-contain bg-white rounded-lg">
+        </div>
+        <div>
+          <div class="text-[13px] font-semibold" style="font-family:'Fraunces',serif">Angkor Travel</div>
+          <div class="text-[11px] text-slate-400" data-i18n="brandSub">Cambodia · Angkor journeys</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center text-white text-[20px] font-bold" style="background:linear-gradient(135deg,#0d9488,#c4693d)" id="pAvatar">S</div>
+        <div class="flex-1">
+          <div class="flex items-center gap-1.5">
+            <div class="text-[20px] font-semibold" style="font-family:'Fraunces',serif" id="pName">Sokha Chen</div>
+            <span id="kycBadge" class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800" data-i18n="unverified">Unverified</span>
+          </div>
+          <div class="text-[12.5px] text-slate-500" id="pContact">+855 12 345 678</div>
+        </div>
+      </div>
+      <div id="kycCard" class="rounded-2xl p-4 mb-3 text-white cursor-pointer" style="background:linear-gradient(120deg,#c4693d,#9a4a28)" onclick="go('kyc')">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-none" style="background:rgba(255,255,255,.18)"><i data-lucide="shield-alert" style="width:20px;height:20px"></i></div>
+          <div class="flex-1">
+            <div class="text-[14.5px] font-semibold" id="kycCardTitle" data-i18n="kycTitle">Real-name verification</div>
+            <div class="text-[11.5px] opacity-85" id="kycCardSub" data-i18n="kycSub">Required to book tours. Upload ID + selfie.</div>
+          </div>
+          <i data-lucide="chevron-right" style="width:18px;height:18px"></i>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border overflow-hidden mb-3" style="border-color:rgba(15,23,42,.06)">
+        <div class="px-4 py-3.5 flex justify-between text-[13.5px] border-b cursor-pointer" style="border-color:rgba(15,23,42,.06)" onclick="go('kyc')">
+          <span data-i18n="kycStatus">KYC status</span>
+          <span class="font-semibold" id="kycRowStatus" style="color:#c4693d">Not verified</span>
+        </div>
+        <div class="px-4 py-3.5 border-b" style="border-color:rgba(15,23,42,.06)">
+          <div class="flex justify-between text-[13.5px] mb-2"><span data-i18n="language">Language</span><span class="text-slate-500" id="langLabel">English</span></div>
+          <div class="flex gap-1.5">
+            <button type="button" class="lang-btn on flex-1 py-1.5 rounded-lg border text-[12px] font-bold bg-white" data-lang="en">EN</button>
+            <button type="button" class="lang-btn flex-1 py-1.5 rounded-lg border text-[12px] font-bold bg-white" data-lang="zh">中文</button>
+            <button type="button" class="lang-btn flex-1 py-1.5 rounded-lg border text-[12px] font-bold bg-white" data-lang="km">ខ្មែរ</button>
+          </div>
+        </div>
+        <div class="px-4 py-3.5 flex justify-between text-[13.5px] border-b" style="border-color:rgba(15,23,42,.06)"><span data-i18n="currency">Currency</span><span class="text-slate-500">USD</span></div>
+        <div class="px-4 py-3.5 flex justify-between text-[13.5px] border-b" style="border-color:rgba(15,23,42,.06)"><span data-i18n="support">Support</span><span class="text-slate-500">+855 12 888 010</span></div>
+        <div class="px-4 py-3.5 flex justify-between text-[13.5px] cursor-pointer" onclick="openDesk()">
+          <span data-i18n="deskTitle">Agent desk</span>
+          <span class="text-teal-700 font-semibold" data-i18n="openDesk">Open</span>
+        </div>
+        <div class="px-4 py-3.5 flex justify-between items-center text-[13.5px] cursor-pointer border-t" style="border-color:rgba(15,23,42,.06)" onclick="copyAgentUrl()">
+          <div>
+            <span data-i18n="agentUrl">Agent desk link</span>
+            <div class="text-[10px] text-slate-400 mt-0.5">agent.html</div>
+          </div>
+          <span class="text-teal-700 font-semibold text-[12px]" data-i18n="copyUrl">Copy</span>
+        </div>
+        <a href="admin.html" target="_blank" class="px-4 py-3.5 flex justify-between items-center text-[13.5px] border-t" style="border-color:rgba(15,23,42,.06)">
+          <div><span>管理后台</span><div class="text-[10px] text-slate-400 mt-0.5">admin.html</div></div>
+          <span class="text-teal-700 font-semibold text-[12px]">打开</span>
+        </a>
+      </div>
+      <button class="w-full py-3.5 rounded-xl font-bold border text-[14px]" onclick="logout()" data-i18n="signOut">Sign out</button>
+    </div>
+  </section>
+
+  <!-- KYC -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-kyc">
+    <div class="px-4 pt-4 pb-2 flex items-center gap-2">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('profile')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div>
+        <div class="text-[11px] text-slate-500 uppercase tracking-wide" data-i18n="settings">Settings</div>
+        <h2 class="text-[18px] font-semibold leading-tight" style="font-family:'Fraunces',serif" data-i18n="kycTitle">Real-name KYC</h2>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 pb-28">
+      <div id="kycDone" class="hide bg-white rounded-2xl p-5 text-center border mb-3" style="border-color:rgba(15,23,42,.06)">
+        <div class="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-white" style="background:#0d9488"><i data-lucide="badge-check" style="width:26px;height:26px"></i></div>
+        <div class="text-[16px] font-semibold mb-1" style="font-family:'Fraunces',serif" data-i18n="verified">Verified</div>
+        <p class="text-[12.5px] text-slate-500 mb-3" id="kycDoneMeta"></p>
+        <button class="text-[13px] font-bold text-teal-700" onclick="resetKyc()" data-i18n="resubmit">Re-submit documents</button>
+      </div>
+      <div id="kycForm">
+        <p class="text-[12.5px] text-slate-500 mb-3" data-i18n="kycHint">Match your passport / national ID. Required before booking.</p>
+        <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="legalName">Legal name</label>
+          <input id="kycName" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" data-i18n-placeholder="asPassport" placeholder="As on passport">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="nationality">Nationality</label>
+          <select id="kycNation" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+            <option>Cambodia</option>
+            <option>China</option>
+            <option>Vietnam</option>
+            <option>Thailand</option>
+            <option>United States</option>
+            <option>Other</option>
+          </select>
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="idType">ID type</label>
+          <div class="flex gap-2 mb-3">
+            <button type="button" class="kyc-type on flex-1 py-2 rounded-xl border text-[12.5px] font-semibold" data-idtype="passport" data-i18n="passport">Passport</button>
+            <button type="button" class="kyc-type flex-1 py-2 rounded-xl border text-[12.5px] font-semibold bg-white" data-idtype="nid" data-i18n="nationalId">National ID</button>
+          </div>
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="idNo">ID / Passport no.</label>
+          <input id="kycIdNo" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" placeholder="N01234567">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="dob">Date of birth</label>
+          <input id="kycDob" type="date" class="w-full px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+        </div>
+        <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+          <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-2" data-i18n="uploadDocs">Upload documents</div>
+          <label class="flex items-center gap-3 p-3 rounded-xl border mb-2 cursor-pointer" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+            <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center flex-none"><i data-lucide="id-card" style="width:18px;height:18px"></i></div>
+            <div class="flex-1 min-w-0">
+              <div class="text-[13px] font-semibold" data-i18n="idFront">ID front</div>
+              <div class="text-[11px] text-slate-400 truncate" id="kycFileFront" data-i18n="tapUpload">Tap to upload photo</div>
+            </div>
+            <input id="kycFront" type="file" accept="image/*" class="hidden" onchange="pickKycFile('front', this)">
+          </label>
+          <label class="flex items-center gap-3 p-3 rounded-xl border mb-2 cursor-pointer" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+            <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center flex-none"><i data-lucide="credit-card" style="width:18px;height:18px"></i></div>
+            <div class="flex-1 min-w-0">
+              <div class="text-[13px] font-semibold" data-i18n="idBack">ID back</div>
+              <div class="text-[11px] text-slate-400 truncate" id="kycFileBack" data-i18n="tapUpload">Tap to upload photo</div>
+            </div>
+            <input id="kycBack" type="file" accept="image/*" class="hidden" onchange="pickKycFile('back', this)">
+          </label>
+          <label class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+            <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center flex-none"><i data-lucide="camera" style="width:18px;height:18px"></i></div>
+            <div class="flex-1 min-w-0">
+              <div class="text-[13px] font-semibold" data-i18n="selfieId">Selfie with ID</div>
+              <div class="text-[11px] text-slate-400 truncate" id="kycFileSelfie" data-i18n="tapUpload">Tap to upload photo</div>
+            </div>
+            <input id="kycSelfie" type="file" accept="image/*" class="hidden" onchange="pickKycFile('selfie', this)">
+          </label>
+        </div>
+        <p class="text-[11.5px] text-slate-400 mb-3" data-i18n="demoKyc">Demo only — files stay on this device, not uploaded to a server.</p>
+      </div>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t" style="border-color:rgba(15,23,42,.06)" id="kycSubmitBar">
+      <button class="w-full py-3.5 rounded-xl font-bold text-white text-[14.5px]" style="background:#0f172a" onclick="submitKyc()" data-i18n="submitKyc">Submit verification</button>
+    </div>
+  </section>
+
+  <!-- PARTNER DETAIL -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-partner">
+    <div class="px-4 pt-4 pb-3 flex items-center gap-2 bg-[#f6fbf9] border-b" style="border-color:rgba(15,23,42,.06)">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('home')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div class="flex items-center gap-2 flex-1 min-w-0">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-none" id="pDetailIcon"><i data-lucide="briefcase" style="width:18px;height:18px"></i></div>
+        <div class="min-w-0">
+          <h2 class="text-[18px] font-semibold leading-tight truncate" style="font-family:'Fraunces',serif" id="pDetailTitle">Partner</h2>
+          <div class="text-[11px] text-slate-500 truncate" data-i18n="partnerNote">Independent partner — direct payment</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto p-4 pb-24">
+      <div id="pDetailInfo" class="rounded-2xl p-3 mb-3 flex items-start gap-2" style="background:#fff7ed"></div>
+      <h3 class="text-[14px] font-bold mb-2" data-i18n="pResources">Available services</h3>
+      <div id="pDetailList" class="space-y-2.5"></div>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t flex gap-2" style="border-color:rgba(15,23,42,.06)">
+      <button class="flex-1 py-3 rounded-xl font-bold text-[14px] border" onclick="go('home')" data-i18n="backHome">Back home</button>
+      <button class="flex-[1.4] py-3 rounded-xl font-bold text-[14px] text-white" style="background:#0d9488" onclick="contactPartnerFromDetail()" data-i18n="partnerContact">Contact</button>
+    </div>
+  </section>
+
+  <!-- PARTNER BOOK -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-pbook">
+    <div class="px-4 pt-4 pb-2 flex items-center gap-2 bg-[#f6fbf9] border-b" style="border-color:rgba(15,23,42,.06)">
+      <button class="w-9 h-9 rounded-full bg-white border flex items-center justify-center" onclick="go('partner')"><i data-lucide="arrow-left" style="width:18px;height:18px"></i></button>
+      <div class="min-w-0">
+        <div class="text-[11px] text-slate-500 uppercase tracking-wide" data-i18n="pBooking">Reservation</div>
+        <h2 class="text-[18px] font-semibold leading-tight truncate" style="font-family:'Fraunces',serif" id="pbTitle">Book service</h2>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 pb-28">
+      <!-- Service summary -->
+      <div class="bg-white rounded-2xl p-3 mb-3 border flex items-center gap-3" style="border-color:rgba(15,23,42,.06)">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-none" id="pbIcon"><i data-lucide="briefcase" style="width:18px;height:18px"></i></div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[14px] font-semibold truncate" id="pbServiceName">—</div>
+          <div class="text-[11px] text-slate-400 truncate" id="pbServiceDesc">—</div>
+          <div class="text-[13px] font-bold text-teal-700 mt-0.5" id="pbServicePrice">—</div>
+        </div>
+      </div>
+
+      <!-- Date & quantity -->
+      <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="pbDate">Preferred date</label>
+        <input id="pbDate" type="date" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="pbQty">Quantity</label>
+        <div class="flex items-center justify-between rounded-xl border px-2 py-2 mb-3" style="border-color:rgba(15,23,42,.1)">
+          <button class="w-8 h-8 rounded-lg bg-slate-100 font-bold" onclick="chgPbQty(-1)">-</button>
+          <span id="pbQtyVal" class="font-semibold">1</span>
+          <button class="w-8 h-8 rounded-lg bg-slate-100 font-bold" onclick="chgPbQty(1)">+</button>
+        </div>
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="pbDuration">Duration / type</label>
+        <select id="pbDuration" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc">
+          <option value="" data-i18n="pbDurDefault">Select duration / type</option>
+        </select>
+      </div>
+
+      <!-- Contact details -->
+      <div class="bg-white rounded-2xl p-4 mb-3 border" style="border-color:rgba(15,23,42,.06)">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="fullName">Full name</label>
+        <input id="pbName" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" placeholder="Your full name">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="phoneEmail">Phone / Email</label>
+        <input id="pbContact" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" placeholder="Phone or email for confirmation">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="pbLocation">Location / address</label>
+        <input id="pbLocation" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none mb-3" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" placeholder="Hotel, district, or address">
+        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-1" data-i18n="notes">Notes</label>
+        <textarea id="pbNotes" rows="2" class="w-full px-3 py-2.5 rounded-xl border text-[13.5px] outline-none resize-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" placeholder="Special requests..."></textarea>
+      </div>
+
+      <!-- Summary -->
+      <div class="bg-white rounded-2xl p-4 border" style="border-color:rgba(15,23,42,.06)">
+        <div class="flex justify-between text-[13px] mb-1"><span class="text-slate-500" data-i18n="pbEstimate">Estimated price</span><span id="pbEstPrice">—</span></div>
+        <div class="flex justify-between text-[13px] mb-1"><span class="text-slate-500" data-i18n="pbQtyLabel">Quantity</span><span id="pbQtySummary">1</span></div>
+        <div class="rounded-xl p-2.5 mt-2 flex items-start gap-2" style="background:#fff7ed">
+          <i data-lucide="info" style="width:13px;height:13px;color:#c4693d;margin-top:2px;flex:none"></i>
+          <p class="text-[10.5px] leading-relaxed text-amber-800" data-i18n="pbPayNote">Payment is handled directly by the partner. Angkor Travel does not collect or hold funds.</p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-0 right-0 bottom-0 p-4 bg-white border-t" style="border-color:rgba(15,23,42,.06)">
+      <button class="w-full py-3.5 rounded-xl font-bold text-white text-[14.5px] flex items-center justify-center gap-2" style="background:#0d9488" onclick="submitPbBooking()">
+        <i data-lucide="send" style="width:17px;height:17px"></i> <span data-i18n="pbSubmit">Submit reservation</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- PARTNER BOOK SUCCESS -->
+  <section class="view flex-1 flex-col overflow-hidden" id="view-pbsuccess">
+    <div class="flex-1 flex flex-col items-center justify-center p-6 text-center" style="background:#f6fbf9">
+      <div class="w-20 h-20 rounded-full flex items-center justify-center text-white mb-4" style="background:linear-gradient(135deg,#0d9488,#c4693d)"><i data-lucide="check" style="width:36px;height:36px"></i></div>
+      <h2 class="text-[22px] font-semibold mb-1" style="font-family:'Fraunces',serif" data-i18n="pbDone">Reservation sent!</h2>
+      <div class="text-[15px] font-bold text-teal-700 mb-1" id="pbsCode">—</div>
+      <p class="text-[13px] text-slate-500 max-w-[280px] mb-6" data-i18n="pbDoneSub">The partner will contact you within 24 hours to confirm details and arrange payment.</p>
+      <div class="flex gap-2">
+        <button class="px-4 py-3 rounded-xl font-bold text-[14px] border" onclick="go('home')" data-i18n="backHome">Back home</button>
+        <button class="px-4 py-3 rounded-xl font-bold text-[14px] text-white" style="background:#0d9488" onclick="go('bookings')" data-i18n="myTrips">My trips</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB BAR -->
+  <nav id="tabbar" class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t grid grid-cols-5 py-1.5 hide" style="border-color:rgba(15,23,42,.08)">
+    <button class="nav-item active flex flex-col items-center gap-0.5 py-1 text-slate-400" data-go="home"><i data-lucide="home" style="width:18px;height:18px"></i><span class="text-[10px]" data-i18n="navHome">Home</span></button>
+    <button class="nav-item flex flex-col items-center gap-0.5 py-1 text-slate-400" data-go="tours"><i data-lucide="map" style="width:18px;height:18px"></i><span class="text-[10px]" data-i18n="navTours">Tours</span></button>
+    <button class="nav-item flex flex-col items-center gap-0.5 py-1 text-slate-400" data-go="bookings"><i data-lucide="ticket" style="width:18px;height:18px"></i><span class="text-[10px]" data-i18n="navTrips">Trips</span></button>
+    <button class="nav-item flex flex-col items-center gap-0.5 py-1 text-slate-400" data-go="chat"><i data-lucide="message-circle" style="width:18px;height:18px"></i><span class="text-[10px]" data-i18n="navAi">AI</span></button>
+    <button class="nav-item flex flex-col items-center gap-0.5 py-1 text-slate-400" data-go="profile"><i data-lucide="user" style="width:18px;height:18px"></i><span class="text-[10px]" data-i18n="navMe">Me</span></button>
+  </nav>
+  <div id="toast" class="toast"></div>
+</div>
+</div>
+
+<div id="desk" class="hide" style="min-height:100vh;background:#0b1f1c;color:#0f172a">
+  <div class="max-w-5xl mx-auto p-4 md:p-6">
+    <div class="flex items-center justify-between mb-4 text-white">
+      <div>
+        <div class="text-[11px] uppercase tracking-widest opacity-70">Angkor Travel</div>
+        <h2 class="text-[22px] font-semibold" style="font-family:'Fraunces',serif" data-i18n="deskTitle">Agent desk</h2>
+      </div>
+      <button class="px-3 py-2 rounded-xl bg-white text-slate-900 text-[13px] font-bold" onclick="closeDesk()" data-i18n="backApp">Back to app</button>
+    </div>
+    <div class="grid md:grid-cols-[220px_1fr_260px] gap-3" style="height:calc(100vh - 120px)">
+      <div class="bg-white rounded-2xl overflow-hidden flex flex-col">
+        <div class="px-3 py-3 border-b text-[12px] font-bold text-slate-500 uppercase" data-i18n="liveInbox">Inbox</div>
+        <div id="deskList" class="flex-1 overflow-y-auto p-2 space-y-1"></div>
+      </div>
+      <div class="bg-white rounded-2xl overflow-hidden flex flex-col">
+        <div class="px-4 py-3 border-b">
+          <div class="font-semibold" id="deskGuest">—</div>
+          <div class="text-[12px] text-slate-500" id="deskMeta">Select a customer</div>
+        </div>
+        <div id="deskLog" class="flex-1 overflow-y-auto p-4 space-y-2"></div>
+        <div class="p-3 border-t flex gap-2">
+          <input id="deskIn" class="flex-1 px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none" data-i18n-placeholder="deskPh" placeholder="Type a reply to this customer...">
+          <button class="px-4 rounded-xl text-white font-bold text-[13px]" style="background:#0f172a" onclick="sendAgent()" data-i18n="send">Send</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl overflow-hidden flex flex-col">
+        <div class="px-3 py-3 border-b text-[12px] font-bold text-slate-500 uppercase" data-i18n="guestProfile">Customer profile</div>
+        <div id="deskProfile" class="flex-1 overflow-y-auto p-3 text-[13px]"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOURS = [
+  {
+    id: 'angkor-sunrise',
+    title: 'Angkor Sunrise Private',
+    titleZh: '吴哥日出私家团',
+    titleKm: 'អង្គរព្រះអាទិត្យរះ ឯកជន',
+    tag: 'temple',
+    days: '1 day',
+    city: 'Siem Reap',
+    price: 89,
+    rating: 4.9,
+    img: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=900&q=80',
+    desc: 'Watch the sun rise over Angkor Wat with a licensed Khmer guide, then walk Ta Prohm and Bayon before the crowds. Pickup from any Siem Reap hotel.',
+    descZh: '与持证高棉导游一同观看吴哥窟日出，再走塔布笼与巴戎，避开人潮。暹粒任意酒店接送。',
+    descKm: 'មើលព្រះអាទិត្យរះនៅអង្គរវត្តជាមួយអ្នកនាំភ្ញៀវខ្មែរមានអាជ្ញាប័ណ្ណ បន្ទាប់មកដើរតាព្រហ្ម និងបាយ័ន។ ទៅទទួលនៅសណ្ឋាគារសៀមរាប។',
+    incl: ['Private SUV + driver', 'Licensed English/Chinese guide', 'Cold water & towels', 'Temple ticket assistance'],
+    itin: ['04:30 Hotel pickup', '05:30 Angkor Wat sunrise', '08:00 Breakfast stop', '09:00 Ta Prohm & Bayon', '12:30 Return']
+  },
+  {
+    id: 'sihanouk-islands',
+    title: 'Koh Rong Island Escape',
+    titleZh: '西哈努克岛跳',
+    titleKm: 'កោះរ៉ុង រត់គេច',
+    tag: 'beach',
+    days: '2 days',
+    city: 'Sihanoukville',
+    price: 165,
+    rating: 4.8,
+    img: 'https://images.unsplash.com/photo-1559628233-100c798642d4?auto=format&fit=crop&w=900&q=80',
+    desc: 'Speedboat to Koh Rong, snorkel coral gardens, and sleep in a beach bungalow. Transparent boat and hotel pricing — no surprise fees.',
+    descZh: '快艇前往隆岛，浮潜珊瑚，入住海滩小屋。船票与酒店价格透明，无隐形费用。',
+    descKm: 'ទូកល្បឿនទៅកោះរ៉ុង ជ្រមុជទឹកមើលថ្មប៉ប្រះទឹក និងស្នាក់នៅផ្ទះឆ្នេរ។ តម្លៃទូក និងសណ្ឋាគារច្បាស់លាស់។',
+    incl: ['Return speedboat', '1-night bungalow', 'Snorkel gear', 'Seafood dinner'],
+    itin: ['Day 1: Pier 08:00 · snorkel · sunset', 'Day 2: Free morning · 14:00 return']
+  },
+  {
+    id: 'pp-food',
+    title: 'Phnom Penh Night Bites',
+    titleZh: '金边夜市美食',
+    titleKm: 'ភ្នំពេញ អាហារយប់',
+    tag: 'food',
+    days: 'Evening',
+    city: 'Phnom Penh',
+    price: 42,
+    rating: 4.7,
+    img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
+    desc: 'Street-food walk from Riverside to Russian Market. Taste nom banh chok, grilled squid, and Kampot pepper crab with a local host.',
+    descZh: '从河滨走到俄市，品尝 Sem 米粉、烤鱿鱼和贡布胡椒蟹，本地向导陪同。',
+    descKm: 'ដើរញ៉ាំអាហារតាមផ្លូវពីមាត់ទន្លេដល់ផ្សាររុស្សី។ ភ្លក់នំបញ្ចុក មឹកអាំង និងក្តាមម្រេចកំពត។',
+    incl: ['7 tastings', 'Soft drinks', 'Hotel pickup in PP', 'Bilingual host'],
+    itin: ['17:30 Pickup', '18:00 Riverside stalls', '19:30 Russian Market', '21:00 Drop-off']
+  },
+  {
+    id: 'kulen-trail',
+    title: 'Kulen Waterfall & Village',
+    titleZh: '荔枝山瀑布',
+    titleKm: 'ទឹកជ្រោះគូលែន និងភូមិ',
+    tag: 'temple',
+    days: '1 day',
+    city: 'Siem Reap',
+    price: 78,
+    rating: 4.6,
+    img: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=900&q=80',
+    desc: 'River of a Thousand Lingas, picnic by Kulen waterfall, and a stop in a stilt-house village. Light trekking, family friendly.',
+    descZh: '千林迦河、荔枝山瀑布野餐，再访高脚屋村落。轻松徒步，适合家庭。',
+    descKm: 'ទន្លេលិង្គមួយពាន់ ពិចនិចនៅទឹកជ្រោះគូលែន និងឈប់ភូមិផ្ទះសសរ។ ដើរស្រាល ស័ក្តិសមគ្រួសារ។',
+    incl: ['Private car', 'Picnic lunch', 'Guide', 'Park fee handling'],
+    itin: ['07:30 Pickup', '09:00 Lingas river', '11:00 Waterfall swim', '15:30 Return']
+  },
+  {
+    id: 'kampot-pepper',
+    title: 'Kampot Pepper & River',
+    titleZh: '贡布胡椒庄园',
+    titleKm: 'ម្រេចកំពត និងទន្លេ',
+    tag: 'city',
+    days: '1 day',
+    city: 'Kampot',
+    price: 95,
+    rating: 4.8,
+    img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80',
+    desc: 'Farm-to-table pepper plantation, secret-lake kayak, and a French-quarter sunset cruise on the Praek Tuek Chhu.',
+    descZh: '胡椒庄园餐桌体验、隐秘湖皮划艇，再乘船看贡布河日落。',
+    descKm: 'ចំការម្រេចពីចម្ការដល់តុ កាយ៉ាកបឹងសម្ងាត់ និងជិះទូកថ្ងៃលិចនៅព្រែកទឹកឈូ។',
+    incl: ['Plantation tasting', 'Kayak 1h', 'Sunset cruise', 'Transfers'],
+    itin: ['08:00 Farm tour', '12:00 Lunch', '15:00 Kayak', '17:30 Cruise']
+  },
+  {
+    id: 'tonle-floating',
+    title: 'Tonle Sap Floating Village',
+    titleZh: '洞里萨湖水上村落',
+    titleKm: 'ភូមិអណ្តែតទឹកទន្លេសាប',
+    tag: 'city',
+    days: 'Half day',
+    city: 'Siem Reap',
+    price: 55,
+    rating: 4.5,
+    img: 'https://images.unsplash.com/photo-1528183424584-abca2401cce7?auto=format&fit=crop&w=900&q=80',
+    desc: 'Boat through Kompong Phluk stilt houses and flooded forest. Meet fishing families on the Tonle Sap, Southeast Asia\'s largest freshwater lake.',
+    descZh: '乘船穿行洞里萨湖高脚屋与水上森林，探访渔民家庭。东南亚最大淡水湖半日游。',
+    descKm: 'ជិះទូកឆ្លងភូមិផ្ទះសសរកំពង់ភ្លុក និងព្រៃលិចទឹក។ ជួបគ្រួសារនេសាទនៅទន្លេសាប។',
+    incl: ['Private boat', 'Guide', 'Life jackets', 'Hotel pickup'],
+    itin: ['07:30 Pickup', '08:30 Board boat', '10:00 Village walk', '12:00 Return']
+  },
+  {
+    id: 'kep-crab',
+    title: 'Kep Crab Market Day',
+    titleZh: '白马蟹市一日游',
+    titleKm: 'ផ្សារក្តាមកែប',
+    tag: 'food',
+    days: '1 day',
+    city: 'Kampot',
+    price: 88,
+    rating: 4.7,
+    img: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80',
+    desc: 'Morning crab market in Kep, Kampot pepper crab lunch, then Rabbit Island swim. Return via salt fields at golden hour.',
+    descZh: '白马早市买蟹、贡布胡椒蟹午餐，再游兔子岛，黄昏经盐田返回。',
+    descKm: 'ផ្សារក្តាមព្រឹកនៅកែប អាហារថ្ងៃត្រង់ក្តាមម្រេច បន្ទាប់មកហែលទឹកកោះទន្សាយ។',
+    incl: ['Private car', 'Crab lunch', 'Boat to Koh Tonsay', 'Guide'],
+    itin: ['07:00 Kampot pickup', '08:30 Kep market', '12:00 Lunch', '14:00 Rabbit Island', '17:30 Return']
+  }
+];
+
+const DEST = [
+  { name: 'Siem Reap', zh: '暹粒', km: 'សៀមរាប', img: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=600&q=80', tag: 'temple' },
+  { name: 'Phnom Penh', zh: '金边', km: 'ភ្នំពេញ', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80', tag: 'city' },
+  { name: 'Sihanoukville', zh: '西哈努克', km: 'ព្រះសីហនុ', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80', tag: 'beach' },
+  { name: 'Kampot', zh: '贡布', km: 'កំពត', img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80', tag: 'city' }
+];
+
+const PARTNERS = [
+  { id:'p1', cat:'visa', icon:'plane', iconBg:'#ede9fe', iconColor:'#7c3aed',
+    name:'Cambodia Visa Express', nameZh:'柬埔寨签证速办', nameKm:'សេវាវីសាកម្ពុជា',
+    desc:'Tourist & business visa on arrival, e-visa', descZh:'旅游签、商务签、落地签、电子签', descKm:'វីសាទេសចរ និងពាណិជ្ជកម្ម',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'visa' },
+  { id:'p2', cat:'flight', icon:'plane', iconBg:'#dbeafe', iconColor:'#2563eb',
+    name:'Global Flight Booking', nameZh:'全球机票预定', nameKm:'ការកក់សំបុត្រហោរហើរសកល',
+    desc:'International & domestic flights, best fares', descZh:'国际国内机票，特价出票', descKm:'សំបុត្រហោរហើរអន្តរជាតិ និងក្នុងស្រុក',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'flight' },
+  { id:'p3', cat:'customs', icon:'briefcase', iconBg:'#fef3c7', iconColor:'#b45309',
+    name:'Sino-Cambodia Customs Broker', nameZh:'中柬代关服务', nameKm:'ភ្នាក់ងារគយចិន-កម្ពុជា',
+    desc:'Import/export customs clearance, freight', descZh:'进出口清关、货运代理', descKm:'ការធ្វើគយនាំចូលនាំចេញ និងដឹកជញ្ជូន',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'customs' },
+  { id:'p4', cat:'labor', icon:'badge-check', iconBg:'#dcfce7', iconColor:'#15803d',
+    name:'Cambodia Labor Permit Center', nameZh:'劳工证办理中心', nameKm:'មជ្ឈមណ្ឌលប័ណ្ណការងារកម្ពុជា',
+    desc:'Work permit & foreign worker registration', descZh:'工作证、外籍劳工登记', descKm:'ប័ណ្ណការងារ និងការចុះឈ្មោះកម្មករ',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'labor' },
+  { id:'p5', cat:'license', icon:'credit-card', iconBg:'#fce7f3', iconColor:'#be185d',
+    name:'Sino-Cambodia Driving License', nameZh:'中柬驾驶证转换', nameKm:'អាជ្ញាប័ណ្ណបើកបរចិន-កម្ពុជា',
+    desc:'License conversion & new application', descZh:'驾驶证换领、新办', descKm:'បំលែង និងដាក់ពាក្យអាជ្ញាប័ណ្ណបើកបរ',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'license' },
+  { id:'p6', cat:'rental', icon:'home', iconBg:'#e0e7ff', iconColor:'#4f46e5',
+    name:'Phnom Penh & Sihanoukville Rentals', nameZh:'金边西港租房', nameKm:'ជួលផ្ទះភ្នំពេញ និងព្រះសីហនុ',
+    desc:'Apartment & house rental, short/long term', descZh:'公寓别墅出租，短租长租', descKm:'ជួលខ្នងផ្ទះ រយៈពេលខ្លី និងវែង',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'rental' },
+  { id:'p7', cat:'hotel', icon:'bed-double', iconBg:'#ffedd5', iconColor:'#ea580c',
+    name:'Hotel Reservation Service', nameZh:'酒店预订服务', nameKm:'សេវាកក់សណ្ឋាគារ',
+    desc:'Hotel booking nationwide, best rates', descZh:'全国酒店预订，优惠价格', descKm:'កក់សណ្ឋាគារទូទាំងប្រទេស តម្លៃល្អ',
+    payLabel:'Direct payment by partner', payLabelZh:'由合作方直接收款', payLabelKm:'បង់ផ្ទាល់ទៅភ្នាក់ងារ',
+    action:'hotel' }
+];
+
+const PARTNER_CATS = [
+  { key:'all', icon:'grid', label:'All', labelZh:'全部', labelKm:'ទាំងអស់' },
+  { key:'visa', icon:'plane', label:'Visa', labelZh:'签证', labelKm:'វីសា' },
+  { key:'flight', icon:'plane', label:'Flights', labelZh:'机票', labelKm:'សំបុត្រហោរហើរ' },
+  { key:'customs', icon:'briefcase', label:'Customs', labelZh:'代关', labelKm:'គយ' },
+  { key:'labor', icon:'badge-check', label:'Labor', labelZh:'劳工证', labelKm:'ការងារ' },
+  { key:'license', icon:'credit-card', label:'License', labelZh:'驾驶证', labelKm:'អាជ្ញាប័ណ្ណ' },
+  { key:'rental', icon:'home', label:'Rental', labelZh:'租房', labelKm:'ជួលផ្ទះ' },
+  { key:'hotel', icon:'bed-double', label:'Hotel', labelZh:'酒店', labelKm:'សណ្ឋាគារ' }
+];
+
+function partnerName(p) {
+  if (state.lang === 'zh') return p.nameZh;
+  if (state.lang === 'km') return p.nameKm;
+  return p.name;
+}
+function partnerDesc(p) {
+  if (state.lang === 'zh') return p.descZh;
+  if (state.lang === 'km') return p.descKm;
+  return p.desc;
+}
+function partnerPayLabel(p) {
+  if (state.lang === 'zh') return p.payLabelZh;
+  if (state.lang === 'km') return p.payLabelKm;
+  return p.payLabel;
+}
+function partnerCatLabel(c) {
+  if (state.lang === 'zh') return c.labelZh;
+  if (state.lang === 'km') return c.labelKm;
+  return c.label;
+}
+function renderPartnerCats() {
+  const box = $('partnerCats');
+  if (!box) return;
+  box.innerHTML = PARTNER_CATS.map(c =>
+    `<button type="button" class="cat-btn flex-none px-2.5 py-1 rounded-full text-[11px] font-bold border whitespace-nowrap ${state.partnerCat===c.key?'chip-on':''}" onclick="setPartnerCat('${c.key}')">${partnerCatLabel(c)}</button>`
+  ).join('');
+}
+function setPartnerCat(key) {
+  state.partnerCat = key;
+  renderPartnerCats();
+  renderPartners();
+}
+function renderPartners() {
+  const box = $('partnerList');
+  if (!box) return;
+  const cat = state.partnerCat || 'all';
+  const list = cat === 'all' ? PARTNERS : PARTNERS.filter(p => p.cat === cat);
+  if (!list.length) {
+    box.innerHTML = '<div class="text-[12px] text-slate-400 text-center py-2">' + t('noMatch') + '</div>';
+    return;
+  }
+  box.innerHTML = list.map(p => `
+    <div class="flex items-center gap-3 rounded-xl border p-2.5 cursor-pointer active:bg-slate-50 transition" style="border-color:rgba(15,23,42,.06)" onclick="openPartner('${p.id}')">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-none" style="background:${p.iconBg}"><i data-lucide="${p.icon}" style="width:18px;height:18px;color:${p.iconColor}"></i></div>
+      <div class="flex-1 min-w-0">
+        <div class="text-[13px] font-semibold truncate">${partnerName(p)}</div>
+        <div class="text-[11px] text-slate-400 truncate">${partnerDesc(p)}</div>
+        <div class="text-[10px] text-amber-600 font-medium mt-0.5 flex items-center gap-1"><i data-lucide="alert-circle" style="width:11px;height:11px"></i>${partnerPayLabel(p)}</div>
+      </div>
+      <div class="flex-none text-slate-300"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></div>
+    </div>
+  `).join('');
+  icons();
+}
+function contactPartner(action) {
+  const partner = PARTNERS.find(p => p.action === action);
+  const partnerNameStr = partner ? partnerName(partner) : '';
+  go('chat');
+  setChatMode('live');
+  const input = $('chatIn');
+  if (input) {
+    input.value = (state.lang === 'zh' ? '我想咨询' : state.lang === 'km' ? 'ខ្ញុំចង់សួរអំពី' : 'I want to inquire about') + ' ' + partnerNameStr;
+    sendChat();
+  }
+}
+
+/* ---- Partner resources per category ---- */
+const PARTNER_RESOURCES = {
+  visa: [
+    { icon:'file-text', title:'Tourist Visa (T)', titleZh:'旅游签(T)', titleKm:'វីសាទេសចរ(T)', price:'$30', priceZh:'$30', priceKm:'$30',
+      desc:'30-day single entry, e-visa or on arrival', descZh:'30天单次入境，电子签或落地签', descKm:'៣០ថ្ងៃ វីសាតែម្នាក់' },
+    { icon:'file-text', title:'Business Visa (E)', titleZh:'商务签(E)', titleKm:'វីសាពាណិជ្ជកម្ម(E)', price:'$35', priceZh:'$35', priceKm:'$35',
+      desc:'30-day single entry, extendable', descZh:'30天单次入境，可延期', descKm:'៣០ថ្ងៃ អាចបន្តបាន' },
+    { icon:'file-text', title:'Business Visa Extension (EB)', titleZh:'商务签延期(EB)', titleKm:'បន្តវីសាពាណិជ្ជកម្ម(EB)', price:'$49', priceZh:'$49', priceKm:'$49',
+      desc:'6 months single entry extension', descZh:'6个月单次延期', descKm:'៦ខែបន្ត' },
+    { icon:'file-text', title:'Long-term Visa (EG)', titleZh:'长期签(EG)', titleKm:'វីសារយៈពេលវែង(EG)', price:'$85', priceZh:'$85', priceKm:'$85',
+      desc:'1 year multiple entry extension', descZh:'1年多次延期', descKm:'១ឆ្នាំច្រើនដង' }
+  ],
+  flight: [
+    { icon:'plane', title:'Phnom Penh ↔ China', titleZh:'金边 ↔ 中国', titleKm:'ភ្នំពេញ ↔ ចិន', price:'from $180', priceZh:'起 ¥1200', priceKm:'ចាប់ពី $180',
+      desc:'Direct flights to Beijing, Shanghai, Guangzhou', descZh:'直飞北京、上海、广州', descKm:'ហោរហើរផ្ទាល់ទៅប៉េកាំង ស៊ាងហៃ ក្វាងចូវ' },
+    { icon:'plane', title:'Siem Reap ↔ Regional', titleZh:'暹粒 ↔ 东南亚', titleKm:'សៀមរាប ↔ តំបន់', price:'from $45', priceZh:'起 ¥300', priceKm:'ចាប់ពី $45',
+      desc:'Bangkok, Singapore, Ho Chi Minh, Hanoi', descZh:'曼谷、新加坡、胡志明、河内', descKm:'បាងកក សិង្ហបុរី ហូជីមិញ ហាណូយ' },
+    { icon:'plane', title:'Domestic Flights', titleZh:'国内航班', titleKm:'ហោរហើរក្នុងស្រុក', price:'from $25', priceZh:'起 ¥180', priceKm:'ចាប់ពី $25',
+      desc:'Phnom Penh — Siem Reap, Sihanoukville routes', descZh:'金边-暹粒、西港航线', descKm:'ភ្នំពេញ-សៀមរាប ព្រះសីហនុ' },
+    { icon:'plane', title:'Group & Charter Booking', titleZh:'团队包机', titleKm:'កក់ក្រុម និងជួលយន្តហោះ', price:'Custom', priceZh:'询价', priceKm:'តាមតម្រូវ',
+      desc:'Special rates for 10+ passengers', descZh:'10人以上团队特价', descKm:'តម្លៃពិសេសសម្រាប់១០នាក់ឡើង' }
+  ],
+  customs: [
+    { icon:'briefcase', title:'Import Customs Clearance', titleZh:'进口清关', titleKm:'ការធ្វើគយនាំចូល', price:'from $50', priceZh:'起 ¥350', priceKm:'ចាប់ពី $50',
+      desc:'General goods, machinery, electronics', descZh:'一般货物、机械设备、电子产品', descKm:'ទំនិញទូទៅ ម៉ាស៊ីន អេឡិចត្រូនិក' },
+    { icon:'briefcase', title:'Export Customs Clearance', titleZh:'出口清关', titleKm:'ការធ្វើគយនាំចេញ', price:'from $40', priceZh:'起 ¥280', priceKm:'ចាប់ពី $40',
+      desc:'Garments, agricultural products, handicrafts', descZh:'服装、农产品、手工艺品', descKm:'សម្លៀកបំពាក់ ផលិតផលកសិកម្ម' },
+    { icon:'briefcase', title:'Freight Forwarding', titleZh:'货运代理', titleKm:'ភ្នាក់ងារដឹកជញ្ជូន', price:'Custom', priceZh:'询价', priceKm:'តាមតម្រូវ',
+      desc:'Sea, air, and land freight Sino-Cambodia', descZh:'中柬海陆空货运', descKm:'ដឹកជញ្ជូនទាំងបីបែប' },
+    { icon:'briefcase', title:'Customs Consultation', titleZh:'清关咨询', titleKm:'ប្រឹក្សាគយ', price:'Free', priceZh:'免费', priceKm:'ឥតគិតថ្លៃ',
+      desc:'Tariff codes, documentation, compliance', descZh:'关税编码、文件、合规咨询', descKm:'កូដពន្ធ ឯកសារ អនុលោម' }
+  ],
+  labor: [
+    { icon:'badge-check', title:'Foreign Worker Registration', titleZh:'外籍劳工登记', titleKm:'ចុះឈ្មោះកម្មករបរទេស', price:'$30', priceZh:'¥210', priceKm:'$30',
+      desc:'Ministry of Labor registration card', descZh:'劳工部登记卡', descKm:'កាតចុះឈ្មោះក្រសួងការងារ' },
+    { icon:'badge-check', title:'Work Permit (1 year)', titleZh:'工作证(1年)', titleKm:'ប័ណ្ណការងារ(១ឆ្នាំ)', price:'$100', priceZh:'¥700', priceKm:'$100',
+      desc:'Annual work permit renewal and processing', descZh:'年度工作证续办', descKm:'ប័ណ្ណការងារប្រចាំឆ្នាំ' },
+    { icon:'badge-check', title:'Work Permit Renewal', titleZh:'工作证续期', titleKm:'បន្តប័ណ្ណការងារ', price:'$50', priceZh:'¥350', priceKm:'$50',
+      desc:'Annual renewal before expiry', descZh:'到期前续期', descKm:'បន្តមុនផុតកំណត់' },
+    { icon:'badge-check', title:'Occupancy Quota Application', titleZh:'外籍配额申请', titleKm:'សំណើកូតា', price:'$80', priceZh:'¥560', priceKm:'$80',
+      desc:'Foreign employee ratio approval', descZh:'外籍员工比例审批', descKm:'អនុម័តសមាមាត្រ' }
+  ],
+  license: [
+    { icon:'credit-card', title:'Chinese License Conversion', titleZh:'中国驾照换领', titleKm:'បំលែងអាជ្ញាប័ណ្ណចិន', price:'$80', priceZh:'¥560', priceKm:'$80',
+      desc:'Convert valid Chinese license to Cambodian', descZh:'中国驾照换柬埔寨驾照', descKm:'បំលែងពីចិនទៅកម្ពុជា' },
+    { icon:'credit-card', title:'New Driving License', titleZh:'新办驾驶证', titleKm:'អាជ្ញាប័ណ្ណបើកបរថ្មី', price:'$60', priceZh:'¥420', priceKm:'$60',
+      desc:'Car & motorcycle license application', descZh:'汽车、摩托车新办', descKm:'រថយន្ត និងម៉ូតូ' },
+    { icon:'credit-card', title:'International License', titleZh:'国际驾驶证', titleKm:'អាជ្ញាប័ណ្ណអន្តរជាតិ', price:'$45', priceZh:'¥315', priceKm:'$45',
+      desc:'IDP translation and certification', descZh:'国际驾照翻译认证', descKm:'បកប្រែ និងបញ្ជាក់' },
+    { icon:'credit-card', title:'License Renewal', titleZh:'驾驶证续期', titleKm:'បន្តអាជ្ញាប័ណ្ណ', price:'$30', priceZh:'¥210', priceKm:'$30',
+      desc:'6-year renewal processing', descZh:'6年续期办理', descKm:'បន្ត៦ឆ្នាំ' }
+  ],
+  rental: [
+    { icon:'home', title:'Phnom Penh Apartments', titleZh:'金边公寓', titleKm:'ខ្នងផ្ទះភ្នំពេញ', price:'$200–$800/mo', priceZh:'¥1400-5600/月', priceKm:'$200–$800/ខែ',
+      desc:'BKK, Toul Kork, Riverside — 1-3 bedroom', descZh:'BKK、堆谷、河边 — 1-3房', descKm:'BKK ទួលគោក មាត់ទន្លេ' },
+    { icon:'home', title:'Sihanoukville Apartments', titleZh:'西港公寓', titleKm:'ខ្នងផ្ទះព្រះសីហនុ', price:'$150–$500/mo', priceZh:'¥1000-3500/月', priceKm:'$150–$500/ខែ',
+      desc:'Otres, Downtown, Victory — 1-2 bedroom', descZh:'奥切斯、市中心、胜利路', descKm:'អូរត្រេស កណ្តាលទីក្រុង' },
+    { icon:'home', title:'Short-term Rental', titleZh:'短租公寓', titleKm:'ជួលរយៈពេលខ្លី', price:'$20–$60/night', priceZh:'¥140-420/晚', priceKm:'$20–$60/យប់',
+      desc:'Daily and weekly rentals available', descZh:'日租、周租', descKm:'ជួលប្រចាំថ្ងៃ និងសប្តាហ៍' },
+    { icon:'home', title:'Villa & House Rental', titleZh:'别墅独栋出租', titleKm:'ជួលវិឡា និងផ្ទះ', price:'$500–$2000/mo', priceZh:'¥3500-14000/月', priceKm:'$500–$2000/ខែ',
+      desc:'3-5 bedroom villas with garden & pool', descZh:'3-5房带花园泳池', descKm:'៣-៥បន្ទប់ សួន និងអាង' }
+  ],
+  hotel: [
+    { icon:'bed-double', title:'Siem Reap Hotels', titleZh:'暹粒酒店', titleKm:'សណ្ឋាគារសៀមរាប', price:'$15–$120/night', priceZh:'¥100-850/晚', priceKm:'$15–$120/យប់',
+      desc:'Budget to luxury near Angkor temples', descZh:'经济到豪华，近吴哥寺庙', descKm:'ពីសមរម្យដល់ប្រណិត' },
+    { icon:'bed-double', title:'Phnom Penh Hotels', titleZh:'金边酒店', titleKm:'សណ្ឋាគារភ្នំពេញ', price:'$20–$150/night', priceZh:'¥140-1050/晚', priceKm:'$20–$150/យប់',
+      desc:'Business and leisure hotels downtown', descZh:'市中心商务休闲酒店', descKm:'សណ្ឋាគារពាណិជ្ជកម្ម និងកម្សាន្ត' },
+    { icon:'bed-double', title:'Sihanoukville Resorts', titleZh:'西港度假酒店', titleKm:'រមណីយដ្ឋានព្រះសីហនុ', price:'$25–$200/night', priceZh:'¥175-1400/晚', priceKm:'$25–$200/យប់',
+      desc:'Beachfront resorts and boutique stays', descZh:'海滨度假村与精品酒店', descKm:'រមណីយដ្ឋានឆ្នេរ និងប្រណិត' },
+    { icon:'bed-double', title:'Group Booking Discount', titleZh:'团队预订优惠', titleKm:'ការកក់ក្រុមបញ្ចុះតម្លៃ', price:'Up to 30% off', priceZh:'最高7折', priceKm:'បញ្ចុះ៣០%',
+      desc:'Special rates for 5+ rooms', descZh:'5间以上特价', descKm:'តម្លៃពិសេស៥បន្ទប់ឡើង' }
+  ]
+};
+
+function openPartner(id) {
+  const p = PARTNERS.find(x => x.id === id);
+  if (!p) return;
+  state.partnerDetail = p;
+  go('partner');
+}
+
+function resTitle(r) {
+  if (state.lang === 'zh') return r.titleZh;
+  if (state.lang === 'km') return r.titleKm;
+  return r.title;
+}
+function resDesc(r) {
+  if (state.lang === 'zh') return r.descZh;
+  if (state.lang === 'km') return r.descKm;
+  return r.desc;
+}
+function resPrice(r) {
+  if (state.lang === 'zh') return r.priceZh;
+  if (state.lang === 'km') return r.priceKm;
+  return r.price;
+}
+
+const PARTNER_RESOURCE_PHOTOS = {
+  visa: ['photo-1544006659-f0b21884ce1d', 'photo-1526304640581-d334cdbbf45e', 'photo-1554224155-6726b3ff858f', 'photo-1450101499163-c8848c66ca85'],
+  flight: ['photo-1436491865332-7a61a109cc05', 'photo-1517479149777-5f3b1511d5ad', 'photo-1517423440428-a5a00ad493e8', 'photo-1436491865332-7a61a109cc05'],
+  customs: ['photo-1586528116493-da8b0f1c6f6f', 'photo-1494412651409-8963ce7935a7', 'photo-1494412574643-ff11b0a5c1c3', 'photo-1586864387967-d02ef85d93e8'],
+  labor: ['photo-1521737711867-e3b97375f902', 'photo-1551836022-d5d88e9218df', 'photo-1450101499163-c8848c66ca85', 'photo-1556761175-b413da4baf72'],
+  license: ['photo-1449965408869-eaa3f722e40d', 'photo-1503736334956-4c8f8e92946d', 'photo-1511919884226-fd3cad34687c', 'photo-1492144534655-ae79c964c9d7'],
+  rental: ['photo-1522708323590-d24dbb6b0267', 'photo-1493809842364-78817add7ffb', 'photo-1505693416388-ac5ce068fe85', 'photo-1600585154340-be6161a56a0c'],
+  hotel: ['photo-1566073771259-6a8506099945', 'photo-1564501049412-61c2a3083791', 'photo-1540541338287-41700207dee6', 'photo-1551882547-ff40c63fe5fa']
+};
+
+function resourcePhoto(category, index) {
+  const photos = PARTNER_RESOURCE_PHOTOS[category] || [];
+  return photos[index % photos.length] ? 'https://images.unsplash.com/' + photos[index % photos.length] + '?auto=format&fit=crop&w=900&q=80' : '';
+}
+
+function renderPartnerDetail() {
+  const p = state.partnerDetail;
+  if (!p) { go('home'); return; }
+  if ($('pDetailTitle')) $('pDetailTitle').textContent = partnerName(p);
+  if ($('pDetailIcon')) {
+    $('pDetailIcon').innerHTML = '<i data-lucide="' + p.icon + '" style="width:18px;height:18px;color:' + p.iconColor + '"></i>';
+    $('pDetailIcon').style.background = p.iconBg;
+  }
+  if ($('pDetailInfo')) {
+    $('pDetailInfo').innerHTML =
+      '<i data-lucide="info" style="width:15px;height:15px;color:#c4693d;margin-top:1px;flex:none"></i>' +
+      '<p class="text-[11.5px] leading-relaxed text-amber-800">' + partnerPayLabel(p) + ' — ' + partnerDesc(p) + '</p>';
+  }
+  const list = PARTNER_RESOURCES[p.cat] || [];
+  const box = $('pDetailList');
+  if (!box) return;
+  box.innerHTML = list.map((r, i) => `
+    <div class="rounded-xl border overflow-hidden" style="border-color:rgba(15,23,42,.06)">
+      <img src="${resourcePhoto(p.cat, i)}" alt="${resTitle(r)}" class="w-full h-28 object-cover" loading="lazy" onerror="this.style.display='none'">
+      <div class="p-3">
+      <div class="flex items-start gap-3">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-none" style="background:${p.iconBg}"><i data-lucide="${r.icon}" style="width:16px;height:16px;color:${p.iconColor}"></i></div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-2">
+            <div class="text-[14px] font-semibold truncate">${resTitle(r)}</div>
+            <div class="text-[13px] font-bold text-teal-700 flex-none">${resPrice(r)}</div>
+          </div>
+          <div class="text-[12px] text-slate-500 mt-0.5">${resDesc(r)}</div>
+          <button class="mt-2 w-full py-2 rounded-xl text-white text-[12.5px] font-bold flex items-center justify-center gap-1.5" style="background:${p.iconColor}" onclick="bookResource(${i})">
+            <i data-lucide="calendar-plus" style="width:14px;height:14px"></i> ${t('pbBookBtn')}
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+  `).join('');
+  icons();
+}
+
+function contactPartnerFromDetail() {
+  const p = state.partnerDetail;
+  if (!p) return;
+  contactPartner(p.action);
+}
+
+/* ---- Partner booking flow (booking.com style) ---- */
+function bookResource(idx) {
+  const p = state.partnerDetail;
+  if (!p) return;
+  const list = PARTNER_RESOURCES[p.cat] || [];
+  const r = list[idx];
+  if (!r) return;
+  state.pbResource = r;
+  state.pbQty = 1;
+  go('pbook');
+}
+
+function chgPbQty(d) {
+  state.pbQty = Math.max(1, (state.pbQty || 1) + d);
+  if ($('pbQtyVal')) $('pbQtyVal').textContent = state.pbQty;
+  updatePbSummary();
+}
+
+function renderPbForm() {
+  const p = state.partnerDetail;
+  const r = state.pbResource;
+  if (!p || !r) { go('partner'); return; }
+
+  /* Title */
+  if ($('pbTitle')) $('pbTitle').textContent = partnerName(p);
+
+  /* Icon */
+  if ($('pbIcon')) {
+    $('pbIcon').innerHTML = '<i data-lucide="' + r.icon + '" style="width:18px;height:18px;color:' + p.iconColor + '"></i>';
+    $('pbIcon').style.background = p.iconBg;
+  }
+
+  /* Service info */
+  if ($('pbServiceName')) $('pbServiceName').textContent = resTitle(r);
+  if ($('pbServiceDesc')) $('pbServiceDesc').textContent = resDesc(r);
+  if ($('pbServicePrice')) $('pbServicePrice').textContent = resPrice(r);
+
+  /* Default date = tomorrow */
+  if ($('pbDate')) {
+    const d = new Date(); d.setDate(d.getDate() + 1);
+    $('pbDate').value = d.toISOString().slice(0, 10);
+  }
+
+  /* Prefill contact */
+  if ($('pbName') && !$('pbName').value) $('pbName').value = state.user.name || '';
+  if ($('pbContact') && !$('pbContact').value) $('pbContact').value = state.user.contact || '';
+
+  /* Duration options per category */
+  const durOpts = pbDurationOptions(p.cat);
+  if ($('pbDuration')) {
+    $('pbDuration').innerHTML = '<option value="">' + t('pbDurDefault') + '</option>' +
+      durOpts.map(o => '<option value="' + o + '">' + o + '</option>').join('');
+  }
+
+  /* Qty */
+  state.pbQty = state.pbQty || 1;
+  if ($('pbQtyVal')) $('pbQtyVal').textContent = state.pbQty;
+
+  updatePbSummary();
+  icons();
+}
+
+function pbDurationOptions(cat) {
+  const opts = {
+    visa: ['Tourist (T)', 'Business (E)', 'Extension (EB)', 'Long-term (EG)'],
+    flight: ['One-way', 'Round-trip', 'Multi-city'],
+    customs: ['Sea freight', 'Air freight', 'Land freight', 'Consultation only'],
+    labor: ['New application', 'Renewal', 'Quota application'],
+    license: ['Car (B)', 'Motorcycle (A)', 'Car + Motorcycle'],
+    rental: ['1 month', '3 months', '6 months', '1 year', 'Daily/weekly'],
+    hotel: ['1 night', '3 nights', '1 week', '2 weeks']
+  };
+  return opts[cat] || ['Standard'];
+}
+
+function parsePrice(s) {
+  const m = s.match(/[\d,.]+/);
+  if (!m) return 0;
+  const num = parseFloat(m[0].replace(/,/g, ''));
+  const isPerNight = /night|晚|យប់/i.test(s);
+  const isPerMonth = /mo|月|ខែ/i.test(s);
+  return { num, perNight: isPerNight, perMonth: isPerMonth };
+}
+
+function updatePbSummary() {
+  const r = state.pbResource;
+  if (!r) return;
+  const priceStr = resPrice(r);
+  const qty = state.pbQty || 1;
+  const p = parsePrice(priceStr);
+
+  if ($('pbQtySummary')) $('pbQtySummary').textContent = qty;
+
+  if ($('pbEstPrice')) {
+    if (p.num && p.num > 0) {
+      const unit = p.perNight ? t('pbPerNight') : p.perMonth ? t('pbPerMonth') : '';
+      const total = p.perNight || p.perMonth
+        ? priceStr.split(/[-–]/)[0].trim()
+        : (priceStr.match(/from|起|ចាប់ពី/i) ? t('pbFrom') + ' ' : '') + '$' + (p.num * qty);
+      $('pbEstPrice').textContent = total + (unit ? ' ' + unit : '');
+    } else {
+      $('pbEstPrice').textContent = priceStr;
+    }
+  }
+}
+
+function submitPbBooking() {
+  const p = state.partnerDetail;
+  const r = state.pbResource;
+  if (!p || !r) return;
+
+  if (!$('pbDate').value) return toast(t('needDate'));
+  if (!$('pbName').value.trim()) return toast(t('needName'));
+  if (!$('pbContact').value.trim()) return toast(t('needContact'));
+
+  const code = 'PB-' + Math.floor(100000 + Math.random() * 900000);
+  const rec = {
+    code,
+    type: 'partner',
+    partnerCat: p.cat,
+    partnerName: partnerName(p),
+    serviceTitle: resTitle(r),
+    servicePrice: resPrice(r),
+    date: $('pbDate').value,
+    qty: state.pbQty || 1,
+    duration: $('pbDuration').value || '',
+    name: $('pbName').value.trim(),
+    contact: $('pbContact').value.trim(),
+    location: $('pbLocation').value.trim(),
+    notes: $('pbNotes').value.trim(),
+    at: Date.now()
+  };
+
+  /* Save to bookings */
+  state.bookings.unshift(rec);
+  localStorage.setItem('atc_bookings', JSON.stringify(state.bookings));
+
+  /* Show success */
+  if ($('pbsCode')) $('pbsCode').textContent = code;
+  go('pbsuccess');
+
+  /* Send inquiry to chat */
+  const msg = (state.lang === 'zh' ? '预订请求 #' + code + '：' :
+    state.lang === 'km' ? 'សំណើកក់ #' + code + '៖ ' :
+    'Reservation request #' + code + ': ') +
+    partnerName(p) + ' — ' + resTitle(r) + ' ×' + (state.pbQty || 1) +
+    ' · ' + $('pbDate').value + ' · ' + (state.lang === 'zh' ? '联系方式' : state.lang === 'km' ? 'ទំនាក់ទំនង' : 'Contact') + ': ' + $('pbContact').value.trim();
+
+  /* Delay to let success page render first */
+  setTimeout(() => {
+    pushMsg('me', msg, 'live');
+  }, 500);
+}
+
+const ADDONS = { sunrise: 37, suv: 28, lunch: 12 };
+const METHODS = [
+  { id: 'aba', label: 'ABA Pay', sub: 'KHQR instant' },
+  { id: 'wing', label: 'Wing Bank', sub: 'USD / KHR' },
+  { id: 'alipay', label: 'Alipay', sub: 'CNY / USD' },
+  { id: 'unionpay', label: 'UnionPay', sub: 'CNY / USD' },
+  { id: 'card', label: 'Visa / Mastercard', sub: 'USD' }
+];
+
+const I18N = {
+  en: {
+    langName:'English', brandSub:'Cambodia · Angkor journeys',
+    heroTitle:'Your journey through the Kingdom begins here.',
+    heroSub:'Custom trips, licensed guides, transparent pricing — from Sihanoukville shores to Angkor temples.',
+    register:'Register', login:'Login', fullName:'Full name', phoneEmail:'Phone / Email', password:'Password',
+    createAccount:'Create account', signIn:'Sign in', haveAccount:'Already have an account?', noAccount:'New here?',
+    needPass:'Enter a password', welcome:'Welcome back',
+    aiTitle:'AI Travel Assistant', aiSub:'Ask anything — dates, budget, destinations.',
+    searchPh:'Search temples, islands, food...', all:'All', temples:'Temples', beaches:'Beaches', food:'Food', cities:'Cities',
+    featured:'Featured journeys', seeAll:'See all', destinations:'Destinations',
+    licensed:'Licensed local team', guideFrom:'Private guide from $45 / day',
+    guideLangs:'English / Chinese / Khmer. Temple tickets, transfers, and meals arranged.',     planAi:'Plan with AI',
+    voucher:'Voucher', confirmed:'Confirmed', voucherHint:'Show this voucher to your guide. Pickup details will be sent 24 hours before departure.',
+    printVoucher:'Print / save voucher', viewVoucher:'Open voucher',
+    hotelName:'Hotel / pickup point', hotelPh:'Hotel name in the tour city', needHotel:'Enter hotel / pickup point',
+    notes:'Notes for guide', notesPh:'Allergies, language, child seats...',
+    savedSession:'Welcome back',
+    methodAba:'ABA Pay', methodWing:'Wing Bank', methodAlipay:'Alipay', methodUnion:'UnionPay', methodCard:'Visa / Mastercard',
+    tours:'Tours', toursSub:'Transparent pricing. Instant booking.', from:'from', included:"What's included", itinerary:'Itinerary',
+    askAi:'Ask AI', bookNow:'Book now', checkout:'Checkout', datesGuests:'Dates & guests', travelDate:'Travel date',
+    adults:'Adults', children:'Children', addons:'Add-ons', addSunrise:'Sunrise Angkor ticket', addSuv:'Private SUV transfer',
+    addLunch:'Khmer lunch', tour:'Tour', total:'Total', continuePay:'Continue to payment', securePay:'Secure payment',
+    payConfirm:'Pay & confirm', payment:'Payment', payWith:'Pay with', cardAba:'Card / ABA / Wing / Alipay / UnionPay',
+    demoPay:'Demo checkout — no real charge. Confirmation is stored on this device.', confirmBook:'Confirm booking',
+    wingPay:'Wing Bank Pay', scanToPay:'Scan to pay', openWing:'Open Wing Bank and scan',
+    wingHint:'Pay the exact amount shown. USD / KHR.', wingDemo:'After paying in Wing, tap I have paid to confirm this booking.', iPaid:'I have paid',
+    alipayPay:'Alipay', openAlipay:'Open Alipay and scan', alipayHint:'Pay the exact amount shown. CNY / USD.', alipayDemo:'After paying in Alipay, tap I have paid to confirm this booking.',
+    unionPay:'UnionPay', openUnion:'Open UnionPay and scan', unionHint:'Pay the exact amount shown. CNY / USD.', unionDemo:'After paying in UnionPay, tap I have paid to confirm this booking.',
+    payIn:'Pay within', qrExpired:'QR expired', qrExpiredSub:'This code is valid for 9 minutes only.', refreshQr:'Refresh QR',
+    qrExpiredToast:'QR expired. Refresh to pay.',
+    booked:"You're booked.", bookedSub:'A licensed guide will message you 24 hours before departure. Voucher is in My trips.',
+    viewTrips:'View my trips', backHome:'Back home', myTrips:'My trips', tripsSub:'Confirmed bookings and vouchers.',
+    noTrips:'No trips yet.', browseTours:'Browse tours', guests:'guests', rated:'rated',
+    aiOnline:'Online · EN / ZH / KM', chatPh:'Type a message to AI or live agent...',
+    modeAi:'AI', modeLive:'Live agent', liveTitle:'Live support', liveOnline:'Agent online · type to a human',
+    liveHi:'A support agent can now see your chat and type back. Ask anything about your trip.',
+    waitingAgent:'Waiting for an agent. Keep typing — they will reply here.',
+    agentLabel:'Agent',
+    deskTitle:'Agent desk', backApp:'Back to app', liveInbox:'Inbox', send:'Send',
+    deskPh:'Type a reply to this customer...', openDesk:'Open', noInbox:'No live chats yet.',
+    you:'You',
+    guestProfile:'Customer profile', fullName:'Full name', phoneEmail:'Phone / Email',
+    noTripsDesk:'No bookings yet.', kycDocs:'Documents', hotelName:'Hotel / pickup',
+    unverified:'Unverified', verified:'Verified', kycTitle:'Real-name verification',
+    kycSub:'Required to book tours. Upload ID + selfie.', kycVerified:'Identity verified',
+    kycStatus:'KYC status', notVerified:'Not verified', language:'Language', currency:'Currency', support:'Support',
+    signOut:'Sign out', settings:'Settings', resubmit:'Re-submit documents',
+    kycHint:'Match your passport / national ID. Required before booking.', legalName:'Legal name', asPassport:'As on passport',
+    nationality:'Nationality', idType:'ID type', passport:'Passport', nationalId:'National ID', idNo:'ID / Passport no.',
+    dob:'Date of birth', uploadDocs:'Upload documents', idFront:'ID front', idBack:'ID back', selfieId:'Selfie with ID',
+    tapUpload:'Tap to upload photo', demoKyc:'Demo only — files stay on this device, not uploaded to a server.',
+    submitKyc:'Submit verification', navHome:'Home', navTours:'Tours', navTrips:'Trips', navAi:'AI', navMe:'Me',
+    needKyc:'Complete real-name KYC first', needDate:'Choose a travel date', needName:'Enter legal name',
+    needId:'Enter ID / passport number', needDob:'Select date of birth', needFiles:'Upload ID front and selfie',
+    kycOk:'KYC verified', noMatch:'No matches.', chatHi:'Hi — I am Angkor Travel support. Ask about tours, price, payment, tickets, pickup, or cancel. EN / 中文 / ខ្មែរ.',
+    qPrice:'Prices?', qPay:'How to pay?', qTicket:'Temple tickets?', qPickup:'Hotel pickup?', qCancel:'Cancel policy?', qVisa:'Visa?',
+    aAngkor:'Angkor Sunrise Private is $89 / person. Weekdays are quieter. Open Tours and tap Book now to checkout.',
+    aIsland:'Koh Rong Island Escape is 2 days from $165, speedboat included. Seas are calmer November–April.',
+    aFood:'Phnom Penh Night Bites is $42 / person, 7 tastings, hotel pickup in PP.',
+    aKulen:'Kulen Waterfall & Village is $78 / person. Light trekking, family friendly. Pickup in Siem Reap.',
+    aTonle:'Tonle Sap Floating Village is $55 / person, half day. Boat through Kompong Phluk stilt houses.',
+    aKep:'Kep Crab Market Day is $88 / person from Kampot: crab lunch and Rabbit Island swim.',
+    aKampot:'Kampot Pepper & River is $95 / person: plantation, kayak, sunset cruise.',
+    aPrice:'Day tours from $42. Private Angkor $89. Island overnight $165. All USD, tax included. Book in the app.',
+    aPay:'Pay by Wing Bank QR, ABA Pay, Alipay, UnionPay, or Visa/Mastercard. Wing: scan the QR and tap I have paid.',
+    aGuide:'Licensed guides in English, Chinese, and Khmer in Siem Reap and Phnom Penh.',
+    aDate:'Book any date 3+ days ahead. Sunrise tours sell out on Fridays — book early.',
+    aTicket:'Angkor tickets are extra unless listed as included. We can buy them for you at checkout.',
+    aPickup:'Hotel pickup in the tour city is included. Send your hotel name after booking.',
+    aCancel:'Free cancel 48 hours before. Inside 48 hours, 50% fee. No-show is non-refundable.',
+    aVisa:'Most visitors get visa on arrival or e-visa. Passport valid 6+ months. We do not issue visas.',
+    aWeather:'Nov–Mar is dry and best for temples. Apr–May is hot. Jun–Oct is rainy but fewer crowds.',
+    aKid:'Children welcome. Child price is 60% of adult. Car seats on request.',
+    aSupport:'WhatsApp / phone +855 12 888 010, 08:00–21:00. Or keep chatting here.',
+    aDefault:'I can help with prices, Wing/ABA pay, tickets, pickup, cancel, visa, weather. Or tap a question below.',
+    citySiemReap:'Siem Reap', cityPhnomPenh:'Phnom Penh', citySihanoukville:'Sihanoukville', cityKampot:'Kampot',
+    partnerTitle:'Trusted partners',
+    partnerNote:'These partners operate and collect payments independently. Angkor Travel does not collect or hold funds on their behalf.',
+    partnerContact:'Contact',
+    partnerInquiry:'I would like to inquire about a partner service.',
+    agentUrl:'Agent desk link', copyUrl:'Copy', urlCopied:'Agent desk link copied',
+    pResources:'Available services',
+    pbBookBtn:'Book now', pBooking:'Reservation', pbDate:'Preferred date', pbQty:'Quantity',
+    pbDuration:'Duration / type', pbDurDefault:'Select duration / type',
+    pbLocation:'Location / address', pbEstimate:'Estimated price', pbQtyLabel:'Quantity',
+    pbPayNote:'Payment is handled directly by the partner. Angkor Travel does not collect or hold funds.',
+    pbSubmit:'Submit reservation', pbDone:'Reservation sent!', pbDoneSub:'The partner will contact you within 24 hours to confirm details and arrange payment.',
+    pbPerNight:'/ night', pbPerMonth:'/ month', pbFrom:'from', needContact:'Enter phone or email', needDate:'Choose a date'
+  },
+  zh: {
+    langName:'中文', brandSub:'柬埔寨 · 吴哥之旅',
+    heroTitle:'王国之旅，从这里开始。',
+    heroSub:'定制行程、持证导游、价格透明 — 从西哈努克海岸到吴哥古迹。',
+    register:'注册', login:'登录', fullName:'姓名', phoneEmail:'手机 / 邮箱', password:'密码',
+    createAccount:'创建账户', signIn:'登录', haveAccount:'已有账户？', noAccount:'还没有账户？',
+    needPass:'请输入密码', welcome:'欢迎回来',
+    aiTitle:'智能旅行顾问', aiSub:'随便问 — 日期、预算、目的地。',
+    searchPh:'搜索寺庙、海岛、美食...', all:'全部', temples:'寺庙', beaches:'海滩', food:'美食', cities:'城市',
+    featured:'精选行程', seeAll:'查看全部', destinations:'目的地',
+    licensed:'持证本地团队', guideFrom:'私人导游 起 $45 / 天',
+    guideLangs:'英语 / 中文 / 高棉语。门票、接送、餐饮均可安排。',     planAi:'用 AI 规划',
+    voucher:'凭证', confirmed:'已确认', voucherHint:'请向导游出示此凭证。出发前 24 小时将发送接送信息。',
+    printVoucher:'打印 / 保存凭证', viewVoucher:'查看凭证',
+    hotelName:'酒店 / 接送点', hotelPh:'行程城市的酒店名称', needHotel:'请填写酒店 / 接送点',
+    notes:'给导游的备注', notesPh:'过敏、语言、儿童座椅...',
+    savedSession:'欢迎回来',
+    methodAba:'ABA Pay', methodWing:'Wing Bank', methodAlipay:'支付宝', methodUnion:'银联', methodCard:'Visa / Mastercard',
+    tours:'行程', toursSub:'价格透明，即时预订。', from:'起', included:'费用包含', itinerary:'行程安排',
+    askAi:'问 AI', bookNow:'立即预订', checkout:'结算', datesGuests:'日期与人数', travelDate:'出行日期',
+    adults:'成人', children:'儿童', addons:'附加项目', addSunrise:'吴哥日出门票', addSuv:'私人 SUV 接送',
+    addLunch:'高棉午餐', tour:'行程', total:'合计', continuePay:'继续支付', securePay:'安全支付',
+    payConfirm:'支付并确认', payment:'支付', payWith:'支付方式', cardAba:'银行卡 / ABA / Wing / 支付宝 / 银联',
+    demoPay:'演示结账 — 不会真实扣款。确认信息保存在本机。', confirmBook:'确认预订',
+    wingPay:'Wing Bank 支付', scanToPay:'扫码支付', openWing:'打开 Wing Bank 扫码',
+    wingHint:'请支付显示的准确金额。支持 USD / KHR。', wingDemo:'在 Wing 完成付款后，点击「我已支付」确认预订。', iPaid:'我已支付',
+    alipayPay:'支付宝', openAlipay:'打开支付宝扫码', alipayHint:'请支付显示的准确金额。支持 CNY / USD。', alipayDemo:'在支付宝完成付款后，点击「我已支付」确认预订。',
+    unionPay:'银联', openUnion:'打开银联云闪付扫码', unionHint:'请支付显示的准确金额。支持 CNY / USD。', unionDemo:'在银联完成付款后，点击「我已支付」确认预订。',
+    payIn:'请在时限内支付', qrExpired:'二维码已过期', qrExpiredSub:'二维码仅有效 9 分钟。', refreshQr:'刷新二维码',
+    qrExpiredToast:'二维码已过期，请刷新后再支付。',
+    booked:'预订成功。', bookedSub:'持证导游将在出发前 24 小时联系您。凭证在「我的行程」中。',
+    viewTrips:'查看我的行程', backHome:'返回首页', myTrips:'我的行程', tripsSub:'已确认的预订与凭证。',
+    noTrips:'暂无行程。', browseTours:'浏览行程', guests:'位旅客', rated:'评分',
+    aiOnline:'在线 · 中 / 英 / 高棉语', chatPh:'给 AI 或人工客服打字...',
+    modeAi:'AI', modeLive:'人工客服', liveTitle:'人工客服', liveOnline:'客服在线 · 可手动回复',
+    liveHi:'客服已可看到您的对话并手动回复。请直接打字咨询行程。',
+    waitingAgent:'正在等待客服接入，请继续打字，客服会在此回复。',
+    agentLabel:'客服',
+    deskTitle:'客服工作台', backApp:'返回 App', liveInbox:'会话', send:'发送',
+    deskPh:'手动回复这位客户...', openDesk:'打开', noInbox:'暂无人工会话。',
+    you:'您',
+    guestProfile:'客户资料', fullName:'姓名', phoneEmail:'手机 / 邮箱',
+    noTripsDesk:'暂无预订。', kycDocs:'证件资料', hotelName:'酒店 / 接送点',
+    unverified:'未认证', verified:'已认证', kycTitle:'实名认证',
+    kycSub:'预订行程前需完成。请上传证件与自拍。', kycVerified:'身份已认证',
+    kycStatus:'认证状态', notVerified:'未认证', language:'语言', currency:'货币', support:'客服',
+    signOut:'退出登录', settings:'设置', resubmit:'重新提交资料',
+    kycHint:'请与护照 / 身份证一致。预订前必须完成实名。', legalName:'真实姓名', asPassport:'与护照一致',
+    nationality:'国籍', idType:'证件类型', passport:'护照', nationalId:'身份证', idNo:'证件号码',
+    dob:'出生日期', uploadDocs:'上传证件', idFront:'证件正面', idBack:'证件背面', selfieId:'手持证件自拍',
+    tapUpload:'点击上传照片', demoKyc:'演示模式 — 文件仅保存在本机，不会上传服务器。',
+    submitKyc:'提交认证', navHome:'首页', navTours:'行程', navTrips:'订单', navAi:'AI', navMe:'我的',
+    needKyc:'请先完成实名认证', needDate:'请选择出行日期', needName:'请填写真实姓名',
+    needId:'请填写证件号码', needDob:'请选择出生日期', needFiles:'请上传证件正面与自拍',
+    kycOk:'实名认证已通过', noMatch:'暂无匹配。', chatHi:'您好，我是吴哥旅行客服。可咨询行程、价格、支付、门票、接送或取消。中文 / English / ខ្មែរ。',
+    qPrice:'价格？', qPay:'怎么付款？', qTicket:'寺庙门票？', qPickup:'酒店接送？', qCancel:'取消政策？', qVisa:'签证？',
+    aAngkor:'吴哥日出私家团 $89 / 人。工作日人少。打开「行程」点击立即预订即可下单。',
+    aIsland:'隆岛 2 日游起 $165，含快艇。11–4 月海况更好。',
+    aFood:'金边夜市美食 $42 / 人，7 道品尝，金边酒店接送。',
+    aKulen:'荔枝山瀑布 $78 / 人。轻松徒步，适合家庭。暹粒接送。',
+    aTonle:'洞里萨湖水上村落 $55 / 人，半日。乘船穿行贡布普鲁高脚屋。',
+    aKep:'白马蟹市一日游 $88 / 人，贡布出发：胡椒蟹午餐 + 兔子岛。',
+    aKampot:'贡布胡椒庄园 $95 / 人：庄园、皮划艇、日落游船。',
+    aPrice:'一日游起 $42。吴哥私家 $89。海岛过夜 $165。均为美元含税，可在 App 内下单。',
+    aPay:'可用 Wing Bank 扫码、ABA Pay、支付宝、银联或 Visa/Mastercard。Wing：扫码后点「我已支付」。',
+    aGuide:'暹粒、金边提供英语 / 中文 / 高棉语持证导游。',
+    aDate:'请提前 3 天以上预订。周五日出团易满，请尽早下单。',
+    aTicket:'吴哥门票除非写明包含，均为另计。结账时可代购。',
+    aPickup:'行程城市含酒店接送。下单后请发送酒店名称。',
+    aCancel:'出发 48 小时前免费取消。48 小时内收取 50%。未到不退。',
+    aVisa:'多数游客可落地签或电子签。护照有效期 6 个月以上。我们不代办签证。',
+    aWeather:'11–3 月干燥最适合看寺庙。4–5 月热。6–10 月雨季但人少。',
+    aKid:'欢迎带儿童。儿童价为成人的 60%。可申请儿童座椅。',
+    aSupport:'WhatsApp / 电话 +855 12 888 010，08:00–21:00。也可继续在此咨询。',
+    aDefault:'可咨询价格、Wing/ABA 支付、门票、接送、取消、签证、天气。或点击下方问题。',
+    citySiemReap:'暹粒', cityPhnomPenh:'金边', citySihanoukville:'西哈努克', cityKampot:'贡布',
+    partnerTitle:'合作商家',
+    partnerNote:'以下合作商家独立运营并自行收款，本公司不代收也不保管其款项。',
+    partnerContact:'联系',
+    partnerInquiry:'我想咨询合作商家的服务。',
+    agentUrl:'客服工作台链接', copyUrl:'复制', urlCopied:'客服链接已复制',
+    pResources:'可办理项目',
+    pbBookBtn:'立即预订', pBooking:'预订', pbDate:'期望日期', pbQty:'数量',
+    pbDuration:'时长 / 类型', pbDurDefault:'选择时长 / 类型',
+    pbLocation:'位置 / 地址', pbEstimate:'预估价格', pbQtyLabel:'数量',
+    pbPayNote:'由合作方直接收款，本公司不代收也不保管款项。',
+    pbSubmit:'提交预订', pbDone:'预订已发送！', pbDoneSub:'合作方将在 24 小时内联系您确认详情并安排付款。',
+    pbPerNight:'/ 晚', pbPerMonth:'/ 月', pbFrom:'起', needContact:'请填写联系方式', needDate:'请选择日期'
+  },
+  km: {
+    langName:'ខ្មែរ', brandSub:'កម្ពុជា · ដំណើរអង្គរ',
+    heroTitle:'ដំណើរឆ្លងកាត់ព្រះរាជាណាចក្រ ចាប់ផ្តើមនៅទីនេះ។',
+    heroSub:'ដំណើរកំសាន្តតាមតម្រូវការ អ្នកនាំភ្ញៀវមានអាជ្ញាប័ណ្ណ តម្លៃច្បាស់លាស់ — ពីឆ្នេរព្រះសីហនុដល់ប្រាសាទអង្គរ។',
+    register:'ចុះឈ្មោះ', login:'ចូល', fullName:'ឈ្មោះពេញ', phoneEmail:'ទូរស័ព្ទ / អ៊ីមែល', password:'ពាក្យសម្ងាត់',
+    createAccount:'បង្កើតគណនី', signIn:'ចូលគណនី', haveAccount:'មានគណនីរួចហើយ?', noAccount:'មិនទាន់មានគណនី?',
+    needPass:'សូមបញ្ចូលពាក្យសម្ងាត់', welcome:'សូមស្វាគមន៍មកវិញ',
+    aiTitle:'ទីប្រឹក្សាទេសចរណ៍ AI', aiSub:'សួរអ្វីក៏បាន — កាលបរិច្ឆេទ ថវិកា ទិសដៅ។',
+    searchPh:'ស្វែងរកប្រាសាទ កោះ អាហារ...', all:'ទាំងអស់', temples:'ប្រាសាទ', beaches:'ឆ្នេរ', food:'អាហារ', cities:'ទីក្រុង',
+    featured:'ដំណើរពិសេស', seeAll:'មើលទាំងអស់', destinations:'ទិសដៅ',
+    licensed:'ក្រុមការងារក្នុងស្រុកមានអាជ្ញាប័ណ្ណ', guideFrom:'អ្នកនាំភ្ញៀវឯកជន ចាប់ពី $45 / ថ្ងៃ',
+    guideLangs:'អង់គ្លេស / ចិន / ខ្មែរ។ សំបុត្រប្រាសាទ ដឹកជញ្ជូន និងអាហារ។',     planAi:'រៀបចំជាមួយ AI',
+    voucher:'សំបុត្រ', confirmed:'បានបញ្ជាក់', voucherHint:'បង្ហាញសំបុត្រនេះដល់អ្នកនាំភ្ញៀវ។ ព័ត៌មានទៅទទួលនឹងផ្ញើ ២៤ម៉ោងមុនចេញដំណើរ។',
+    printVoucher:'បោះពុម្ព / រក្សាទុកសំបុត្រ', viewVoucher:'មើលសំបុត្រ',
+    hotelName:'សណ្ឋាគារ / ចំណុចទទួល', hotelPh:'ឈ្មោះសណ្ឋាគារក្នុងទីក្រុងដំណើរ', needHotel:'សូមបញ្ចូលសណ្ឋាគារ / ចំណុចទទួល',
+    notes:'កំណត់ចំណាំសម្រាប់អ្នកនាំភ្ញៀវ', notesPh:'អាឡែហ្ស៊ី ភាសា កៅអីកុមារ...',
+    savedSession:'សូមស្វាគមន៍មកវិញ',
+    methodAba:'ABA Pay', methodWing:'Wing Bank', methodAlipay:'Alipay', methodUnion:'UnionPay', methodCard:'Visa / Mastercard',
+    tours:'ដំណើរ', toursSub:'តម្លៃច្បាស់លាស់។ កក់ភ្លាមៗ។', from:'ចាប់ពី', included:'រួមបញ្ចូល', itinerary:'កាលវិភាគ',
+    askAi:'សួរ AI', bookNow:'កក់ឥឡូវ', checkout:'បង់ប្រាក់', datesGuests:'កាលបរិច្ឆេទ និងភ្ញៀវ', travelDate:'កាលបរិច្ឆេទធ្វើដំណើរ',
+    adults:'មនុស្សធំ', children:'កុមារ', addons:'សេវាបន្ថែម', addSunrise:'សំបុត្រព្រះអាទិត្យរះអង្គរ', addSuv:'រថយន្ត SUV ឯកជន',
+    addLunch:'អាហារថ្ងៃត្រង់ខ្មែរ', tour:'ដំណើរ', total:'សរុប', continuePay:'បន្តទៅការបង់ប្រាក់', securePay:'ការបង់ប្រាក់សុវត្ថិភាព',
+    payConfirm:'បង់ប្រាក់ និងបញ្ជាក់', payment:'ការបង់ប្រាក់', payWith:'បង់ជាមួយ', cardAba:'កាត / ABA / Wing / Alipay / UnionPay',
+    demoPay:'ការបង់ប្រាក់សាកល្បង — មិនគិតប្រាក់ពិត។ ការបញ្ជាក់រក្សាទុកក្នុងឧបករណ៍នេះ។', confirmBook:'បញ្ជាក់ការកក់',
+    wingPay:'បង់ប្រាក់ Wing Bank', scanToPay:'ស្កេនដើម្បីបង់', openWing:'បើក Wing Bank ហើយស្កេន',
+    wingHint:'បង់ចំនួនទឹកប្រាក់ដូចបង្ហាញ។ USD / KHR។', wingDemo:'បន្ទាប់ពីបង់ក្នុង Wing សូមចុច ខ្ញុំបានបង់ហើយ ដើម្បីបញ្ជាក់។', iPaid:'ខ្ញុំបានបង់ហើយ',
+    alipayPay:'Alipay', openAlipay:'បើក Alipay ហើយស្កេន', alipayHint:'បង់ចំនួនទឹកប្រាក់ដូចបង្ហាញ។ CNY / USD។', alipayDemo:'បន្ទាប់ពីបង់ក្នុង Alipay សូមចុច ខ្ញុំបានបង់ហើយ។',
+    unionPay:'UnionPay', openUnion:'បើក UnionPay ហើយស្កេន', unionHint:'បង់ចំនួនទឹកប្រាក់ដូចបង្ហាញ។ CNY / USD។', unionDemo:'បន្ទាប់ពីបង់ក្នុង UnionPay សូមចុច ខ្ញុំបានបង់ហើយ។',
+    payIn:'បង់ក្នុង', qrExpired:'QR ផុតកំណត់', qrExpiredSub:'QR មានសុពលភាពតែ ៩ នាទី។', refreshQr:'ធ្វើ QR ថ្មី',
+    qrExpiredToast:'QR ផុតកំណត់។ សូមធ្វើថ្មីដើម្បីបង់។',
+    booked:'អ្នកបានកក់រួចហើយ។', bookedSub:'អ្នកនាំភ្ញៀវនឹងទាក់ទង ២៤ ម៉ោងមុនចេញដំណើរ។ សំបុត្រស្ថិតនៅក្នុង ដំណើររបស់ខ្ញុំ។',
+    viewTrips:'មើលដំណើររបស់ខ្ញុំ', backHome:'ត្រឡប់ទំព័រដើម', myTrips:'ដំណើររបស់ខ្ញុំ', tripsSub:'ការកក់ និងសំបុត្របានបញ្ជាក់។',
+    noTrips:'មិនទាន់មានដំណើរ។', browseTours:'រកមើលដំណើរ', guests:'ភ្ញៀវ', rated:'ពិន្ទុ',
+    aiOnline:'អនឡាញ · ខ្មែរ / ចិន / អង់គ្លេស', chatPh:'វាយសារទៅ AI ឬភ្នាក់ងារ...',
+    modeAi:'AI', modeLive:'ភ្នាក់ងារ', liveTitle:'ជំនួយផ្ទាល់', liveOnline:'ភ្នាក់ងារអនឡាញ · វាយសារមក',
+    liveHi:'ភ្នាក់ងារអាចមើលការជជែក និងឆ្លើយតបដោយដៃ។ សូមវាយសារឥឡូវ។',
+    waitingAgent:'កំពុងរង់ចាំភ្នាក់ងារ។ បន្តវាយសារ ពួកគេនឹងឆ្លើយនៅទីនេះ។',
+    agentLabel:'ភ្នាក់ងារ',
+    deskTitle:'តុភ្នាក់ងារ', backApp:'ត្រឡប់កម្មវិធី', liveInbox:'ប្រអប់សារ', send:'ផ្ញើ',
+    deskPh:'វាយឆ្លើយទៅអតិថិជន...', openDesk:'បើក', noInbox:'មិនទាន់មានការជជែក។',
+    you:'អ្នក',
+    guestProfile:'ព័ត៌មានអតិថិជន', fullName:'ឈ្មោះពេញ', phoneEmail:'ទូរស័ព្ទ / អ៊ីមែល',
+    noTripsDesk:'មិនទាន់មានការកក់។', kycDocs:'ឯកសារ', hotelName:'សណ្ឋាគារ / ចំណុចទទួល',
+    unverified:'មិនទាន់ផ្ទៀងផ្ទាត់', verified:'បានផ្ទៀងផ្ទាត់', kycTitle:'ផ្ទៀងផ្ទាត់ឈ្មោះពិត',
+    kycSub:'ត្រូវការមុនកក់ដំណើរ។ បង្ហោះអត្តសញ្ញាណ និងរូបថត។', kycVerified:'អត្តសញ្ញាណបានផ្ទៀងផ្ទាត់',
+    kycStatus:'ស្ថានភាព KYC', notVerified:'មិនទាន់ផ្ទៀងផ្ទាត់', language:'ភាសា', currency:'រូបិយប័ណ្ណ', support:'ជំនួយ',
+    signOut:'ចាកចេញ', settings:'ការកំណត់', resubmit:'ដាក់ឯកសារម្តងទៀត',
+    kycHint:'ត្រូវផ្គូផ្គងលិខិតឆ្លងដែន / អត្តសញ្ញាណប័ណ្ណ។ ត្រូវការមុនកក់។', legalName:'ឈ្មោះផ្លូវការ', asPassport:'ដូចលិខិតឆ្លងដែន',
+    nationality:'សញ្ជាតិ', idType:'ប្រភេទអត្តសញ្ញាណ', passport:'លិខិតឆ្លងដែន', nationalId:'អត្តសញ្ញាណប័ណ្ណ', idNo:'លេខអត្តសញ្ញាណ',
+    dob:'ថ្ងៃខែឆ្នាំកំណើត', uploadDocs:'បង្ហោះឯកសារ', idFront:'អត្តសញ្ញាណផ្នែកមុខ', idBack:'អត្តសញ្ញាណផ្នែកក្រោយ', selfieId:'ថតរូបជាមួយអត្តសញ្ញាណ',
+    tapUpload:'ចុចដើម្បីបង្ហោះរូប', demoKyc:'សាកល្បង — ឯកសារនៅលើឧបករណ៍នេះ មិនផ្ញើទៅម៉ាស៊ីនមេទេ។',
+    submitKyc:'ដាក់ស្នើការផ្ទៀងផ្ទាត់', navHome:'ទំព័រដើម', navTours:'ដំណើរ', navTrips:'ការកក់', navAi:'AI', navMe:'ខ្ញុំ',
+    needKyc:'សូមបញ្ចប់ KYC ជាមុនសិន', needDate:'សូមជ្រើសកាលបរិច្ឆេទ', needName:'សូមបញ្ចូលឈ្មោះផ្លូវការ',
+    needId:'សូមបញ្ចូលលេខអត្តសញ្ញាណ', needDob:'សូមជ្រើសថ្ងៃកំណើត', needFiles:'សូមបង្ហោះអត្តសញ្ញាណផ្នែកមុខ និងរូបថត',
+    kycOk:'KYC បានផ្ទៀងផ្ទាត់', noMatch:'គ្មានលទ្ធផល។', chatHi:'សួស្តី — ខ្ញុំជាផ្នែកសេវាអតិថិជន Angkor Travel។ សួរអំពីដំណើរ តម្លៃ ការបង់ប្រាក់ សំបុត្រ ឬលុបចោល។',
+    qPrice:'តម្លៃ?', qPay:'បង់យ៉ាងណា?', qTicket:'សំបុត្រប្រាសាទ?', qPickup:'ទៅទទួលសណ្ឋាគារ?', qCancel:'គោលការណ៍លុប?', qVisa:'វីសា?',
+    aAngkor:'អង្គរព្រះអាទិត្យរះ ឯកជន $89 / នាក់។ ថ្ងៃធ្វើការមនុស្សតិច។ បើក ដំណើរ រួចចុច កក់ឥឡូវ។',
+    aIsland:'កោះរ៉ុង ២ថ្ងៃ ចាប់ពី $165 រួមទូកល្បឿន។ ខែវិច្ឆិកា–មេសា សមុទ្រស្ងប់។',
+    aFood:'ភ្នំពេញ អាហារយប់ $42 / នាក់ ៧មុខ ទៅទទួលសណ្ឋាគារនៅភ្នំពេញ។',
+    aKulen:'ទឹកជ្រោះគូលែន $78 / នាក់។ ដើរស្រាល ស័ក្តិសមគ្រួសារ។ ទៅទទួលសៀមរាប។',
+    aTonle:'ភូមិអណ្តែតទឹកទន្លេសាប $55 / នាក់ ពាក់កណ្តាលថ្ងៃ។ ជិះទូកកំពង់ភ្លុក។',
+    aKep:'ផ្សារក្តាមកែប $88 / នាក់ ពីកំពត៖ អាហារក្តាម និងកោះទន្សាយ។',
+    aKampot:'ម្រេចកំពត $95 / នាក់៖ ចំការ កាយ៉ាក ទូកថ្ងៃលិច។',
+    aPrice:'ដំណើរថ្ងៃ $42។ អង្គរឯកជន $89។ កោះ $165។ គិតជា USD រួមពន្ធ។ កក់ក្នុងកម្មវិធី។',
+    aPay:'បង់តាម Wing Bank QR, ABA Pay, Alipay, UnionPay ឬ Visa/Mastercard។ Wing៖ ស្កេន QR រួចចុច ខ្ញុំបានបង់ហើយ។',
+    aGuide:'អ្នកនាំភ្ញៀវមានអាជ្ញាប័ណ្ណ អង់គ្លេស ចិន ខ្មែរ នៅសៀមរាប និងភ្នំពេញ។',
+    aDate:'កក់មុន ៣ថ្ងៃ។ ដំណើរព្រះអាទិត្យរះថ្ងៃសុក្រអស់លឿន។',
+    aTicket:'សំបុត្រអង្គរបន្ថែម លុះត្រាតែសរសេរថារួម។ អាចទិញជូនពេលកក់។',
+    aPickup:'រួមការទៅទទួលសណ្ឋាគារក្នុងទីក្រុងដំណើរ។ បន្ទាប់ពីកក់ សូមផ្ញើឈ្មោះសណ្ឋាគារ។',
+    aCancel:'លុបដោយឥតគិតថ្លៃ ៤៨ម៉ោងមុន។ ក្នុង ៤៨ម៉ោង គិត ៥០%។ មិនមក មិនសង។',
+    aVisa:'ភ្ញៀវភាគច្រើនបានវីសាពេលមកដល់ ឬ e-visa។ លិខិតឆ្លងដែន ៦ខែ។ យើងមិនចេញវីសាទេ។',
+    aWeather:'វិច្ឆិកា–មីនា ស្ងួតល្អបំផុត។ មេសា–ឧសភា ក្តៅ។ មិថុនា–តុលា ភ្លៀង តែមនុស្សតិច។',
+    aKid:'ស្វាគមន៍កុមារ។ តម្លៃកុមារ ៦០% នៃមនុស្សធំ។ អាចស្នើកៅអីកុមារ។',
+    aSupport:'WhatsApp / ទូរស័ព្ទ +855 12 888 010, ០៨:០០–២១:០០។ ឬបន្តជជែកនៅទីនេះ។',
+    aDefault:'ខ្ញុំជួយអំពីតម្លៃ ការបង់ Wing/ABA សំបុត្រ ទៅទទួល លុបចោល វីសា អាកាសធាតុ។ ឬចុចសំណួរខាងក្រោម។',
+    citySiemReap:'សៀមរាប', cityPhnomPenh:'ភ្នំពេញ', citySihanoukville:'ព្រះសីហនុ', cityKampot:'កំពត',
+    partnerTitle:'ដៃគូទំនុកចិត្ត',
+    partnerNote:'ដៃគូទាំងនេះដំណើរការ និងទទួលប្រាក់ដោយឯករាជ្យ។ Angkor Travel មិនទទួល ឬកាន់កាប់ប្រាក់ក្នុងនាមពួកគេទេ។',
+    partnerContact:'ទំនាក់ទំនង',
+    partnerInquiry:'ខ្ញុំចង់សួរអំពីសេវាដៃគូ។',
+    agentUrl:'តំណភ្នាក់ងារ', copyUrl:'ចម្លង', urlCopied:'បានចម្លងតំណភ្នាក់ងារ',
+    pResources:'សេវាពាក់ព័ន្ធ',
+    pbBookBtn:'កក់ឥឡូវ', pBooking:'ការកក់', pbDate:'កាលបរិច្ឆេទ', pbQty:'បរិមាណ',
+    pbDuration:'រយៈពេល / ប្រភេទ', pbDurDefault:'ជ្រើសរយៈពេល / ប្រភេទ',
+    pbLocation:'ទីតាំង / អាសយដ្ឋាន', pbEstimate:'តម្លៃប៉ាន់ស្មាន', pbQtyLabel:'បរិមាណ',
+    pbPayNote:'បង់ផ្ទាល់ទៅភ្នាក់ងារ។ Angkor Travel មិនទទួល ឬកាន់កាប់ប្រាក់ទេ។',
+    pbSubmit:'ដាក់ស្នើការកក់', pbDone:'ការកក់បានផ្ញើ!', pbDoneSub:'ភ្នាក់ងារនឹងទាក់ទងក្នុង២៤ម៉ោងដើម្បីបញ្ជាក់។',
+    pbPerNight:'/ យប់', pbPerMonth:'/ ខែ', pbFrom:'ចាប់ពី', needContact:'បញ្ចូលទំនាក់ទំនង', needDate:'ជ្រើសកាលបរិច្ឆេទ'
+  }
+};
+
+const KYC_KEY = 'atc_kyc';
+const LANG_KEY = 'atc_lang';
+const USER_KEY = 'atc_user';
+const SESSION_KEY = 'atc_session';
+const state = {
+  mode: 'register',
+  lang: localStorage.getItem(LANG_KEY) || 'en',
+  user: JSON.parse(localStorage.getItem(USER_KEY) || '{"name":"Sokha Chen","contact":"+855 12 345 678"}'),
+  loggedIn: localStorage.getItem(SESSION_KEY) === '1',
+  filter: 'all',
+  tour: null,
+  guests: { adults: 2, kids: 0 },
+  payMethod: 'aba',
+  bookings: JSON.parse(localStorage.getItem('atc_bookings') || '[]'),
+  chatReady: false,
+  kyc: JSON.parse(localStorage.getItem(KYC_KEY) || '{"status":"unverified","idType":"passport","files":{}}'),
+  wingLeft: 0,
+  wingTimer: null,
+  wingExpired: false,
+  chatMode: 'ai',
+  thread: JSON.parse(localStorage.getItem('atc_thread') || '[]'),
+  deskOpen: false,
+  deskPoll: null,
+  chatPoll: null,
+  bc: null,
+  partnerCat: 'all',
+  partnerDetail: null,
+  pbResource: null,
+  pbQty: 1
+};
+try { state.bc = new BroadcastChannel('atc_channel'); } catch(e) {}
+
+function t(key) {
+  const pack = I18N[state.lang] || I18N.en;
+  return pack[key] || I18N.en[key] || key;
+}
+
+function applyI18n() {
+  document.documentElement.lang = state.lang === 'zh' ? 'zh' : (state.lang === 'km' ? 'km' : 'en');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('on', b.dataset.lang === state.lang));
+  if ($('langLabel')) $('langLabel').textContent = t('langName');
+  setAuthMode(state.mode);
+  if (state.tour) {
+    $('dTitle').textContent = tourTitle(state.tour);
+    $('dDesc').textContent = tourDesc(state.tour);
+    $('dTag').textContent = cityName(state.tour.city) + ' · ' + state.tour.days;
+    $('dMeta').textContent = state.tour.titleZh + ' · ' + state.tour.rating + ' ' + t('rated');
+  }
+  renderHome();
+  if ($('tourList')) renderTours();
+  if ($('bookList')) renderBookings();
+  renderKyc();
+  icons();
+}
+
+function setLang(lang) {
+  state.lang = lang;
+  localStorage.setItem(LANG_KEY, lang);
+  applyI18n();
+}
+
+function cityName(city) {
+  const map = { 'Siem Reap':'citySiemReap', 'Phnom Penh':'cityPhnomPenh', 'Sihanoukville':'citySihanoukville', 'Kampot':'cityKampot' };
+  return map[city] ? t(map[city]) : city;
+}
+
+function tourTitle(tour) {
+  if (state.lang === 'zh') return tour.titleZh;
+  if (state.lang === 'km') return tour.titleKm || tour.title;
+  return tour.title;
+}
+
+function tourDesc(tour) {
+  if (state.lang === 'zh') return tour.descZh || tour.desc;
+  if (state.lang === 'km') return tour.descKm || tour.desc;
+  return tour.desc;
+}
+
+function $(id) { return document.getElementById(id); }
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+function icons() { if (window.lucide) lucide.createIcons(); }
+
+function go(name) {
+  if (name !== 'wing') stopQrTimer();
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.remove('active');
+    v.style.display = 'none';
+  });
+  const el = $('view-' + name);
+  el.classList.add('active', 'fade');
+  el.style.display = 'flex';
+  const tabs = ['home','tours','bookings','chat','profile'];
+  $('tabbar').classList.toggle('hide', name === 'auth' || name === 'detail' || name === 'book' || name === 'pay' || name === 'success' || name === 'kyc' || name === 'wing' || name === 'voucher' || name === 'partner' || name === 'pbook' || name === 'pbsuccess');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.go === name));
+  if (name === 'tours') renderTours();
+  if (name === 'bookings') renderBookings();
+  if (name === 'chat') initChat();
+  if (name === 'home') renderHome();
+  if (name === 'profile' || name === 'kyc') renderKyc();
+  if (name === 'partner') renderPartnerDetail();
+  if (name === 'pbook') renderPbForm();
+  icons();
+}
+
+function setAuthMode(mode) {
+  state.mode = mode;
+  document.querySelectorAll('.tab').forEach(t => {
+    const on = t.dataset.tab === mode;
+    t.classList.toggle('on', on);
+    t.classList.toggle('text-slate-500', !on);
+  });
+  $('fName').classList.toggle('hide', mode === 'login');
+  $('authBtnText').textContent = mode === 'login' ? t('signIn') : t('createAccount');
+  $('authAltLink').textContent = mode === 'login' ? t('register') : t('login');
+  if ($('authAltPrefix')) $('authAltPrefix').textContent = mode === 'login' ? t('noAccount') : t('haveAccount');
+}
+
+function applyUser() {
+  const name = state.user.name || 'Traveler';
+  const contact = state.user.contact || '';
+  if ($('homeName')) $('homeName').textContent = name;
+  if ($('homeAvatar')) $('homeAvatar').textContent = name.charAt(0).toUpperCase();
+  if ($('pName')) $('pName').textContent = name;
+  if ($('pContact')) $('pContact').textContent = contact;
+  if ($('pAvatar')) $('pAvatar').textContent = name.charAt(0).toUpperCase();
+  if ($('kycName') && !$('kycName').value) $('kycName').value = name;
+}
+
+function login() {
+  const name = $('inName').value.trim() || 'Traveler';
+  const contact = $('inContact').value.trim();
+  if (!$('inPass').value) return toast(t('needPass'));
+  state.user = { name, contact };
+  state.loggedIn = true;
+  localStorage.setItem(USER_KEY, JSON.stringify(state.user));
+  localStorage.setItem(SESSION_KEY, '1');
+  applyUser();
+  go('home');
+}
+
+function logout() {
+  state.loggedIn = false;
+  localStorage.removeItem(SESSION_KEY);
+  go('auth');
+}
+
+function tourCard(tour, wide) {
+  return `<div class="${wide ? 'w-56 flex-none' : 'w-full'} bg-white rounded-2xl overflow-hidden border cursor-pointer" style="border-color:rgba(15,23,42,.06)" onclick="openTour('${tour.id}')">
+    <div class="relative ${wide ? 'h-32' : 'h-36'}" style="background:#0c6e66"><img src="${tour.img}" class="w-full h-full object-cover" alt="${tour.title}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=900&q=80'">
+      <div class="absolute top-2 left-2 text-[10px] bg-white/90 rounded-full px-2 py-0.5 font-semibold">${cityName(tour.city)}</div></div>
+    <div class="p-3">
+      <div class="text-[13.5px] font-semibold leading-snug">${tourTitle(tour)}</div>
+      <div class="text-[11px] text-slate-400 mt-0.5">${tour.titleZh} · ${tour.days}</div>
+      <div class="flex justify-between items-center mt-2"><span class="text-[11px] text-slate-500">${tour.rating} ${t('rated')}</span><span class="font-bold text-teal-700">$${tour.price}</span></div>
+      <button type="button" class="mt-2 w-full py-2 rounded-xl text-white text-[12.5px] font-bold" style="background:#0f172a" onclick="event.stopPropagation();openTour('${tour.id}')">${t('bookNow')}</button>
+    </div></div>`;
+}
+
+function renderHome() {
+  const list = state.filter === 'all' ? TOURS : TOURS.filter(t => t.tag === state.filter);
+  $('homeTours').innerHTML = list.map(item => tourCard(item, true)).join('') || '<p class="text-[13px] text-slate-400">' + t('noMatch') + '</p>';
+  $('homeDest').innerHTML = DEST.map(d => `<div class="relative h-28 rounded-2xl overflow-hidden cursor-pointer" onclick="openCity('${d.name}')">
+    <img src="${d.img}" class="w-full h-full object-cover" alt="">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,transparent,rgba(11,31,28,.7))"></div>
+    <div class="absolute bottom-2 left-2.5 text-white"><div class="text-[13.5px] font-semibold">${cityName(d.name)}</div>    <div class="text-[10px] opacity-80">${state.lang === 'km' ? d.km : d.zh}</div></div>
+  </div>`).join('');
+  renderPartnerCats();
+  renderPartners();
+}
+
+function renderTours() {
+  const q = ($('homeSearch')?.value || '').toLowerCase();
+  let list = state.filter === 'all' ? TOURS : TOURS.filter(t => t.tag === state.filter);
+  if (q) list = TOURS.filter(t => (t.title + t.titleZh + t.city).toLowerCase().includes(q));
+  $('tourList').innerHTML = list.map(t => tourCard(t, false)).join('');
+}
+
+function openCity(city) {
+  const match = TOURS.find(x => x.city === city);
+  if (match) {
+    openTour(match.id);
+    return;
+  }
+  state.filter = 'all';
+  go('tours');
+}
+
+function openTour(id) {
+  const tour = TOURS.find(x => x.id === id);
+  if (!tour) return;
+  state.tour = tour;
+  $('dImg').src = tour.img;
+  $('dTag').textContent = cityName(tour.city) + ' · ' + tour.days;
+  $('dTitle').textContent = tourTitle(tour);
+  $('dMeta').textContent = tour.titleZh + ' · ' + tour.rating + ' ' + t('rated');
+  $('dPrice').textContent = '$' + tour.price;
+  $('dDesc').textContent = tourDesc(tour);
+  $('dIncl').innerHTML = tour.incl.map(i => `<li>— ${i}</li>`).join('');
+  $('dItin').innerHTML = tour.itin.map(i => `<div class="text-[13px] bg-white rounded-xl px-3 py-2 border" style="border-color:rgba(15,23,42,.06)">${i}</div>`).join('');
+  go('detail');
+}
+
+function startBook() {
+  if (!state.tour) return;
+  if (state.kyc.status !== 'verified') {
+    toast(t('needKyc'));
+    go('kyc');
+    return;
+  }
+  $('bTitle').textContent = tourTitle(state.tour);
+  const d = new Date(); d.setDate(d.getDate() + 3);
+  $('bDate').value = d.toISOString().slice(0,10);
+  if ($('bHotel') && !$('bHotel').value) $('bHotel').value = '';
+  recalc();
+  go('book');
+}
+
+function chgGuest(k, d) {
+  state.guests[k] = Math.max(k === 'adults' ? 1 : 0, state.guests[k] + d);
+  $('gAdults').textContent = state.guests.adults;
+  $('gKids').textContent = state.guests.kids;
+  recalc();
+}
+
+function addonsTotal() {
+  let n = 0;
+  if ($('addSunrise').checked) n += ADDONS.sunrise;
+  if ($('addSuv').checked) n += ADDONS.suv;
+  if ($('addLunch').checked) n += ADDONS.lunch;
+  return n;
+}
+
+function people() { return state.guests.adults + state.guests.kids * 0.6; }
+
+function recalc() {
+  if (!state.tour) return;
+  const tour = Math.round(state.tour.price * people());
+  const add = addonsTotal();
+  $('sumTour').textContent = '$' + tour;
+  $('sumAdd').textContent = '$' + add;
+  $('sumTotal').textContent = '$' + (tour + add);
+}
+
+function selectPay(id) {
+  state.payMethod = id;
+  if (id === 'wing' || id === 'alipay' || id === 'unionpay') {
+    openQrPay(id);
+    return;
+  }
+  goPay();
+}
+
+function formatMmSs(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}
+
+function stopQrTimer() {
+  if (state.wingTimer) {
+    clearInterval(state.wingTimer);
+    state.wingTimer = null;
+  }
+}
+
+function setWingExpiredUi(expired) {
+  state.wingExpired = expired;
+  if ($('wingExpiredMask')) $('wingExpiredMask').classList.toggle('hide', !expired);
+  if ($('wingRefreshBtn')) $('wingRefreshBtn').classList.toggle('hide', !expired);
+  if ($('wingQrImg')) $('wingQrImg').style.filter = expired ? 'blur(6px) grayscale(1)' : '';
+  const wrap = $('wingTimerWrap');
+  if (wrap) {
+    wrap.style.background = expired ? '#fef2f2' : '#ecfdf5';
+    wrap.style.color = expired ? '#b91c1c' : '#0d9488';
+  }
+  const btn = $('wingPaidBtn');
+  if (btn) {
+    btn.disabled = expired;
+    btn.style.opacity = expired ? '0.45' : '1';
+    btn.style.pointerEvents = expired ? 'none' : 'auto';
+    btn.style.background = expired ? '#94a3b8' : '#0d9488';
+  }
+  icons();
+}
+
+function tickQrTimer() {
+  if (state.wingLeft <= 0) {
+    stopQrTimer();
+    if ($('wingTimer')) $('wingTimer').textContent = '00:00';
+    setWingExpiredUi(true);
+    toast(t('qrExpiredToast'));
+    return;
+  }
+  if ($('wingTimer')) $('wingTimer').textContent = formatMmSs(state.wingLeft);
+  state.wingLeft -= 1;
+}
+
+function startQrTimer() {
+  stopQrTimer();
+  state.wingLeft = 9 * 60;
+  setWingExpiredUi(false);
+  tickQrTimer();
+  state.wingTimer = setInterval(tickQrTimer, 1000);
+}
+
+function qrAsset(id) {
+  if (id === 'alipay') return { src: 'alipay-qr.svg', scale: '1', fit: 'contain' };
+  if (id === 'unionpay') return { src: 'unionpay-qr.svg', scale: '1', fit: 'contain' };
+  return { src: 'wing-qr.webp', scale: '1.18', fit: 'cover' };
+}
+
+function applyQrCopy(id) {
+  const brand = id === 'alipay' ? t('alipayPay') : id === 'unionpay' ? t('unionPay') : t('wingPay');
+  const open = id === 'alipay' ? t('openAlipay') : id === 'unionpay' ? t('openUnion') : t('openWing');
+  const hint = id === 'alipay' ? t('alipayHint') : id === 'unionpay' ? t('unionHint') : t('wingHint');
+  const demo = id === 'alipay' ? t('alipayDemo') : id === 'unionpay' ? t('unionDemo') : t('wingDemo');
+  if ($('qrPayBrand')) $('qrPayBrand').textContent = brand;
+  if ($('qrOpenHint')) $('qrOpenHint').textContent = open;
+  if ($('qrHint')) $('qrHint').textContent = hint;
+  if ($('qrDemo')) $('qrDemo').textContent = demo;
+}
+
+function refreshWingQr() {
+  const img = $('wingQrImg');
+  const asset = qrAsset(state.payMethod);
+  if (img) {
+    img.src = asset.src + '?t=' + Date.now();
+    img.style.objectFit = asset.fit;
+    img.style.transform = 'scale(' + asset.scale + ')';
+  }
+  startQrTimer();
+}
+
+function openQrPay(id) {
+  state.payMethod = id;
+  const total = $('sumTotal').textContent;
+  const meta = $('bDate').value + ' · ' + state.guests.adults + ' ' + t('adults') + (state.guests.kids ? ', ' + state.guests.kids + ' ' + t('children') : '');
+  $('wTour').textContent = tourTitle(state.tour);
+  $('wTotal').textContent = total;
+  $('wMeta').textContent = meta;
+  $('pTotal').textContent = total;
+  const asset = qrAsset(id);
+  const img = $('wingQrImg');
+  if (img) {
+    img.src = asset.src + '?t=' + Date.now();
+    img.alt = payLabel(id) + ' QR';
+    img.style.objectFit = asset.fit;
+    img.style.transform = 'scale(' + asset.scale + ')';
+  }
+  applyQrCopy(id);
+  startQrTimer();
+  go('wing');
+}
+
+function payLabel(id) {
+  if (id === 'wing') return t('methodWing');
+  if (id === 'alipay') return t('methodAlipay');
+  if (id === 'unionpay') return t('methodUnion');
+  if (id === 'card') return t('methodCard');
+  return t('methodAba');
+}
+
+function goPay() {
+  if (!state.tour) return toast(t('needDate'));
+  if (!$('bDate').value) return toast(t('needDate'));
+  if (!$('bHotel') || !$('bHotel').value.trim()) return toast(t('needHotel'));
+  const total = $('sumTotal').textContent;
+  $('pTour').textContent = tourTitle(state.tour);
+  $('pTotal').textContent = total;
+  $('pMeta').textContent = $('bDate').value + ' · ' + state.guests.adults + ' ' + t('adults') + (state.guests.kids ? ', ' + state.guests.kids + ' ' + t('children') : '');
+  $('payMethods').innerHTML = METHODS.map(m => `<button class="w-full text-left bg-white rounded-2xl p-3.5 border flex justify-between items-center ${state.payMethod===m.id?'ring-2 ring-teal-600':''}" style="border-color:rgba(15,23,42,.06)" onclick="selectPay('${m.id}')">
+    <div><div class="text-[13.5px] font-semibold">${payLabel(m.id)}</div><div class="text-[11px] text-slate-400">${m.sub}</div></div>
+    <div class="w-4 h-4 rounded-full border-2 ${state.payMethod===m.id?'bg-teal-600 border-teal-600':'border-slate-300'}"></div>
+  </button>`).join('');
+  if ($('cardFields')) $('cardFields').classList.toggle('hide', state.payMethod === 'wing' || state.payMethod === 'alipay' || state.payMethod === 'unionpay');
+  go('pay');
+}
+
+function confirmPay() {
+  if ((state.payMethod === 'wing' || state.payMethod === 'alipay' || state.payMethod === 'unionpay') && state.wingExpired) {
+    toast(t('qrExpiredToast'));
+    return;
+  }
+  stopQrTimer();
+  const code = 'ATC-' + Math.floor(100000 + Math.random() * 900000);
+  const rec = {
+    code,
+    tourId: state.tour.id,
+    title: tourTitle(state.tour),
+    titleEn: state.tour.title,
+    img: state.tour.img,
+    date: $('bDate').value,
+    total: $('pTotal').textContent,
+    people: state.guests.adults + state.guests.kids,
+    adults: state.guests.adults,
+    kids: state.guests.kids,
+    method: state.payMethod,
+    hotel: ($('bHotel') && $('bHotel').value.trim()) || '',
+    notes: ($('bNotes') && $('bNotes').value.trim()) || '',
+    guest: state.kyc.legalName || state.user.name
+  };
+  state.bookings.unshift(rec);
+  localStorage.setItem('atc_bookings', JSON.stringify(state.bookings));
+  $('sCode').textContent = code + ' · ' + rec.total;
+  go('success');
+}
+
+function openVoucher(code) {
+  const rec = state.bookings.find(b => b.code === code);
+  if (!rec) return;
+  $('vCode').textContent = rec.code;
+  $('vTitle').textContent = rec.title;
+  $('vImg').src = rec.img;
+  $('vDate').textContent = rec.date;
+  $('vPeople').textContent = rec.people + ' ' + t('guests');
+  $('vTotal').textContent = rec.total;
+  $('vMethod').textContent = payLabel(rec.method);
+  $('vGuest').textContent = (rec.guest || state.user.name) + (rec.hotel ? ' · ' + rec.hotel : '');
+  go('voucher');
+}
+
+function renderBookings() {
+  if (!state.bookings.length) {
+    $('bookList').innerHTML = `<div class="text-center text-slate-400 text-[13.5px] mt-16">${t('noTrips')}<br><button class="mt-3 text-teal-700 font-bold" onclick="go('tours')">${t('browseTours')}</button></div>`;
+    return;
+  }
+  $('bookList').innerHTML = state.bookings.map(b => {
+    if (b.type === 'partner') {
+      return `<div class="bg-white rounded-2xl overflow-hidden border" style="border-color:rgba(15,23,42,.06)">
+        <div class="flex gap-3 p-3">
+          <div class="w-20 h-20 rounded-xl flex items-center justify-center flex-none" style="background:#fff7ed"><i data-lucide="briefcase" style="width:28px;height:28px;color:#c4693d"></i></div>
+          <div class="flex-1">
+            <div class="text-[13.5px] font-semibold">${b.partnerName}</div>
+            <div class="text-[12px] text-slate-500">${b.serviceTitle}</div>
+            <div class="text-[11.5px] text-slate-400">${b.date} · ×${b.qty}</div>
+            <div class="text-[12px] mt-1 font-bold text-amber-700">${b.servicePrice} · ${b.code}</div>
+            <div class="text-[10px] text-amber-600 mt-0.5">${t('pbPayNote')}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+    return `<div class="bg-white rounded-2xl overflow-hidden border" style="border-color:rgba(15,23,42,.06)">
+      <div class="flex gap-3 p-3">
+        <img src="${b.img}" class="w-20 h-20 rounded-xl object-cover" alt="">
+        <div class="flex-1">
+          <div class="text-[13.5px] font-semibold">${b.title}</div>
+          <div class="text-[11.5px] text-slate-400">${b.date} · ${b.people} ${t('guests')}</div>
+          <div class="text-[12px] mt-1 font-bold text-teal-700">${b.total} · ${b.code}</div>
+          <button type="button" class="mt-2 text-[12px] font-bold text-teal-700" onclick="openVoucher('${b.code}')">${t('viewVoucher')}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  icons();
+}
+
+function guestId() {
+  return (state.user && state.user.contact) ? state.user.contact : 'guest';
+}
+
+function saveThread() {
+  localStorage.setItem('atc_thread', JSON.stringify(state.thread));
+  localStorage.setItem('atc_thread_tick', String(Date.now()));
+  /* Broadcast to agent desk page in other tabs */
+  if (state.bc) {
+    try { state.bc.postMessage({ type: 'thread_update', thread: state.thread }); } catch(e) {}
+  }
+}
+
+function loadThread() {
+  try {
+    state.thread = JSON.parse(localStorage.getItem('atc_thread') || '[]');
+  } catch (e) {
+    state.thread = [];
+  }
+}
+
+function chatQuestions() {
+  return [
+    { key: 'qPrice', ask: t('qPrice') },
+    { key: 'qPay', ask: t('qPay') },
+    { key: 'qTicket', ask: t('qTicket') },
+    { key: 'qPickup', ask: t('qPickup') },
+    { key: 'qCancel', ask: t('qCancel') },
+    { key: 'qVisa', ask: t('qVisa') }
+  ];
+}
+
+function renderChatChips() {
+  const box = $('chatChips');
+  if (!box) return;
+  if (state.chatMode === 'live') {
+    box.innerHTML = '';
+    box.classList.add('hide');
+    return;
+  }
+  box.classList.remove('hide');
+  box.innerHTML = chatQuestions().map(q =>
+    `<button type="button" class="flex-none px-3 py-1.5 rounded-full text-[12px] border bg-white whitespace-nowrap" onclick="askChip('${q.key}')">${q.ask}</button>`
+  ).join('');
+}
+
+function askChip(key) {
+  const q = t(key);
+  $('chatIn').value = q;
+  sendChat();
+}
+
+function setChatMode(mode) {
+  state.chatMode = mode;
+  document.querySelectorAll('.chat-mode').forEach(b => b.classList.toggle('on', b.dataset.chatmode === mode));
+  if ($('chatHeadTitle')) $('chatHeadTitle').textContent = mode === 'live' ? t('liveTitle') : t('aiTitle');
+  if ($('chatHeadSub')) $('chatHeadSub').textContent = mode === 'live' ? t('liveOnline') : t('aiOnline');
+  if ($('chatIn')) $('chatIn').placeholder = t('chatPh');
+  renderChatChips();
+  if (mode === 'live') {
+    const hasLive = state.thread.some(m => m.who === 'live' || m.mode === 'live');
+    if (!hasLive) pushMsg('ai', t('liveHi'), 'live');
+  }
+  renderChatLog();
+}
+
+function initChat() {
+  loadThread();
+  setChatMode(state.chatMode || 'ai');
+  if (state.chatReady) {
+    renderChatLog();
+    startChatPoll();
+    return;
+  }
+  state.chatReady = true;
+  if (!state.thread.length) pushMsg('ai', t('chatHi'), 'ai');
+  renderChatLog();
+  startChatPoll();
+}
+
+function startChatPoll() {
+  if (state.chatPoll) clearInterval(state.chatPoll);
+  state.chatPoll = setInterval(() => {
+    let next = [];
+    try { next = JSON.parse(localStorage.getItem('atc_thread') || '[]'); } catch (e) { next = []; }
+    if (next.length === state.thread.length) return;
+    state.thread = next;
+    renderChatLog();
+    if (state.deskOpen) renderDesk();
+  }, 1000);
+}
+
+function pushMsg(who, text, mode) {
+  state.thread.push({
+    who,
+    text,
+    mode: mode || state.chatMode,
+    name: state.user.name,
+    contact: state.user.contact,
+    at: Date.now()
+  });
+  saveThread();
+}
+
+/* Customer -> support message interface.
+   The current static build uses localStorage + BroadcastChannel as the transport.
+   A production backend can replace this function without changing the chat UI. */
+async function sendChatMessageToSupport(text) {
+  const orderId = state.bookings && state.bookings[0] ? state.bookings[0].code : 'guest-' + guestId();
+  const hotelId = state.partnerDetail && state.partnerDetail.id ? state.partnerDetail.id : 'angkor-travel';
+  let conversationId = localStorage.getItem('atc_conversation_id');
+  try {
+    if (!conversationId) {
+      const convRes = await fetch('/api/messages/conversations', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ orderId, hotelId })
+      });
+      if (!convRes.ok) throw new Error('conversation request failed');
+      const conversation = await convRes.json();
+      conversationId = conversation.conversationId;
+      localStorage.setItem('atc_conversation_id', conversationId);
+    }
+    const sendRes = await fetch('/api/messages/send', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ conversationId, orderId, hotelId, content: text, sender: 'customer' })
+    });
+    if (!sendRes.ok) throw new Error('message request failed');
+    pushMsg('me', text, 'live');
+  } catch (e) {
+    /* Keep the message visible if the API is temporarily unavailable. */
+    pushMsg('me', text, 'live');
+    if (typeof toast === 'function') toast('消息已保存，客服接口暂时不可用');
+  }
+  if (state.deskOpen) renderDesk();
+}
+
+function bubbleClass(who) {
+  if (who === 'me') return 'bubble-me ml-10';
+  if (who === 'agent') return 'bubble-agent mr-10';
+  return 'bubble-ai mr-10';
+}
+
+function addBubble(who, text) {
+  const log = $('chatLog');
+  if (!log) return;
+  const wrap = document.createElement('div');
+  if (who === 'agent') {
+    const lab = document.createElement('div');
+    lab.className = 'text-[10px] font-bold text-amber-700 mb-0.5 ml-1';
+    lab.textContent = t('agentLabel');
+    wrap.appendChild(lab);
+  }
+  const div = document.createElement('div');
+  div.className = bubbleClass(who) + ' px-3.5 py-2.5 text-[13.5px] leading-relaxed';
+  div.textContent = text;
+  wrap.appendChild(div);
+  log.appendChild(wrap);
+  log.scrollTop = log.scrollHeight;
+}
+
+function renderChatLog() {
+  const log = $('chatLog');
+  if (!log) return;
+  log.innerHTML = '';
+  state.thread.forEach(m => addBubble(m.who, m.text));
+}
+
+function reply(q) {
+  const s = (q || '').toLowerCase();
+  if (/吴哥|angkor|sunrise|日出|អង្គរ|temple|ប្រាសាទ/.test(s)) return t('aAngkor');
+  if (/岛|beach|koh|西哈|sihanouk|island|កោះ|រ៉ុង/.test(s)) return t('aIsland');
+  if (/food|夜市|美食|អាហារ|bites/.test(s)) return t('aFood');
+  if (/kulen|荔枝|瀑布|គូលែន/.test(s)) return t('aKulen');
+  if (/tonle|洞里萨|ទន្លេសាប|floating|水上/.test(s)) return t('aTonle');
+  if (/kep|白马|កែប|crab|ក្តាម/.test(s)) return t('aKep');
+  if (/kampot|贡布|胡椒|កំពត|ម្រេច/.test(s)) return t('aKampot');
+  if (/price|budget|便宜|多少|钱|价格|តម្លៃ|\$/.test(s) || q === t('qPrice')) return t('aPrice');
+  if (/pay|付款|支付|wing|aba|qr|បង់/.test(s) || q === t('qPay')) return t('aPay');
+  if (/ticket|门票|សំបុត្រ/.test(s) || q === t('qTicket')) return t('aTicket');
+  if (/pickup|接送|酒店|សណ្ឋាគារ|hotel/.test(s) || q === t('qPickup')) return t('aPickup');
+  if (/cancel|取消|退|លុប/.test(s) || q === t('qCancel')) return t('aCancel');
+  if (/visa|签证|វីសា/.test(s) || q === t('qVisa')) return t('aVisa');
+  if (/guide|导游|中文|chinese|អ្នកនាំ/.test(s)) return t('aGuide');
+  if (/date|日期|when|几号|កាលបរិច្ឆេទ/.test(s)) return t('aDate');
+  if (/weather|天气|雨|អាកាស/.test(s)) return t('aWeather');
+  if (/kid|child|儿童|កុមារ/.test(s)) return t('aKid');
+  if (/support|客服|电话|whatsapp|ជំនួយ/.test(s)) return t('aSupport');
+  return t('aDefault');
+}
+
+function sendChat() {
+  const input = $('chatIn');
+  if (!input) return;
+  const v = input.value.trim();
+  if (!v) return;
+  input.value = '';
+  const toAgent = state.chatMode === 'live';
+  if (toAgent) {
+    sendChatMessageToSupport(v);
+  } else {
+    pushMsg('me', v, state.chatMode);
+  }
+  addBubble('me', v);
+  if (toAgent) {
+    /* Wait for a real reply from Agent Desk via the shared message channel. */
+    return;
+  }
+  setTimeout(() => {
+    const r = reply(v);
+    pushMsg('ai', r, 'ai');
+    addBubble('ai', r);
+  }, 350);
+}
+
+function showTypingIndicator() {
+  const log = $('chatLog');
+  if (!log) return;
+  const existing = log.querySelector('#typingIndicator');
+  if (existing) return;
+  const wrap = document.createElement('div');
+  wrap.id = 'typingIndicator';
+  wrap.className = 'mr-10';
+  const lab = document.createElement('div');
+  lab.className = 'text-[10px] font-bold text-amber-700 mb-0.5 ml-1';
+  lab.textContent = t('agentLabel');
+  wrap.appendChild(lab);
+  const div = document.createElement('div');
+  div.className = 'bubble-agent px-3.5 py-2.5 text-[13.5px] inline-flex items-center gap-1';
+  div.innerHTML = '<span class="typing-dot" style="width:6px;height:6px;border-radius:50%;background:#c4693d;display:inline-block;animation:typingBlink 1.4s infinite both"></span><span class="typing-dot" style="width:6px;height:6px;border-radius:50%;background:#c4693d;display:inline-block;animation:typingBlink 1.4s .2s infinite both"></span><span class="typing-dot" style="width:6px;height:6px;border-radius:50%;background:#c4693d;display:inline-block;animation:typingBlink 1.4s .4s infinite both"></span>';
+  wrap.appendChild(div);
+  log.appendChild(wrap);
+  log.scrollTop = log.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  const log = $('chatLog');
+  if (!log) return;
+  const existing = log.querySelector('#typingIndicator');
+  if (existing) existing.remove();
+}
+
+function liveReply(q) {
+  const s = (q || '').toLowerCase();
+  const hour = new Date().getHours();
+  const dayTime = hour >= 8 && hour <= 21;
+  if (/price|budget|多少|钱|价格|តម្លៃ|\$/.test(s)) return t('aPrice');
+  if (/pay|付款|支付|wing|aba|qr|បង់/.test(s)) return t('aPay');
+  if (/cancel|取消|退|លុប/.test(s)) return t('aCancel');
+  if (/ticket|门票|សំបុត្រ/.test(s)) return t('aTicket');
+  if (/pickup|接送|酒店|hotel/.test(s)) return t('aPickup');
+  if (/visa|签证|វីសា/.test(s)) return t('aVisa');
+  if (/guide|导游|中文|chinese|អ្នកនាំ/.test(s)) return t('aGuide');
+  if (/date|日期|when|几号/.test(s)) return t('aDate');
+  if (/weather|天气|雨|អាកាស/.test(s)) return t('aWeather');
+  if (/kid|child|儿童|កុមារ/.test(s)) return t('aKid');
+  if (/support|客服|电话|whatsapp|ជំនួយ/.test(s)) return t('aSupport');
+  if (/hello|hi|你好|សួស្តី/.test(s)) return t('liveHi');
+  if (!dayTime) return t('aSupport');
+  return t('aDefault');
+}
+
+function copyAgentUrl() {
+  const url = location.origin + location.pathname.replace(/index\.html$/, '') + 'agent.html';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => toast(t('urlCopied')));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = url; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove();
+    toast(t('urlCopied'));
+  }
+}
+
+function openDesk() {
+  state.deskOpen = true;
+  loadThread();
+  $('stage').classList.add('hide');
+  $('desk').classList.remove('hide');
+  renderDesk();
+  applyI18n();
+  if (state.deskPoll) clearInterval(state.deskPoll);
+  state.deskPoll = setInterval(() => {
+    loadThread();
+    renderDesk();
+  }, 1200);
+}
+
+function closeDesk() {
+  state.deskOpen = false;
+  if (state.deskPoll) {
+    clearInterval(state.deskPoll);
+    state.deskPoll = null;
+  }
+  $('desk').classList.add('hide');
+  $('stage').classList.remove('hide');
+  if (state.loggedIn) go('chat');
+}
+
+function liveGuests() {
+  const map = {};
+  state.thread.forEach(m => {
+    if (m.mode !== 'live' && m.who !== 'agent') return;
+    const id = m.contact || 'guest';
+    if (!map[id]) map[id] = { id, name: m.name || 'Guest', contact: m.contact || '', last: m.text, at: m.at, unread: 0 };
+    map[id].last = m.text;
+    map[id].at = m.at;
+    if (m.who === 'me' && m.mode === 'live') map[id].unread += 1;
+  });
+  return Object.values(map).sort((a, b) => b.at - a.at);
+}
+
+function renderDesk() {
+  const list = $('deskList');
+  if (!list) return;
+  const guests = liveGuests();
+  if (!guests.length) {
+    list.innerHTML = '<div class="text-[13px] text-slate-400 p-3">' + t('noInbox') + '</div>';
+  } else {
+    list.innerHTML = guests.map(g => `<button type="button" class="w-full text-left rounded-xl px-3 py-2 ${g.id===guestId()?'bg-teal-50':''}" onclick="renderDeskThread()">
+      <div class="text-[13.5px] font-semibold truncate">${g.name}</div>
+      <div class="text-[11px] text-slate-400 truncate">${g.last || ''}</div>
+    </button>`).join('');
+  }
+  renderDeskThread();
+}
+
+function renderDeskProfile() {
+  const box = $('deskProfile');
+  if (!box) return;
+  const u = state.user || {};
+  const k = state.kyc || {};
+  const verified = k.status === 'verified';
+  const trips = state.bookings || [];
+  const files = k.files || {};
+  box.innerHTML = `
+    <div class="flex items-center gap-2 mb-3">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#0d9488,#c4693d)">${(u.name || 'G').charAt(0).toUpperCase()}</div>
+      <div>
+        <div class="font-semibold">${u.name || '—'}</div>
+        <div class="text-[11px] text-slate-400">${u.contact || '—'}</div>
+      </div>
+    </div>
+    <div class="rounded-xl p-3 mb-3" style="background:#f6fbf9">
+      <div class="text-[10px] font-bold text-slate-400 uppercase mb-1">${t('kycStatus')}</div>
+      <div class="font-semibold mb-1" style="color:${verified ? '#0d9488' : '#c4693d'}">${verified ? t('verified') : t('notVerified')}</div>
+      <div class="text-[12px] text-slate-600">${k.legalName || u.name || '—'}</div>
+      <div class="text-[12px] text-slate-500">${(k.idType === 'nid' ? t('nationalId') : t('passport'))} · ${k.idNo || '—'}</div>
+      <div class="text-[12px] text-slate-500">${k.nation || ''} ${k.dob ? ' · ' + k.dob : ''}</div>
+      <div class="text-[11px] text-slate-400 mt-1">${t('kycDocs')}: ${[files.front, files.back, files.selfie].filter(Boolean).join(', ') || '—'}</div>
+    </div>
+    <div class="text-[10px] font-bold text-slate-400 uppercase mb-2">${t('myTrips')}</div>
+    ${trips.length ? trips.map(b => `<div class="rounded-xl border p-2.5 mb-2" style="border-color:rgba(15,23,42,.08)">
+      <div class="font-semibold text-[12.5px]">${b.title}</div>
+      <div class="text-[11px] text-slate-500">${b.date} · ${b.people} ${t('guests')}</div>
+      <div class="text-[11px] text-teal-700 font-bold">${b.total} · ${b.code}</div>
+      <div class="text-[11px] text-slate-400">${b.hotel || ''} ${b.guest ? ' · ' + b.guest : ''}</div>
+    </div>`).join('') : `<div class="text-[12px] text-slate-400">${t('noTripsDesk')}</div>`}
+  `;
+}
+
+function renderDeskThread() {
+  if ($('deskGuest')) $('deskGuest').textContent = state.user.name || 'Guest';
+  if ($('deskMeta')) $('deskMeta').textContent = (state.user.contact || '') + ' · ' + t('liveOnline');
+  renderDeskProfile();
+  const log = $('deskLog');
+  if (!log) return;
+  log.innerHTML = '';
+  state.thread.forEach(m => {
+    const wrap = document.createElement('div');
+    const lab = document.createElement('div');
+    lab.className = 'text-[10px] font-bold mb-0.5 ' + (m.who === 'me' ? 'text-right text-slate-400' : 'text-amber-700');
+    lab.textContent = m.who === 'me' ? t('you') : (m.who === 'agent' ? t('agentLabel') : 'AI');
+    wrap.appendChild(lab);
+    const div = document.createElement('div');
+    div.className = bubbleClass(m.who === 'agent' ? 'agent' : m.who) + ' px-3.5 py-2.5 text-[13.5px] leading-relaxed ' + (m.who === 'me' ? 'ml-auto max-w-[80%]' : 'max-w-[80%]');
+    div.textContent = m.text;
+    wrap.appendChild(div);
+    log.appendChild(wrap);
+  });
+  log.scrollTop = log.scrollHeight;
+}
+
+function sendAgent() {
+  const v = ($('deskIn').value || '').trim();
+  if (!v) return;
+  $('deskIn').value = '';
+  pushMsg('agent', v, 'live');
+  renderDesk();
+  if ($('chatLog')) renderChatLog();
+}
+
+function saveKyc() {
+  localStorage.setItem(KYC_KEY, JSON.stringify(state.kyc));
+}
+
+function renderKyc() {
+  const verified = state.kyc.status === 'verified';
+  const badge = $('kycBadge');
+  if (badge) {
+    badge.textContent = verified ? t('verified') : t('unverified');
+    badge.className = 'text-[10px] font-bold px-1.5 py-0.5 rounded-full ' + (verified ? 'bg-teal-100 text-teal-800' : 'bg-amber-100 text-amber-800');
+  }
+  const row = $('kycRowStatus');
+  if (row) {
+    row.textContent = verified ? t('verified') : t('notVerified');
+    row.style.color = verified ? '#0d9488' : '#c4693d';
+  }
+  const card = $('kycCard');
+  if (card) {
+    card.style.background = verified ? 'linear-gradient(120deg,#0c6e66,#0d9488)' : 'linear-gradient(120deg,#c4693d,#9a4a28)';
+  }
+  if ($('kycCardTitle')) $('kycCardTitle').textContent = verified ? t('kycVerified') : t('kycTitle');
+  if ($('kycCardSub')) $('kycCardSub').textContent = verified
+    ? ((state.kyc.legalName || state.user.name) + ' · ' + (state.kyc.idType === 'nid' ? t('nationalId') : t('passport')))
+    : t('kycSub');
+  if ($('kycForm')) $('kycForm').classList.toggle('hide', verified);
+  if ($('kycDone')) $('kycDone').classList.toggle('hide', !verified);
+  if ($('kycSubmitBar')) $('kycSubmitBar').classList.toggle('hide', verified);
+  if ($('kycDoneMeta') && verified) {
+    $('kycDoneMeta').textContent = (state.kyc.legalName || '') + ' · ' + (state.kyc.idNo || '') + ' · ' + (state.kyc.nation || '');
+  }
+  if ($('kycName') && !verified && !$('kycName').value) $('kycName').value = state.user.name || '';
+  document.querySelectorAll('.kyc-type').forEach(b => b.classList.toggle('on', b.dataset.idtype === (state.kyc.idType || 'passport')));
+}
+
+function pickKycFile(kind, input) {
+  const f = input.files && input.files[0];
+  if (!f) return;
+  state.kyc.files = state.kyc.files || {};
+  state.kyc.files[kind] = f.name;
+  const map = { front: 'kycFileFront', back: 'kycFileBack', selfie: 'kycFileSelfie' };
+  if ($(map[kind])) $(map[kind]).textContent = f.name;
+}
+
+function submitKyc() {
+  const name = ($('kycName').value || '').trim();
+  const idNo = ($('kycIdNo').value || '').trim();
+  const dob = $('kycDob').value;
+  const files = state.kyc.files || {};
+  if (!name) return toast(t('needName'));
+  if (!idNo) return toast(t('needId'));
+  if (!dob) return toast(t('needDob'));
+  if (!files.front || !files.selfie) return toast(t('needFiles'));
+  state.kyc = {
+    ...state.kyc,
+    status: 'verified',
+    legalName: name,
+    idNo,
+    dob,
+    nation: $('kycNation').value,
+    verifiedAt: new Date().toISOString().slice(0, 10)
+  };
+  saveKyc();
+  toast(t('kycOk'));
+  renderKyc();
+  go('profile');
+}
+
+function resetKyc() {
+  state.kyc = { status: 'unverified', idType: state.kyc.idType || 'passport', files: {} };
+  saveKyc();
+  ['kycIdNo','kycDob'].forEach(id => { if ($(id)) $(id).value = ''; });
+  ['kycFileFront','kycFileBack','kycFileSelfie'].forEach(id => { if ($(id)) $(id).textContent = t('tapUpload'); });
+  renderKyc();
+}
+
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setAuthMode(t.dataset.tab)));
+$('authAltLink').addEventListener('click', () => setAuthMode(state.mode === 'login' ? 'register' : 'login'));
+$('authBtn').addEventListener('click', login);
+document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => go(n.dataset.go)));
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+  state.filter = c.dataset.filter;
+  document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === c));
+  renderHome();
+}));
+document.querySelectorAll('.kyc-type').forEach(b => b.addEventListener('click', () => {
+  state.kyc.idType = b.dataset.idtype;
+  document.querySelectorAll('.kyc-type').forEach(x => x.classList.toggle('on', x === b));
+}));
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+$('homeSearch').addEventListener('keydown', e => { if (e.key === 'Enter') go('tours'); });
+$('chatIn').addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
+if ($('deskIn')) $('deskIn').addEventListener('keydown', e => { if (e.key === 'Enter') sendAgent(); });
+window.addEventListener('storage', (e) => {
+  if (e.key !== 'atc_thread' && e.key !== 'atc_thread_tick') return;
+  loadThread();
+  if ($('chatLog')) renderChatLog();
+  if (state.deskOpen) renderDesk();
+});
+/* Listen for messages from agent desk page via BroadcastChannel */
+if (state.bc) {
+  state.bc.onmessage = (e) => {
+    if (e.data && e.data.type === 'thread_update') {
+      state.thread = e.data.thread || [];
+      if ($('chatLog')) renderChatLog();
+      if (state.deskOpen) renderDesk();
+    }
+  };
+}
+
+applyUser();
+applyI18n();
+if (state.loggedIn) go('home');
+</script>
+</body>
+</html>

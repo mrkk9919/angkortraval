@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管理后台 — Angkor Travel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@1/dist/umd/lucide.min.js"></script>
+</head>
+<body class="bg-slate-100 text-slate-900">
+  <div class="min-h-screen flex">
+    <aside class="w-64 bg-slate-950 text-white hidden md:flex flex-col">
+      <div class="p-5 border-b border-white/10">
+        <div class="text-xs uppercase tracking-[.2em] text-teal-300">Angkor Travel</div>
+        <div class="text-xl font-semibold mt-1">管理后台</div>
+      </div>
+      <nav id="sideNav" class="p-3 space-y-1 flex-1"></nav>
+      <div class="p-4 border-t border-white/10 text-xs text-slate-400">演示环境 · API 尚未连接</div>
+    </aside>
+
+    <main class="flex-1 min-w-0">
+      <header class="h-16 bg-white border-b flex items-center justify-between px-4 md:px-8">
+        <div class="flex items-center gap-3"><button id="mobileMenu" class="md:hidden p-2"><i data-lucide="menu"></i></button><div><div class="text-xs text-slate-400">Partner Hub / Extranet</div><h1 id="pageTitle" class="font-semibold">首页仪表盘</h1></div></div>
+        <div class="flex items-center gap-3 text-sm"><span class="hidden sm:inline text-slate-500">管理员</span><span class="w-8 h-8 rounded-full bg-teal-700 text-white grid place-items-center font-bold">A</span></div>
+      </header>
+      <div class="p-4 md:p-8 max-w-7xl mx-auto">
+        <div id="mobileNav" class="hidden mb-4 bg-white rounded-xl border p-2"></div>
+        <div id="content"></div>
+      </div>
+    </main>
+  </div>
+
+<script>
+const NAV = [
+  ['dashboard','layout-dashboard','首页仪表盘'], ['rates','calendar-range','房价与房态'],
+  ['orders','clipboard-list','订单管理'], ['inbox','messages-square','消息收件箱'],
+  ['property','building-2','房源信息'], ['promotions','badge-percent','促销与增长'],
+  ['reviews','star','客人评价'], ['analytics','chart-no-axes-combined','数据分析'],
+  ['finance','wallet-cards','财务结算'], ['settings','settings','账户与设置']
+];
+const DATA = {
+  orders: [['AT-10482','Sokha Chen','Angkor Sunrise Private','2026-11-08','已确认'],['AT-10481','Lina Wang','Koh Rong Island Escape','2026-11-10','待处理'],['AT-10479','David Lee','Phnom Penh Night Bites','2026-11-12','已确认'],['AT-10476','Maya Tan','Kulen Waterfall & Village','2026-11-15','已取消']],
+  rooms: [['Deluxe King Room','2 人','$89','12','已开启'],['Twin Garden Room','2 人',' $105','8','已开启'],['Family Suite','4 人',' $165','3','已开启']],
+  messages: [['Sokha Chen','请问日出团几点出发？','2 分钟前','未读'],['Lina Wang','可以安排机场接送吗？','18 分钟前','未读'],['David Lee','Thank you for the confirmation.','昨天','已读']]
+};
+let active = 'dashboard';
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function icon(name){return `<i data-lucide="${name}" class="w-4 h-4"></i>`;}
+function nav(){const html=NAV.map(([id,ic,label])=>`<button data-page="${id}" class="navItem w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-sm ${id===active?'bg-teal-700 text-white':'text-slate-300 hover:bg-white/10'}">${icon(ic)}<span>${label}</span></button>`).join(''); document.querySelector('#sideNav').innerHTML=html; document.querySelector('#mobileNav').innerHTML=html; document.querySelectorAll('.navItem').forEach(b=>b.onclick=()=>{active=b.dataset.page;render();});}
+function card(label,value,sub,accent='teal'){return `<div class="bg-white border rounded-2xl p-4"><div class="text-xs text-slate-500">${label}</div><div class="text-2xl font-bold mt-2">${value}</div><div class="text-xs text-${accent}-700 mt-2">${sub}</div></div>`;}
+function table(headers,rows){return `<div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="text-left text-xs text-slate-500 border-b">${headers.map(h=>`<th class="p-3 font-semibold whitespace-nowrap">${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr class="border-b last:border-0 hover:bg-slate-50">${r.map((v,i)=>`<td class="p-3 whitespace-nowrap ${i===r.length-1?'font-medium':''}">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
+function shell(title,sub,body,action=''){return `<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6"><div><h2 class="text-2xl font-bold">${title}</h2><p class="text-sm text-slate-500 mt-1">${sub}</p></div>${action?`<button class="px-4 py-2 rounded-lg bg-teal-700 text-white text-sm font-semibold">${action}</button>`:''}</div>${body}`;}
+function renderContent(){
+  const c=document.querySelector('#content');
+  if(active==='dashboard') c.innerHTML=shell('首页仪表盘','酒店运营状态与待处理事项',`<div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">${card('未来 30 天入住率','72.4%','较上月 +8.6%')}${card('今日入住 / 离店','18 / 11','3 个待处理')}${card('未读消息','7','需要及时回复','amber')}${card('待处理订单','4','最高优先级','rose')}</div><div class="grid lg:grid-cols-3 gap-4 mt-6"><div class="lg:col-span-2 bg-white border rounded-2xl p-5"><h3 class="font-semibold mb-4">运营提醒</h3><div class="space-y-3 text-sm"><div class="p-3 rounded-xl bg-amber-50 text-amber-800">3 个房型未来 7 天库存偏低，建议检查房态。</div><div class="p-3 rounded-xl bg-teal-50 text-teal-800">本月评分 4.8，新增 12 条评价待回复。</div><div class="p-3 rounded-xl bg-blue-50 text-blue-800">周末搜索量上升 24%，可考虑开启限时促销。</div></div></div><div class="bg-white border rounded-2xl p-5"><h3 class="font-semibold mb-4">快捷入口</h3><div class="grid grid-cols-2 gap-2">${['新建促销','回复消息','编辑房态','查看订单'].map(x=>`<button class="p-3 rounded-xl bg-slate-100 text-sm hover:bg-teal-50">${x}</button>`).join('')}</div></div></div>`);
+  else if(active==='rates') c.innerHTML=shell('房价与房态','按房型和日期管理价格、库存与销售状态',`<div class="bg-white border rounded-2xl p-4 mb-4 flex flex-wrap gap-2"><button class="px-3 py-2 rounded-lg bg-teal-700 text-white text-sm">2026 年 11 月</button><button class="px-3 py-2 rounded-lg border text-sm">全部房型</button><button class="px-3 py-2 rounded-lg border text-sm">批量编辑</button></div><div class="bg-white border rounded-2xl">${table(['房型','入住人数','当前价格','可售库存','状态'],DATA.rooms)}</div>`,'批量编辑');
+  else if(active==='orders') c.innerHTML=shell('订单管理','订单全生命周期与入住状态',`<div class="grid sm:grid-cols-4 gap-3 mb-4">${card('全部订单','128','本月 +18%')}${card('待处理','4','需要确认','amber')}${card('已入住','36','今日 8 间')}${card('已取消','6','本月')}</div><div class="bg-white border rounded-2xl">${table(['订单号','客人','项目','日期','状态'],DATA.orders)}</div>`,'导出订单');
+  else if(active==='inbox') c.innerHTML=shell('消息收件箱','按订单查看客人与酒店消息',`<div class="bg-white border rounded-2xl">${table(['客人','最新消息','时间','状态'],DATA.messages)}</div><div class="mt-4 p-4 rounded-xl bg-blue-50 text-blue-800 text-sm">消息 API 状态：演示模式。接入真实 Booking Messaging API 后，将按会话轮询并在处理成功后确认消息。</div>`,'打开客服工作台');
+  else if(active==='property') c.innerHTML=shell('房源信息','管理酒店资料、房型、图片与政策',`<div class="grid md:grid-cols-2 gap-4">${['基础信息','房型管理','图片与设施','取消与入住政策'].map((x,i)=>`<div class="bg-white border rounded-2xl p-5"><div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 grid place-items-center mb-3">${icon(['building-2','bed-double','images','file-check-2'][i])}</div><h3 class="font-semibold">${x}</h3><p class="text-sm text-slate-500 mt-1">配置并同步至酒店详情页</p><button class="mt-4 text-sm text-teal-700 font-semibold">编辑 →</button></div>`).join('')}</div>`,'编辑房源');
+  else if(active==='promotions') c.innerHTML=shell('促销与增长','创建优惠并查看平台运营建议',`<div class="grid md:grid-cols-3 gap-4">${['Genius 会员计划','限时折扣','连住优惠','提前预订','最后一分钟','Preferred Partner'].map((x,i)=>`<div class="bg-white border rounded-2xl p-5"><div class="text-teal-700 mb-3">${icon(['crown','timer','layers','calendar-clock','zap','award'][i])}</div><h3 class="font-semibold">${x}</h3><p class="text-xs text-slate-500 mt-2">${i<3?'提高转化率与入住率':'设置适用日期和房型'}</p><button class="mt-4 text-sm font-semibold text-teal-700">配置</button></div>`).join('')}</div>`,'新建促销');
+  else if(active==='reviews') c.innerHTML=shell('客人评价','查看评分趋势并回复公开评价',`<div class="grid sm:grid-cols-3 gap-4 mb-4">${card('综合评分','4.8 / 5','过去 30 天 +0.2')}${card('待回复','12','建议 24 小时内处理','amber')}${card('本月评价','48','好评率 94%')}</div><div class="bg-white border rounded-2xl p-5"><h3 class="font-semibold mb-4">最近评价</h3><div class="space-y-3 text-sm"><div class="border-b pb-3">★★★★★　“司机准时，日出体验非常好。” <button class="float-right text-teal-700 font-semibold">回复</button></div><div class="border-b pb-3">★★★★☆　“房间很干净，早餐选择可以更多。” <button class="float-right text-teal-700 font-semibold">回复</button></div></div></div>`);
+  else if(active==='analytics') c.innerHTML=shell('数据分析','业绩、客源与竞争表现',`<div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">${card('预订量','128','较上月 +18%')}${card('平均房价','$96','较上月 +4.2%')}${card('RevPAR','$69.50','较上月 +7.1%')}${card('转化率','6.8%','较上月 +1.2%')}</div><div class="bg-white border rounded-2xl p-6 mt-6 h-64 flex items-center justify-center text-slate-400 text-sm">业绩趋势图表区域（接入 Analytics API 后显示真实数据）</div>`,'导出报告');
+  else if(active==='finance') c.innerHTML=shell('财务结算','佣金账单、房款结算与扣款明细',`<div class="grid sm:grid-cols-3 gap-4 mb-4">${card('待结算佣金','$2,480','本月预计')}${card('已结算','$18,920','过去 90 天')}${card('待处理账单','2','需要核对','amber')}</div><div class="bg-white border rounded-2xl">${table(['账单月份','订单数','佣金','状态'],[['2026 年 10 月','84','$1,960','已结算'],['2026 年 11 月','44','$2,480','待结算']])}</div>`,'导出账单');
+  else c.innerHTML=shell('账户与设置','权限、安全、API 与系统配置',`<div class="grid md:grid-cols-2 gap-4">${['子账号与权限','安全设置（2FA）','API 凭证与回调','语言、时区与币种'].map((x,i)=>`<div class="bg-white border rounded-2xl p-5"><h3 class="font-semibold">${x}</h3><p class="text-sm text-slate-500 mt-2">管理后台访问和系统配置</p><button class="mt-4 text-sm text-teal-700 font-semibold">管理设置 →</button></div>`).join('')}</div>`);
+}
+function render(){const item=NAV.find(x=>x[0]===active); document.querySelector('#pageTitle').textContent=item[2]; document.querySelector('#mobileNav').classList.add('hidden'); nav(); renderContent(); if(window.lucide) lucide.createIcons();}
+document.querySelector('#mobileMenu').onclick=()=>document.querySelector('#mobileNav').classList.toggle('hidden');
+render();
+</script>
+</body>
+</html>
