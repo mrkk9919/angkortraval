@@ -32,9 +32,12 @@
   .cat-btn.chip-on { background: #0d9488; color: #fff; border-color: #0d9488; }
   .step-dot { width: 8px; height: 8px; border-radius: 99px; background: rgba(15,23,42,.15); }
   .step-dot.on { background: #0d9488; width: 22px; }
-  .bubble-ai { background: #e7f6f3; border-radius: 4px 16px 16px 16px; }
+  .bubble-ai { background: #08a84f; color: #fff; border-radius: 4px 16px 16px 16px; }
   .bubble-agent { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 4px 16px 16px 16px; }
-  .bubble-me { background: #0f172a; color: #fff; border-radius: 16px 4px 16px 16px; }
+  .bubble-me { background: #fff; color: #078b45; border: 1px solid #08a84f; border-radius: 16px 4px 16px 16px; }
+  .support-header { background: #08a84f; color: #fff; }
+  .support-header button { color: #fff; }
+  .support-shortcut { border: 1px solid #08a84f !important; color: #078b45; background: #fff; box-shadow: 0 3px 8px rgba(15,23,42,.08); }
   .chat-mode.on { background: #0f172a; color: #fff; }
   @keyframes typingBlink { 0%,80%,100% { opacity: .25; } 40% { opacity: 1; } }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -440,23 +443,25 @@
 
   <!-- CHAT -->
   <section class="view flex-1 flex-col overflow-hidden" id="view-chat">
-    <div class="px-4 pt-4 pb-3 flex items-center gap-3 bg-[#f6fbf9] border-b" style="border-color:rgba(15,23,42,.06)">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white" style="background:linear-gradient(135deg,#0d9488,#c4693d)"><i data-lucide="bot" style="width:20px;height:20px"></i></div>
-      <div class="flex-1 min-w-0">
-        <div class="font-semibold text-[14.5px]" id="chatHeadTitle" data-i18n="aiTitle">AI Travel Assistant</div>
-        <div class="text-[11px] text-teal-700" id="chatHeadSub" data-i18n="aiOnline">Online · EN / ZH / KM</div>
-      </div>
-      <button type="button" class="px-2.5 py-2 rounded-lg text-[11px] font-bold text-white whitespace-nowrap" style="background:#0d9488" onclick="openLiveSupport()" data-i18n="contactSupport">联系客服</button>
+    <div class="support-header px-4 py-3 flex items-center gap-3 border-b">
+      <button type="button" class="w-8 h-8 grid place-items-center" onclick="go('home')"><i data-lucide="arrow-left" style="width:22px;height:22px"></i></button>
+      <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center"><i data-lucide="headset" style="width:20px;height:20px"></i></div>
+      <div class="flex-1 min-w-0"><div class="font-semibold text-[18px]" id="chatHeadTitle" data-i18n="supportTitle">Customer Support</div><div class="hidden text-[11px]" id="chatHeadSub" data-i18n="aiOnline">Online · EN / ZH / KM</div></div>
+      <button type="button" class="w-8 h-8 grid place-items-center" onclick="openLiveSupport()" aria-label="Open customer support"><i data-lucide="menu" style="width:22px;height:22px"></i></button>
+      <button type="button" class="w-8 h-8 grid place-items-center" onclick="go('home')" aria-label="Close customer support"><i data-lucide="x" style="width:22px;height:22px"></i></button>
     </div>
-    <div class="px-3 py-2 flex gap-1.5 bg-white border-b" style="border-color:rgba(15,23,42,.06)">
+    <div class="hidden px-3 py-2 flex gap-1.5 bg-white border-b" style="border-color:rgba(15,23,42,.06)">
       <button type="button" class="chat-mode on flex-1 py-1.5 rounded-lg text-[12px] font-bold border" data-chatmode="ai" onclick="setChatMode('ai')" data-i18n="modeAi">AI</button>
       <button type="button" class="chat-mode flex-1 py-1.5 rounded-lg text-[12px] font-bold border bg-white" data-chatmode="live" onclick="setChatMode('live')" data-i18n="modeLive">Live agent</button>
     </div>
     <div id="chatLog" class="flex-1 overflow-y-auto p-4 space-y-3 pb-2"></div>
-    <div id="chatChips" class="px-3 pb-2 flex gap-2 overflow-x-auto"></div>
-    <div class="p-3 bg-white border-t flex gap-2" style="border-color:rgba(15,23,42,.06)">
-      <input id="chatIn" class="flex-1 px-3.5 py-2.5 rounded-xl border text-[13.5px] outline-none" style="border-color:rgba(15,23,42,.1);background:#fbfdfc" data-i18n-placeholder="chatPh" placeholder="Ask about dates, budget, temples...">
-      <button class="w-11 h-11 rounded-xl text-white flex items-center justify-center" style="background:#0f172a" onclick="sendChat()"><i data-lucide="send" style="width:18px;height:18px"></i></button>
+    <div id="chatChips" class="px-3 pb-4 flex flex-col items-end gap-2"></div>
+    <div class="p-3 bg-white border-t flex items-center gap-2" style="border-color:rgba(15,23,42,.06)">
+      <input id="chatIn" class="flex-1 px-2 py-2.5 text-[13.5px] outline-none" style="background:#fbfdfc" data-i18n-placeholder="chatPh" placeholder="Type here and press enter...">
+      <button type="button" class="w-8 h-8 grid place-items-center text-slate-700" aria-label="Like"><i data-lucide="thumbs-up" style="width:19px;height:19px"></i></button>
+      <button type="button" class="w-8 h-8 grid place-items-center text-slate-700" aria-label="Attach file"><i data-lucide="paperclip" style="width:19px;height:19px"></i></button>
+      <button type="button" class="w-8 h-8 grid place-items-center text-slate-700" aria-label="Emoji"><i data-lucide="smile" style="width:19px;height:19px"></i></button>
+      <button class="w-9 h-9 rounded-xl text-white flex items-center justify-center" style="background:#08a84f" onclick="sendChat()" aria-label="Send message"><i data-lucide="send" style="width:17px;height:17px"></i></button>
     </div>
   </section>
 
@@ -1322,7 +1327,7 @@ const I18N = {
     register:'Register', login:'Login', fullName:'Full name', phoneEmail:'Phone / Email', password:'Password',
     createAccount:'Create account', signIn:'Sign in', haveAccount:'Already have an account?', noAccount:'New here?',
     needPass:'Enter a password', welcome:'Welcome back',
-    aiTitle:'AI Travel Assistant', aiSub:'Ask anything — dates, budget, destinations.',
+    aiTitle:'AI Travel Assistant', supportTitle:'Customer Support', aiSub:'Ask anything — dates, budget, destinations.',
     searchPh:'Search temples, islands, food...', all:'All', temples:'Temples', beaches:'Beaches', food:'Food', cities:'Cities',
     featured:'Featured journeys', seeAll:'See all', destinations:'Destinations',
     licensed:'Licensed local team', guideFrom:'Private guide from $45 / day',
@@ -2093,7 +2098,7 @@ function renderChatChips() {
   }
   box.classList.remove('hide');
   box.innerHTML = chatQuestions().map(q =>
-    `<button type="button" class="flex-none px-3 py-1.5 rounded-full text-[12px] border bg-white whitespace-nowrap" onclick="askChip('${q.key}')">${q.ask}</button>`
+    `<button type="button" class="support-shortcut px-4 py-2.5 rounded-xl text-[13.5px] whitespace-nowrap" onclick="askChip('${q.key}')">${q.ask}</button>`
   ).join('');
 }
 
