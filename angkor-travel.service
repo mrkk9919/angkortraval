@@ -1,0 +1,16 @@
+[Unit]
+Description=Angkor Travel support backend
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/angkor-travel
+EnvironmentFile=/etc/angkor-travel.env
+ExecStart=/usr/bin/node /opt/angkor-travel/server.js
+Restart=always
+RestartSec=3
+User=angkor
+Group=angkor
+
+[Install]
+WantedBy=multi-user.target

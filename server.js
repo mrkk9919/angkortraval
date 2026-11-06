@@ -10,10 +10,17 @@ const db = new DatabaseSync(path.join(ROOT, 'angkor-travel.sqlite'));
 db.exec(`
   PRAGMA journal_mode = WAL;
   CREATE TABLE IF NOT EXISTS admin_users (username TEXT PRIMARY KEY, display_name TEXT NOT NULL, role TEXT NOT NULL, password TEXT NOT NULL);
-  CREATE TABLE IF NOT EXISTS conversations (conversation_id TEXT PRIMARY KEY, conversation_key TEXT UNIQUE NOT NULL, order_id TEXT, hotel_id TEXT, created_at TEXT NOT NULL);
+  CREATE TABLE IF NOT EXISTS conversations (conversation_id TEXT PRIMARY KEY, conversation_key TEXT UNIQUE NOT NULL, order_id TEXT, hotel_id TEXT, created_at TEXT NOT NULL, customer_name TEXT, updated_at TEXT);
   CREATE TABLE IF NOT EXISTS messages (message_id TEXT PRIMARY KEY, conversation_id TEXT NOT NULL, hotel_id TEXT, sender TEXT NOT NULL, content TEXT NOT NULL, created_at TEXT NOT NULL, is_redacted INTEGER NOT NULL DEFAULT 0);
   CREATE TABLE IF NOT EXISTS message_confirmations (message_id TEXT PRIMARY KEY, confirmed_at TEXT NOT NULL);
 `);
+function ensureColumn(table, name, type) {
+  const cols = db.prepare(`PRAGMA table_info(${table})`).all().map(c => c.name);
+  if (!cols.includes(name)) db.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
+}
+ensureColumn('conversations', 'customer_name', 'TEXT');
+ensureColumn('conversations', 'updated_at', 'TEXT');
+
 const seedUser = db.prepare('INSERT OR IGNORE INTO admin_users (username, display_name, role, password) VALUES (?, ?, ?, ?)');
 seedUser.run('admin', '系统管理员', 'admin', process.env.ADMIN_DEMO_PASSWORD || 'change-me');
 seedUser.run('ops', '运营人员', 'operations', process.env.ADMIN_OPS_PASSWORD || 'change-me');
@@ -32,8 +39,15 @@ function id(prefix) {
   return prefix + '_' + crypto.randomBytes(8).toString('hex');
 }
 
+const CORS = {
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, OPTIONS',
+  'access-control-allow-headers': 'content-type, authorization',
+  'access-control-max-age': '86400'
+};
+
 function json(res, status, value) {
-  res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' });
+  res.writeHead(status, Object.assign({ 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }, CORS));
   res.end(JSON.stringify(value));
 }
 
@@ -65,6 +79,7 @@ function requirePermission(req, permission) {
 }
 
 async function api(req, res, url) {
+  if (req.method === 'OPTIONS') { res.writeHead(204, CORS); return res.end(); }
   try {
     if (req.method === 'GET' && url.pathname === '/api/health') return json(res, 200, { ok: true, provider: process.env.BOOKING_API_BASE_URL ? 'booking-configured' : 'local-adapter' });
 
@@ -129,6 +144,65 @@ async function api(req, res, url) {
       const confirm = db.prepare('INSERT OR IGNORE INTO message_confirmations (message_id, confirmed_at) VALUES (?, ?)');
       (data.messageIds || []).forEach(messageId => confirm.run(messageId, new Date().toISOString()));
       return json(res, 200, { confirmed: data.messageIds || [] });
+    }
+
+    /* ---------- 客服会话（持久化） ---------- */
+    if (req.method === 'POST' && url.pathname === '/api/support/session') {
+      const data = await body(req);
+      const clientId = String(data.clientId || '').trim();
+      const name = String(data.name || '').trim() || 'Guest';
+      if (!/^[A-Za-z0-9_-]{6,64}$/.test(clientId)) return json(res, 400, { error: 'clientId required' });
+      let conv = db.prepare('SELECT conversation_id AS conversationId, customer_name AS name, created_at AS createdAt FROM conversations WHERE conversation_id = ?').get(clientId);
+      if (!conv) {
+        const now = new Date().toISOString();
+        db.prepare('INSERT INTO conversations (conversation_id, conversation_key, order_id, hotel_id, created_at, customer_name, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)').run(clientId, 'web:' + clientId, null, 'angkor-travel', now, name, now);
+        conv = { conversationId: clientId, name, createdAt: now };
+      } else {
+        db.prepare('UPDATE conversations SET customer_name = ?, updated_at = ? WHERE conversation_id = ?').run(name, new Date().toISOString(), clientId);
+      }
+      return json(res, 200, { conversationId: conv.conversationId, name });
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/support/message') {
+      const data = await body(req);
+      const conversationId = String(data.conversationId || '').trim();
+      const content = String(data.content || '').trim();
+      const sender = data.sender === 'agent' ? 'agent' : 'customer';
+      if (!conversationId || !content) return json(res, 400, { error: 'conversationId and content are required' });
+      const conv = db.prepare('SELECT conversation_id FROM conversations WHERE conversation_id = ?').get(conversationId);
+      if (!conv) return json(res, 404, { error: 'conversation not found' });
+      if (sender === 'agent') {
+        const auth = requirePermission(req, 'messages.write');
+        if (auth.error) return json(res, auth.status, auth);
+      }
+      const now = new Date().toISOString();
+      const message = { messageId: id('msg'), conversationId, sender, content, createdAt: now };
+      db.prepare('INSERT INTO messages (message_id, conversation_id, hotel_id, sender, content, created_at, is_redacted) VALUES (?, ?, ?, ?, ?, ?, 0)').run(message.messageId, conversationId, 'angkor-travel', sender, content, now);
+      db.prepare('UPDATE conversations SET updated_at = ? WHERE conversation_id = ?').run(now, conversationId);
+      if (sender === 'agent') db.prepare('INSERT OR IGNORE INTO message_confirmations (message_id, confirmed_at) VALUES (?, ?)').run(message.messageId, now);
+      return json(res, 201, { message });
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/support/messages') {
+      const conversationId = url.searchParams.get('conversationId') || '';
+      if (!conversationId) return json(res, 400, { error: 'conversationId required' });
+      const rows = db.prepare(`SELECT message_id AS messageId, sender, content, created_at AS createdAt FROM messages WHERE conversation_id = ? ORDER BY created_at ASC LIMIT 500`).all(conversationId);
+      return json(res, 200, { messages: rows });
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/support/conversations') {
+      const auth = requirePermission(req, 'messages.read');
+      if (auth.error) return json(res, auth.status, auth);
+      const rows = db.prepare(`
+        SELECT c.conversation_id AS conversationId, c.customer_name AS name, c.created_at AS createdAt, c.updated_at AS updatedAt,
+               (SELECT content FROM messages m WHERE m.conversation_id = c.conversation_id ORDER BY m.created_at DESC LIMIT 1) AS lastMessage,
+               (SELECT count(*) FROM messages m WHERE m.conversation_id = c.conversation_id) AS messageCount,
+               (SELECT max(created_at) FROM messages m WHERE m.conversation_id = c.conversation_id) AS lastAt
+        FROM conversations c
+        WHERE c.conversation_key LIKE 'web:%'
+        ORDER BY COALESCE(c.updated_at, c.created_at) DESC
+        LIMIT 200`).all();
+      return json(res, 200, { conversations: rows });
     }
 
     return json(res, 404, { error: 'not found' });
