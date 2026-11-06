@@ -213,8 +213,9 @@ async function api(req, res, url) {
       const payload = await body(req);
       const messages = Array.isArray(payload.messages) ? payload.messages.slice(-12) : [];
       if (!messages.length) return json(res, 400, { error: 'messages_required' });
-      const base = (process.env.AI_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3').replace(/\/+$/, '');
-      const model = payload.model || process.env.AI_MODEL || 'doubao-seed-1-6-flash-250828';
+      const isOpenAI = /^sk-/.test(key);
+      const base = (process.env.AI_BASE_URL || (isOpenAI ? 'https://api.openai.com/v1' : 'https://ark.cn-beijing.volces.com/api/v3')).replace(/\/+$/, '');
+      const model = payload.model || process.env.AI_MODEL || (isOpenAI ? 'gpt-4o-mini' : 'doubao-seed-1-6-flash-250828');
       const upstream = await fetch(base + '/chat/completions', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: 'Bearer ' + key },

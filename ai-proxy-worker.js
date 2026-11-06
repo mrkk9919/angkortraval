@@ -53,8 +53,12 @@ export default {
     const messages = Array.isArray(payload.messages) ? payload.messages.slice(-12) : [];
     if (!messages.length) return json({ error: 'messages_required' }, 400, cors);
 
-    const base = String(env.AI_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3').replace(/\/+$/, '');
-    const model = payload.model || env.AI_MODEL || 'doubao-seed-1-6-flash-250828';
+    // 密钥以 sk- 开头视为 OpenAI，其余按豆包/火山方舟处理；可用环境变量覆盖
+    const isOpenAI = /^sk-/.test(String(env.AI_API_KEY || ''));
+    const base = String(
+      env.AI_BASE_URL || (isOpenAI ? 'https://api.openai.com/v1' : 'https://ark.cn-beijing.volces.com/api/v3')
+    ).replace(/\/+$/, '');
+    const model = payload.model || env.AI_MODEL || (isOpenAI ? 'gpt-4o-mini' : 'doubao-seed-1-6-flash-250828');
 
     const upstream = await fetch(base + '/chat/completions', {
       method: 'POST',
