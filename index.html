@@ -1395,6 +1395,7 @@ const I18N = {
     aKid:'Children welcome. Child price is 60% of adult. Car seats on request.',
     aSupport:'WhatsApp / phone +855 12 888 010, 08:00–21:00. Or keep chatting here.',
     aDefault:'I can help with prices, Wing/ABA pay, tickets, pickup, cancel, visa, weather. Or tap a question below.',
+    aHello:'Hi! Good to see you. Tell me your travel date and how many people, or ask about price, payment, tickets, pickup, cancel or visa.',
     citySiemReap:'Siem Reap', cityPhnomPenh:'Phnom Penh', citySihanoukville:'Sihanoukville', cityKampot:'Kampot',
     partnerTitle:'Trusted partners',
     partnerNote:'These partners operate and collect payments independently. Angkor Travel does not collect or hold funds on their behalf.',
@@ -1484,6 +1485,7 @@ const I18N = {
     aKid:'欢迎带儿童。儿童价为成人的 60%。可申请儿童座椅。',
     aSupport:'WhatsApp / 电话 +855 12 888 010，08:00–21:00。也可继续在此咨询。',
     aDefault:'可咨询价格、Wing/ABA 支付、门票、接送、取消、签证、天气。或点击下方问题。',
+    aHello:'你好！很高兴见到你。可以说下出行日期和人数，也可以问价格、付款、门票、接送、取消或签证。',
     citySiemReap:'暹粒', cityPhnomPenh:'金边', citySihanoukville:'西哈努克', cityKampot:'贡布',
     partnerTitle:'合作商家',
     partnerNote:'以下合作商家独立运营并自行收款，本公司不代收也不保管其款项。',
@@ -1573,6 +1575,7 @@ const I18N = {
     aKid:'ស្វាគមន៍កុមារ។ តម្លៃកុមារ ៦០% នៃមនុស្សធំ។ អាចស្នើកៅអីកុមារ។',
     aSupport:'WhatsApp / ទូរស័ព្ទ +855 12 888 010, ០៨:០០–២១:០០។ ឬបន្តជជែកនៅទីនេះ។',
     aDefault:'ខ្ញុំជួយអំពីតម្លៃ ការបង់ Wing/ABA សំបុត្រ ទៅទទួល លុបចោល វីសា អាកាសធាតុ។ ឬចុចសំណួរខាងក្រោម។',
+    aHello:'សួស្តី! រីករាយដែលបានជួបអ្នក។ សូមប្រាប់កាលបរិច្ឆេទ និងចំនួនមនុស្ស ឬសួរអំពីតម្លៃ ការបង់ប្រាក់ សំបុត្រ ការទៅទទួល ការលុបចោល ឬវីសា។',
     citySiemReap:'សៀមរាប', cityPhnomPenh:'ភ្នំពេញ', citySihanoukville:'ព្រះសីហនុ', cityKampot:'កំពត',
     partnerTitle:'ដៃគូទំនុកចិត្ត',
     partnerNote:'ដៃគូទាំងនេះដំណើរការ និងទទួលប្រាក់ដោយឯករាជ្យ។ Angkor Travel មិនទទួល ឬកាន់កាប់ប្រាក់ក្នុងនាមពួកគេទេ។',
@@ -2232,6 +2235,10 @@ function renderChatLog() {
 
 function reply(q) {
   const s = (q || '').toLowerCase();
+  const chipMap = { [t('qPrice')]: 'aPrice', [t('qPay')]: 'aPay', [t('qTicket')]: 'aTicket', [t('qPickup')]: 'aPickup', [t('qCancel')]: 'aCancel', [t('qVisa')]: 'aVisa' };
+  if (chipMap[q]) return t(chipMap[q]);
+  if (/^(hi|hello|hey|hiya|yo|good\s+(morning|afternoon|evening))(\s+there)?([\s!,.?~]*)$/.test(s) || /^(你好|您好|嗨|哈喽|在吗|早上好|晚上好|早安|午安)([\s!！。,.?？~]*)$/.test(s) || /^(សួស្តី|ជំរាបសួរ)([\s!,.?~]*)$/.test(s)) return t('aHello');
+  if (/ticket|门票|សំបុត្រ/.test(s)) return t('aTicket');
   if (/吴哥|angkor|sunrise|日出|អង្គរ|temple|ប្រាសាទ/.test(s)) return t('aAngkor');
   if (/岛|beach|koh|西哈|sihanouk|island|កោះ|រ៉ុង/.test(s)) return t('aIsland');
   if (/food|夜市|美食|អាហារ|bites/.test(s)) return t('aFood');
@@ -2241,7 +2248,6 @@ function reply(q) {
   if (/kampot|贡布|胡椒|កំពត|ម្រេច/.test(s)) return t('aKampot');
   if (/price|budget|便宜|多少|钱|价格|តម្លៃ|\$/.test(s) || q === t('qPrice')) return t('aPrice');
   if (/pay|付款|支付|wing|aba|qr|បង់/.test(s) || q === t('qPay')) return t('aPay');
-  if (/ticket|门票|សំបុត្រ/.test(s) || q === t('qTicket')) return t('aTicket');
   if (/pickup|接送|酒店|សណ្ឋាគារ|hotel/.test(s) || q === t('qPickup')) return t('aPickup');
   if (/cancel|取消|退|លុប/.test(s) || q === t('qCancel')) return t('aCancel');
   if (/visa|签证|វីសា/.test(s) || q === t('qVisa')) return t('aVisa');
